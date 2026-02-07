@@ -1,4 +1,4 @@
-## **Process Management (Operating Systems)**
+## **Process Management**
 
 ### **1. Introduction**
 
