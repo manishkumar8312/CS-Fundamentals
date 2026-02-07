@@ -1,17 +1,4 @@
-Here is the **cleaned, professional README version** with a **simplified repository structure** that **only lists subject names**, exactly as you asked.
-
-You can directly replace the **Repository Structure** section in your README.
-
----
-
 # **CS-Fundamentals**
-
-[![GitHub Repo Size](https://img.shields.io/github/repo-size/your-username/CS-Fundamentals)](https://github.com/manishkumar8312/CS-Fundamentals)
-[![GitHub Stars](https://img.shields.io/github/stars/your-username/CS-Fundamentals)](https://github.com/manishkumar8312/CS-Fundamentals/stargazers)
-[![GitHub Forks](https://img.shields.io/github/forks/your-username/CS-Fundamentals)](https://github.com/manishkumar8312/CS-Fundamentals/network)
-[![License](https://img.shields.io/github/license/your-username/CS-Fundamentals)](LICENSE)
-[![Last Commit](https://img.shields.io/github/last-commit/your-username/CS-Fundamentals)](https://github.com/manishkumar8312/CS-Fundamentals/commits/main)
-
 ---
 
 ## **Overview**
