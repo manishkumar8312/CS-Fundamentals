@@ -1,63 +1,126 @@
-# **CS-Fundamentals**
----
+## CS Fundamentals
+![DSA](https://img.shields.io/badge/Focus-DSA-blue?style=flat-square)
+![OS](https://img.shields.io/badge/Focus-Operating%20Systems-important?style=flat-square)
+![DBMS](https://img.shields.io/badge/Focus-DBMS-success?style=flat-square)
+![CN](https://img.shields.io/badge/Focus-Computer%20Networks-yellow?style=flat-square)
 
-## **Overview**
+This repository contains a well-organized collection of core **Computer Science fundamentals**, intended to build strong conceptual understanding for **technical interviews, competitive programming, academic exams, and software development**.
 
-**CS-Fundamentals** is a structured collection of core **Computer Science subjects**, designed for academic learning, technical interviews, and foundational preparation for software engineering roles.
-
----
-
-## **Subjects Covered**
-
-```text
-Operating Systems
-Data Structures
-Algorithms
-Database Management Systems (DBMS)
-Computer Networks
-Object-Oriented Programming (OOP)
-```
+It serves as a consolidated reference for essential CS subjects commonly expected from **Computer Science and Engineering** students and professionals.
 
 ---
 
-## **How to Use This Repository**
+## Topics Covered
 
-* Study subjects in parallel for balanced preparation
-* Use notes for quick revision before exams and interviews
-* Strengthen concepts before solving coding problems
-* Refer to OS, DBMS, and CN for interview preparation
+### Data Structures and Algorithms
 
----
-
-## **Target Audience**
-
-* Computer Science students
-* Software engineering aspirants
-* Competitive programmers
-* Interview preparation candidates
+* Arrays and Strings
+* Linked Lists
+* Stacks and Queues
+* Trees and Binary Trees
+* Graphs (BFS, DFS, Cycle Detection)
+* Searching and Sorting Algorithms
+* Recursion and Backtracking
+* Time and Space Complexity
 
 ---
 
-## **Contribution Guidelines**
+### Operating Systems
 
-Contributions are welcome.
+* Processes and Threads
+* CPU Scheduling Algorithms
+* Deadlocks
+* Memory Management
+* Paging and Segmentation
+* Virtual Memory
+* File Systems
+
+---
+
+### Computer Networks
+
+* OSI and TCP/IP Models
+* Network Devices
+* IP Addressing and Subnetting
+* TCP vs UDP
+* DNS, HTTP, HTTPS
+* Flow and Congestion Control
+
+---
+
+### Database Management Systems
+
+* Entity Relationship Model
+* Relational Model
+* SQL and Normalization
+* Indexing
+* Transactions
+* ACID Properties
+* Concurrency Control and Deadlocks
+
+---
+
+### Object-Oriented Programming
+
+* Classes and Objects
+* Inheritance
+* Polymorphism
+* Encapsulation
+* Abstraction
+* SOLID Principles
+
+---
+
+### Computer Organization and Architecture
+
+* Number Systems
+* Instruction Cycle
+* Cache Memory
+* Pipelining
+* Addressing Modes
+* Input and Output Organization
+
+---
+
+## Purpose of This Repository
+
+* Strengthen core computer science concepts
+* Prepare for technical interviews and assessments
+* Support competitive programming practice
+* Provide concise and reliable revision material
+* Assist with academic coursework and examinations
+
+---
+
+## Technologies and Languages
+
+* C++
+* Java
+* Python
+* Pseudocode and Conceptual Notes
+
+---
+
+## Contribution Guidelines
+
+Contributions are welcome and encouraged.
 
 * Fork the repository
-* Create a new branch
-* Maintain clarity and correctness
-* Submit a pull request
+* Create a new feature branch
+* Add or improve content with proper structure
+* Submit a pull request with a clear description
 
 ---
 
-## **License**
+## How to Use
 
-This project is licensed under the **MIT License**.
+1. Clone the repository
+2. Navigate through topic-wise directories
+3. Study concepts along with implementations
+4. Practice consistently and revise regularly
 
 ---
 
-## **Author**
+## Note
 
-**Manish Kumar Sah**
-Computer Science and Engineering
-Lovely Professional University
-
+This repository emphasizes **fundamental understanding and correctness** rather than framework-specific implementations.
