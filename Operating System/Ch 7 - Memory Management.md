@@ -15,11 +15,11 @@ An effective memory management system must satisfy the following requirements:
 * **Physical Organization** – Efficient handling of primary and secondary memory.
 
 <div style="text-align: center;">
-  <img src="https://assets.enterprisestorageforum.com/uploads/2021/02/data-storage-memory-management-optimizing-computer-memory_6019c48f54470.png" alt="Memory Management" />
+  <img src="https://assets.enterprisestorageforum.com/uploads/2021/02/data-storage-memory-management-optimizing-computer-memory_6019c48f54470.png" alt="Memory Management" width="700" height="auto" />
 </div>
 
 <div style="text-align: center;">
-  <img src="https://static.afteracademy.com/images/what-is-the-difference-between-logical-and-physical-address-wrt-operating-system-mapping-physical-and-virtual-addresses-3c4b40c3385b8fef.jpg" alt="Logical and Physical Address" />
+  <img src="https://static.afteracademy.com/images/what-is-the-difference-between-logical-and-physical-address-wrt-operating-system-mapping-physical-and-virtual-addresses-3c4b40c3385b8fef.jpg" alt="Logical and Physical Address" width="700" height="auto" />
 </div>
 
 ---
@@ -44,11 +44,11 @@ In contiguous memory allocation, each process is allocated a single continuous b
 * Limited flexibility for dynamic memory growth
 
 <div style="text-align: center;">
-  <img src="https://scaler.com/topics/images/Contiguous%20memory%20allocation%20in%20os_Inner%20Image-01.webp" alt="Contiguous Memory Allocation" />
+  <img src="https://scaler.com/topics/images/Contiguous%20memory%20allocation%20in%20os_Inner%20Image-01.webp" alt="Contiguous Memory Allocation" width="700" height="auto" />
 </div>
 
 <div style="text-align: center;">
-  <img src="https://study.com/cimages/multimages/16/580d9d7c-0231-458d-9455-0ad52a14edaf_partition_10.png" alt="Memory Partitions" />
+  <img src="https://study.com/cimages/multimages/16/580d9d7c-0231-458d-9455-0ad52a14edaf_partition_10.png" alt="Memory Partitions" width="700" height="auto" />
 </div>
 
 ---
@@ -73,7 +73,7 @@ When variable-sized partitions are used, the operating system applies allocation
 * Leaves large unused memory spaces; rarely used in practice.
 
 <div style="text-align: center;">
-  <img src="https://www.poriyaan.in/media/imgPori/images51/MJvO4WK.jpg" alt="Memory Allocation Strategies" />
+  <img src="https://www.poriyaan.in/media/imgPori/images51/MJvO4WK.jpg" alt="Memory Allocation Strategies" width="700" height="auto" />
 </div>
 
 ---
@@ -99,7 +99,7 @@ Paging is a non-contiguous memory management technique that divides memory into 
 * Additional overhead for page tables
 
 <div style="text-align: center;">
-  <img src="https://exposnitc.github.io/img/address_translation.png" alt="Paging Address Translation" />
+  <img src="https://exposnitc.github.io/img/address_translation.png" alt="Paging Address Translation" width="700" height="auto" />
 </div>
 
 ---
@@ -124,7 +124,7 @@ Segmentation divides a program into logical segments based on functionality.
 * More complex memory management
 
 <div style="text-align: center;">
-  <img src="https://assets.enterprisestorageforum.com/uploads/2021/02/paging-and-segmentation_6019c4f2d369c.png" alt="Paging and Segmentation" />
+  <img src="https://assets.enterprisestorageforum.com/uploads/2021/02/paging-and-segmentation_6019c4f2d369c.png" alt="Paging and Segmentation" width="700" height="auto" />
 </div>
 
 ---
@@ -145,7 +145,7 @@ Virtual memory allows processes to execute without being fully loaded into main 
 * Uses secondary storage such as disks
 
 <div style="text-align: center;">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Virtual_memory.svg" alt="Virtual Memory" />
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Virtual_memory.svg" alt="Virtual Memory" width="700" height="auto" />
 </div>
 
 
@@ -171,7 +171,7 @@ Demand paging loads memory pages only when they are required during execution.
 * May lead to thrashing if not controlled
 
 <div style="text-align: center;">
-  <img src="https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/images/Chapter9/9_10_PageReplacement.jpg" alt="Demand Paging" />
+  <img src="https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/images/Chapter9/9_10_PageReplacement.jpg" alt="Demand Paging" width="700" height="auto" />
 </div>
 
 
@@ -197,7 +197,7 @@ When a page fault occurs and no free frames are available, a page replacement al
 * Produces minimum page faults; theoretical benchmark.
 
 <div style="text-align: center;">
-  <img src="https://prepbytes-misc-images.s3.ap-south-1.amazonaws.com/assets/1675407302244-FIFO%20Page%20Replacement%20Algorithm1.png" alt="Page Replacement Algorithms" />
+  <img src="https://prepbytes-misc-images.s3.ap-south-1.amazonaws.com/assets/1675407302244-FIFO%20Page%20Replacement%20Algorithm1.png" alt="Page Replacement Algorithms" width="700" height="auto" />
 </div>
 
 ---
@@ -225,7 +225,7 @@ Thrashing occurs when the system spends most of its time handling page faults ra
 * Reducing degree of multiprogramming
 
 <div style="text-align: center;">
-  <img src="https://media.licdn.com/dms/image/v2/D5612AQEVPv8z5EV9lA/article-cover_image-shrink_720_1280/B56ZZor9.nHAAI-/0/1745513088012?e=2147483647&t=STS-89VL-dr5oh-PyD4vwANk0QQBfR5NONtT_QFLKRY&v=beta" alt="Thrashing" />
+  <img src="https://media.licdn.com/dms/image/v2/D5612AQEVPv8z5EV9lA/article-cover_image-shrink_720_1280/B56ZZor9.nHAAI-/0/1745513088012?e=2147483647&t=STS-89VL-dr5oh-PyD4vwANk0QQBfR5NONtT_QFLKRY&v=beta" alt="Thrashing" width="700" height="auto" />
 </div>
 
 
