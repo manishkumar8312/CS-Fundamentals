@@ -32,6 +32,13 @@ The substring `y` can be repeated (pumped) any number of times, and the resultin
        height="260" />
 </p>
 
+<p align="center">
+  <img src="https://www.asethome.org/fa/image002a.jpg"
+       alt="Finite Automaton Loop"
+       width="420"
+       height="260" />
+</p>
+
 The intuition comes from the structure of **finite automata**:
 
 * A finite automaton has a limited number of states
@@ -119,12 +126,6 @@ L \text{ is not regular}
 
 ### Techniques to Prove Languages Are Non-Regular
 
-<p align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Pumping-Lemma_xyz.pdf/page1-800px-Pumping-Lemma_xyz.pdf.jpg?20141129121341="
-       alt="Finite Automaton Loop"
-       width="420"
-       height="260" />
-</p>
 <p align="center">
   <img src="https://cn.edurev.in/ApplicationImages/Temp/1611931_2d7a200e-c186-4637-b5da-4873e6407c64_lg.PNG"
        alt="Finite Automaton Loop"
