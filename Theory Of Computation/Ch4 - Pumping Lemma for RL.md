@@ -32,13 +32,6 @@ The substring `y` can be repeated (pumped) any number of times, and the resultin
        height="260" />
 </p>
 
-<p align="center">
-  <img src="https://www.asethome.org/fa/image002a.jpg"
-       alt="Finite Automaton Loop"
-       width="420"
-       height="260" />
-</p>
-
 The intuition comes from the structure of **finite automata**:
 
 * A finite automaton has a limited number of states
