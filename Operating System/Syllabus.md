@@ -220,19 +220,4 @@
 
 ---
 
-# 1️⃣1️⃣ Virtualization & Modern OS Concepts
-
-### Topics
-
-* Virtual Machines
-* Hypervisors
-
-  * Type 1
-  * Type 2
-* Containers vs Virtual Machines
-* Cloud OS basics
-* Overview of Distributed Systems
-
----
-
 ⭐ **Star this repository if you find it helpful.**
