@@ -1,252 +1,170 @@
-# Process Management (Operating System)
+## **Process Management**
 
-A comprehensive reference for understanding process management concepts in Operating Systems. Suitable for academic study, interviews, and technical documentation.
+### **1. Introduction**
 
----
-
-## 1. Process Concept
-
-A **process** is a program in execution.
-
-When a program is loaded into memory and begins execution, it becomes a process. A process is an active entity and contains:
-
-* Program code (Text section)
-* Program Counter (PC)
-* Stack (function calls, local variables)
-* Heap (dynamic memory allocation)
-* Data section (global/static variables)
-* CPU registers
-
-A process is more than just the program code; it also includes the current activity and execution context.
+Process Management is a fundamental function of an Operating System (OS) that deals with the creation, scheduling, execution, synchronization, and termination of processes. A **process** is a program in execution, along with its associated resources such as CPU registers, memory, files, and I/O devices.
+The primary goal of process management is to ensure efficient CPU utilization, fairness among processes, and correct execution in a multi-programming environment.
 
 ---
 
-## 2. Process vs Program
+### **2. Process**
 
-| Program            | Process                |
-| ------------------ | ---------------------- |
-| Passive entity     | Active entity          |
-| Stored on disk     | Resides in main memory |
-| No execution state | Has execution state    |
-| Static             | Dynamic                |
+A **process** consists of:
 
-A single program can create multiple processes. For example, running the same executable multiple times results in multiple independent processes.
+* **Program Code (Text Section)** – executable instructions
+* **Data Section** – global and static variables
+* **Heap** – dynamically allocated memory
+* **Stack** – function calls, local variables, and return addresses
+* **Process Control Block (PCB)** – metadata used by the OS to manage the process
 
----
-
-## 3. Process States and State Transitions
-
-### Process States
-
-1. **New** – Process is being created.
-2. **Ready** – Process is waiting for CPU allocation.
-3. **Running** – Process instructions are being executed.
-4. **Waiting (Blocked)** – Process is waiting for I/O or an external event.
-5. **Terminated** – Process execution has completed.
-
-### Process State Transition Diagram
-
-<div align="center">
-
-![Process State Diagram](https://upload.wikimedia.org/wikipedia/commons/5/53/Process_state_diagram.svg)
-
-</div>
-
-### State Transitions
-
-* New → Ready
-* Ready → Running
-* Running → Waiting
-* Waiting → Ready
-* Running → Terminated
-* Running → Ready (Preemption)
+Each process is independent and executes in its own address space.
 
 ---
 
-## 4. Process Control Block (PCB)
+### **3. Process States**
 
-The **Process Control Block (PCB)** is a data structure maintained by the operating system to store all information about a process.
+During its lifetime, a process transitions through various states:
 
-### PCB Contains:
+<p align="center">
+  <img 
+    src="https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/images/Chapter3/3_02_ProcessState.jpg"
+    alt="Process State Diagram"
+    width="600"
+  />
+</p>
+
+Common process states include:
+
+* **New** – Process is being created
+* **Ready** – Process is waiting to be assigned to the CPU
+* **Running** – Process is currently executing on the CPU
+* **Waiting (Blocked)** – Process is waiting for I/O or some event
+* **Terminated** – Process has completed execution
+
+Some systems also include **Suspended Ready** and **Suspended Blocked** states.
+
+---
+
+### **4. Process Control Block (PCB)**
+
+The **PCB** is a data structure maintained by the OS for each process. It contains:
 
 * Process ID (PID)
 * Process State
 * Program Counter
 * CPU Registers
-* CPU Scheduling Information
+* CPU Scheduling Information (priority, queue pointers)
 * Memory Management Information
 * Accounting Information
 * I/O Status Information
 
-### PCB Structure Diagram
-
-The PCB is essential for context switching and process management.
+The PCB allows the OS to perform **context switching** efficiently.
 
 ---
 
-## 5. Context Switching
+### **5. Context Switching**
 
-**Context Switching** is the process of saving the state of the currently running process and loading the state of another process.
-
-Steps involved:
-
-1. Save current process state into its PCB.
-2. Load next process state from its PCB.
-3. Resume execution.
-
-Context switching introduces overhead because no useful work is done during the switch.
+Context switching is the mechanism by which the OS saves the state of the currently running process and loads the state of the next scheduled process.
+Although necessary for multitasking, context switching introduces overhead since the CPU performs no useful work during the switch.
 
 ---
 
-## 6. Process Scheduling Queues
+### **6. Process Scheduling**
 
-Processes move between various scheduling queues:
+Process scheduling determines which process gets CPU time and for how long. The OS scheduler aims to:
 
-* Job Queue – All processes in the system.
-* Ready Queue – Processes waiting for CPU.
-* Device Queues – Processes waiting for I/O devices.
+* Maximize CPU utilization
+* Minimize waiting time, turnaround time, and response time
+* Ensure fairness and avoid starvation
 
-### Scheduling Queue Diagram
+#### **Types of Schedulers**
 
-The CPU scheduler selects processes from the ready queue.
+* **Long-Term Scheduler** – Selects processes to admit into the ready queue
+* **Short-Term Scheduler** – Selects the next process to execute on the CPU
+* **Medium-Term Scheduler** – Handles process suspension and resumption
+
+#### **Scheduling Algorithms**
+
+* First Come First Serve (FCFS)
+* Shortest Job First (SJF)
+* Priority Scheduling
+* Round Robin (RR)
+* Multilevel Queue Scheduling
 
 ---
 
-## 7. Process Creation and Termination
+### **7. Process Creation**
 
-### Process Creation
-
-A process may create several new processes via system calls.
-
-Reasons for process creation:
+Processes can be created by:
 
 * System initialization
-* User request
-* Batch job submission
-* Parent process creates child process
+* A running process invoking a system call (e.g., `fork()`)
+* User requests
 
-### Process Termination
+During creation, the OS:
+
+1. Assigns a unique PID
+2. Allocates memory and resources
+3. Initializes PCB
+4. Places the process in the ready queue
+
+Parent–child relationships may exist between processes.
+
+---
+
+### **8. Process Termination**
 
 A process terminates when:
 
-* It finishes execution.
-* It encounters a fatal error.
-* It is killed by another process.
-* The operating system terminates it.
+* It completes execution normally
+* It encounters an error or exception
+* It is terminated by another process or the OS
+
+On termination, the OS releases all resources allocated to the process and removes its PCB.
 
 ---
 
-## 8. fork() and exec() Concepts
+### **9. Inter-Process Communication (IPC)**
 
-These are system calls in UNIX-based systems.
+IPC allows processes to communicate and synchronize their actions.
+Common IPC mechanisms include:
 
-### fork()
+* Pipes
+* Message Queues
+* Shared Memory
+* Semaphores
+* Signals
 
-* Creates a new child process.
-* The child process is an exact copy of the parent.
-* Returns:
-
-  * 0 to child
-  * Child PID to parent
-  * -1 on failure
-
-### exec()
-
-* Replaces the current process image with a new program.
-* Does not create a new process.
-* Used after `fork()` in most cases.
-
-Typical pattern:
-
-```c
-pid_t pid = fork();
-
-if (pid == 0) {
-    execl("/bin/ls", "ls", NULL);
-}
-```
+IPC is essential in concurrent and distributed systems.
 
 ---
 
-## 9. Zombie and Orphan Processes
+### **10. Process Synchronization**
 
-### Zombie Process
+When multiple processes access shared resources, synchronization is required to prevent race conditions.
+Key concepts include:
 
-* A process that has finished execution.
-* Still has an entry in the process table.
-* Parent has not called `wait()`.
+* Critical Section
+* Mutual Exclusion
+* Semaphores
+* Mutex Locks
+* Monitors
 
-Zombie exists until the parent collects its exit status.
-
-### Orphan Process
-
-* A child process whose parent has terminated.
-* Adopted by the init process (PID 1).
+Proper synchronization ensures data consistency and system stability.
 
 ---
 
-## 10. Inter-Process Communication (IPC)
+### **11. Importance of Process Management**
 
-Processes may need to communicate and synchronize with each other.
+Process management is crucial because it:
 
-There are two main IPC models:
-
----
-
-### 10.1 Shared Memory
-
-* Multiple processes share a common memory region.
-* Fast communication.
-* Requires synchronization mechanisms (semaphores, mutex).
-
-Working:
-
-1. OS creates shared memory region.
-2. Processes attach to it.
-3. They read/write data.
-
-Advantages:
-
-* High speed
-* Efficient for large data
-
-Disadvantages:
-
-* Synchronization complexity
+* Enables multitasking and multi-user systems
+* Ensures fair and efficient CPU allocation
+* Prevents deadlocks and starvation
+* Improves system performance and responsiveness
 
 ---
 
-### 10.2 Message Passing
+### **12. Conclusion**
 
-* Processes communicate by sending messages.
-* No shared memory.
-* Safer and easier to implement.
-
-Types:
-
-* Direct Communication
-* Indirect Communication (via mailboxes)
-
-Advantages:
-
-* No shared memory issues
-* Suitable for distributed systems
-
-Disadvantages:
-
-* Slower than shared memory
-
----
-
-# Conclusion
-
-Process management is a core responsibility of the operating system. It includes:
-
-* Process lifecycle management
-* Context switching
-* Scheduling
-* Creation and termination
-* Inter-process communication
-
-Understanding these concepts is essential for system programming, operating system design, and technical interviews.
-
+Process Management is a core responsibility of an Operating System that ensures orderly execution of multiple processes. By efficiently handling process states, scheduling, synchronization, and communication, the OS provides a stable, responsive, and high-performance computing environment.
