@@ -274,7 +274,6 @@ S
 
 <p align="center">
   <img src="https://images.openai.com/static-rsc-4/Gch0s77tWbTCFbr-88S2YENKqV7lIica4x51LGfDLYHjXfCmbzzInYA5kUyrl6rWYx0Sr2QBTUFwEgz_FVp0GqO9sBUT1HVyf1VyNWkhdwij1mMEq4k7zmC4g8cNaNg5BIln9tEBLMD67S42nvyuTFoLQEqOj1pa-zxPHroPvCVtHC1GvO8l8jj3Ct3LHvfz?purpose=fullsize" width="250"/>
-  <img src="https://images.openai.com/static-rsc-4/PMF8hbt-EDO1b_RXWY854jjge052xixUCpYupl9zJmgCAWfYWE0cdAcASknMHlWav7RISCAOpHVvDzEVqb5aacO0wd6S7lkxEeqcA321A4V2M3Uw04aQF7y4QS7eZg7xeBKw4xanq7iP6xZUYaMgrEee62a8926s4u2j_Bx1cjD3_Y5wtzkUuF2UdFaQNx3?purpose=fullsize" width="250"/>
   <img src="https://images.openai.com/static-rsc-4/iA5n6kxygDaoEij5ugxuuR6Nqm9dEja123IKKCM8Ym_P5NgfzkzGCa6WrGWRCog_BShYMUoaQd2J5MQLkcx8mBir8XmH1AeC3v9yUbIaXM8JD7z_FBYLQitb4ACEWNHGifeWVPEJOOa6p8npa0rKipKarXv7A-uNXvsUz3aNTTYEQo1FN2znm_G8ySat1oJD?purpose=fullsize" width="250"/>
 </p>
 Leftmost and rightmost derivations generate the **same string**, but the order of rule application differs.
