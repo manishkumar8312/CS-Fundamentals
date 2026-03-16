@@ -265,16 +265,9 @@ S
 ---
 
 ## Derivation Illustration
-
 <p align="center">
-  <img src="https://images.openai.com/static-rsc-4/cmn_ZjhVw2XNRzPK44wnE_9M09mH_N7Db_5FnYn3wH2BAJ5RY7SXOmphoqRy7TCWm2tPFwdGorY6Nk4q42q9myDOC4qLRmn8h7aVINPUeqS4IK_bLWqCbtLMTqC5g2XLIgWQyVOpzPkYP-6-BEn8a8xBIsif75zHjKjpjyP2DkfWJglp2vNM49U-xiVbZnLt?purpose=fullsize" width="250"/>
-  <img src="https://images.openai.com/static-rsc-4/8HaPSgAFbn5ux8jWU7f0vXTyM_wiUbC5QPzs2aeCMSdeifZwkn8BiBCyA3HNibeFE-iQ-GrY1kiqrzpy-JPtxwKmp0ZXNmG06vGEPMJFt7D5N77a_zgWw3RlVsBFnM3ztRfDt2T0OY4AT0vsa2qmvNXiZD2A5oyrwF2l9xax-1s00fPhNSPh834QqG_W4su-?purpose=fullsize" width="250"/>
-  <img src="https://images.openai.com/static-rsc-4/qB7qZfqrStSsYDDCVIZWhGVjCGIU00M_ebLvoQNzEBIjwPV5GaVTscIeQxD_Xiwr-Po31nvfwKEmTppZQZaBuWMA_8cK3-u89nfi4YODvFrkSVWq7_OFclNK94ERZe-rtnshFgY9LPbLG6brHyQRkBp9QE2QZAMgCJ6bthTgYLiwtc0SiJC5dsMsNnl3QNBN?purpose=fullsize" width="250"/>
-</p>
-
-<p align="center">
-  <img src="https://images.openai.com/static-rsc-4/Gch0s77tWbTCFbr-88S2YENKqV7lIica4x51LGfDLYHjXfCmbzzInYA5kUyrl6rWYx0Sr2QBTUFwEgz_FVp0GqO9sBUT1HVyf1VyNWkhdwij1mMEq4k7zmC4g8cNaNg5BIln9tEBLMD67S42nvyuTFoLQEqOj1pa-zxPHroPvCVtHC1GvO8l8jj3Ct3LHvfz?purpose=fullsize" width="250"/>
-  <img src="https://images.openai.com/static-rsc-4/iA5n6kxygDaoEij5ugxuuR6Nqm9dEja123IKKCM8Ym_P5NgfzkzGCa6WrGWRCog_BShYMUoaQd2J5MQLkcx8mBir8XmH1AeC3v9yUbIaXM8JD7z_FBYLQitb4ACEWNHGifeWVPEJOOa6p8npa0rKipKarXv7A-uNXvsUz3aNTTYEQo1FN2znm_G8ySat1oJD?purpose=fullsize" width="250"/>
+  <img src="https://images.openai.com/static-rsc-4/cmn_ZjhVw2XNRzPK44wnE_9M09mH_N7Db_5FnYn3wH2BAJ5RY7SXOmphoqRy7TCWm2tPFwdGorY6Nk4q42q9myDOC4qLRmn8h7aVINPUeqS4IK_bLWqCbtLMTqC5g2XLIgWQyVOpzPkYP-6-BEn8a8xBIsif75zHjKjpjyP2DkfWJglp2vNM49U-xiVbZnLt?purpose=fullsize" width="420"/>
+  <img src="https://images.openai.com/static-rsc-4/Gch0s77tWbTCFbr-88S2YENKqV7lIica4x51LGfDLYHjXfCmbzzInYA5kUyrl6rWYx0Sr2QBTUFwEgz_FVp0GqO9sBUT1HVyf1VyNWkhdwij1mMEq4k7zmC4g8cNaNg5BIln9tEBLMD67S42nvyuTFoLQEqOj1pa-zxPHroPvCVtHC1GvO8l8jj3Ct3LHvfz?purpose=fullsize" width="420"/>
 </p>
 Leftmost and rightmost derivations generate the **same string**, but the order of rule application differs.
 
@@ -304,18 +297,10 @@ S → ε
 
 Parse tree for **aabb**.
 
-![Image](https://images.openai.com/static-rsc-4/0V1vGyOpPZfO3c7gRN4Lonpred7o3ikBik3GbAgTtHl1yRY7UpE17kKcNM1yVb0hiJgpqyE6tYNrXUOK2wser42PF7Lbjg7hfCPmx1atcNjDsIa7-cgt0QwB3r5LQZ_D9gGnxgT-arLVXAAWa1fivDmjEvH_WsgCX7vw2__m4rBN7Lxl_Fta8Ye1dcfrtwmc?purpose=fullsize)
-
-![Image](https://images.openai.com/static-rsc-4/51aHwjvfWdZz4wCRA3tDFAoEdLdLsnIBND-IrSZ77FEM3QIux5CGRxSG6XUoPPf5zCRtbAx7slABDWyRODTGvE7swA2GfSKqvh4fN54oV5AftQM7TJyAHsB13kBH03pJspSd2xhjAOIvRaFkZ_eC2rMZsb6p9RXLva-gvI65Pr3JtzP2VlUOcVQtaiRJ33Vu?purpose=fullsize)
-
-![Image](https://images.openai.com/static-rsc-4/bhtLLTkOYLvLsk8XuxlSEUQ-EeT3Qm30q0bdUxi95SPEbMAqD1LCFPhI7f1SN98cTd0a8bolQ2cfvK6vxVcoLWgotoC-cHXodqFx4vT0Tn_J0qFgKSXeeDMSFIT-0CCPnPmOrhM8pbKVprVUBKpJiJ4bkdDhnxQ7tbuc03RFZ0eabdobjp6e8evR7m25q_5C?purpose=fullsize)
-
-![Image](https://images.openai.com/static-rsc-4/JHTQBo81MQ_OZlckgccd-qzOis_5nf6tgMfMUfBoFhoD6tT5RjzGuFwRxg8MufN6XPGr0PO03VfgV-soqu4K7TWxI9S1BokTOJKuzSpaXIO9QSp00jM9QkKZ_EJRvih4MOgXtDOyAtGboMWH_KEsoGXNMB_3cieKMIEMKUVEPM2cR45jvxAe4w4Dd2bnyi90?purpose=fullsize)
-
-![Image](https://images.openai.com/static-rsc-4/g8MGMELVlNrCqIxtfWzOF1hPPt4a5gLDoN7nSuIti5xYxYhrimscnz6mWXeZlKDJFLosdAwtfCTDNntYqrb7vkyYV5FxM3KqiLP4dWJhogVw77UjNP0YoYs7vX9Jk7iBdILxR-ApaZ8t3280tK2sD8CvYsHzxOdD3ND5B4bSElN_JsZeX2YxVJw0VX9KZ1Vt?purpose=fullsize)
-
-![Image](https://images.openai.com/static-rsc-4/jNunr0rJCXM-7DqI0VQq4UqMHzePEdE3ppFDyR2Bym3jiduN_4am7vNHBRSEuj6fDRyRgDcY8qs2q6G2iRcD0-qBvPdHXdtbXZ9b4326a2alQnscjpsoUSjeJhwEi97qgmLdhw8vN-ACmFnsP9dxsG1JKfklVDadl76K8UaW6KF5RQh1KBNYEOegUjCYXsrc?purpose=fullsize)
-
+<p align="center">
+  <img src="https://images.openai.com/static-rsc-4/0V1vGyOpPZfO3c7gRN4Lonpred7o3ikBik3GbAgTtHl1yRY7UpE17kKcNM1yVb0hiJgpqyE6tYNrXUOK2wser42PF7Lbjg7hfCPmx1atcNjDsIa7-cgt0QwB3r5LQZ_D9gGnxgT-arLVXAAWa1fivDmjEvH_WsgCX7vw2__m4rBN7Lxl_Fta8Ye1dcfrtwmc?purpose=fullsize" width="420"/>
+  <img src="https://images.openai.com/static-rsc-4/JHTQBo81MQ_OZlckgccd-qzOis_5nf6tgMfMUfBoFhoD6tT5RjzGuFwRxg8MufN6XPGr0PO03VfgV-soqu4K7TWxI9S1BokTOJKuzSpaXIO9QSp00jM9QkKZ_EJRvih4MOgXtDOyAtGboMWH_KEsoGXNMB_3cieKMIEMKUVEPM2cR45jvxAe4w4Dd2bnyi90?purpose=fullsize" width="420"/>
+</p>
 The leaves read from left to right produce:
 
 ```
@@ -359,16 +344,10 @@ Two interpretations exist:
 
 ### Parse Tree Ambiguity
 
-![Image](https://images.openai.com/static-rsc-4/6zIupmYHV4RAJA0x6wvW4PU926twRFe6cgUv7vbrWmU0SB8GL0dLN8dM2dir4R_tUfd3Z6wL0pozCN7NZfwXgECVOojGUbpXphoupLWTFakOEPaIKeAWDk_tzY-lZJ0CQ0vKkFjx6Ihr7cFSzCbGU8PRciEcwc81eeI18uNx10CUNFRYqXxxqyfmofX4Qe2N?purpose=fullsize)
-
-![Image](https://images.openai.com/static-rsc-4/62JCniz_yV9ImGmpp7LCmZUgv5cdZKcHVZspmhv3ElohmgBk7guTEHpHygO6YzGBQ35Gvclqfu1v_OzOUJuIy5VH-Jl81HmHQr0HC6NCL626lVerNIVaUY6d_lkXahhEFMGjlEyPUtBrZeXkgUj_GaDK7gJWWwqStgHZ9AEGK1vbhCHRkm5zmBsfF47H9RiD?purpose=fullsize)
-
-![Image](https://images.openai.com/static-rsc-4/3fTSmqKSOa6OZjXeaonX7vMhbRQD40OgvA1UlVBJXKKP8vASXNu6uinOEJHAu5KKk2VURKRfxzqplJ9-MRDt6Ps1Yv-msfx6z5bKMWVF1bMoQtmwy_8F0NZl5C7NdM-pDKbPw72Immp9MuDaVm23G2VvDRu8eIcSFuOyTuj0u6KjmEEJTamoU_0KQDso0lDi?purpose=fullsize)
-
-![Image](https://images.openai.com/static-rsc-4/KbAXovndX94PFIZfH9SQCxq0irVajDY1U82PuGWJeokRuvlZI2QQ6aZ4cDaRlVJH6uNnGTqFs73mqCOAGXMbtEM8Wfo06m3qqI4ulcoNB5znUJMtNmSoRsQRXJj1g_EfY7KeG5XgAI3RrcKVp4bTikGPnaKIZ-S3wlSh7JuK-8LsHKAzGLoYNdq-nlsuOxo7?purpose=fullsize)
-
-![Image](https://images.openai.com/static-rsc-4/KkFunAgABPMpfQlA9yRqtnUMQ3N0VvW5wwWgB51gBbahW2PU6n7OGsPm-RbaKlJBAXwMYDIrEiED8u72omFJvQYD74oaqanYRFRJiKb_Owfnojp6kXRWZXL6foIphOdmQeYJR8Se9EsnQlrkIWjXA4ORCR8vz6tXQkVWywIWsMjt98VsT2zb7eGQId8Pzkre?purpose=fullsize)
-
+<p align="center">
+  <img src="https://images.openai.com/static-rsc-4/3fTSmqKSOa6OZjXeaonX7vMhbRQD40OgvA1UlVBJXKKP8vASXNu6uinOEJHAu5KKk2VURKRfxzqplJ9-MRDt6Ps1Yv-msfx6z5bKMWVF1bMoQtmwy_8F0NZl5C7NdM-pDKbPw72Immp9MuDaVm23G2VvDRu8eIcSFuOyTuj0u6KjmEEJTamoU_0KQDso0lDi?purpose=fullsize" width="420"/>
+  <img src="https://images.openai.com/static-rsc-4/KbAXovndX94PFIZfH9SQCxq0irVajDY1U82PuGWJeokRuvlZI2QQ6aZ4cDaRlVJH6uNnGTqFs73mqCOAGXMbtEM8Wfo06m3qqI4ulcoNB5znUJMtNmSoRsQRXJj1g_EfY7KeG5XgAI3RrcKVp4bTikGPnaKIZ-S3wlSh7JuK-8LsHKAzGLoYNdq-nlsuOxo7?purpose=fullsize" width="420"/>
+</p>
 Because two parse trees exist, the grammar is **ambiguous**.
 
 ---
