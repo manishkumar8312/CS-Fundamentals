@@ -19,10 +19,6 @@ Two widely used normal forms are:
 
 These normal forms are important in **compiler design**, **parsing algorithms**, and **formal language theory**.
 
-<p align="center">
-<img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Context-free_grammar_parse_tree.svg" width="420"/>
-<img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Parse_tree_example.svg" width="420"/>
-</p>
 
 ---
 
@@ -37,11 +33,6 @@ The major steps include:
 3. Removal of **useless symbols**
 
 These steps transform the grammar while preserving the **same language**.
-
-<p align="center">
-<img src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Formal_grammar_tree.svg" width="420"/>
-<img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/CFG_derivation_tree.svg" width="420"/>
-</p>
 
 ---
 
@@ -74,11 +65,6 @@ Therefore, they are usually removed before converting the grammar to **CNF or GN
 1. Identify all **nullable variables**.
 2. Create new productions by removing nullable variables.
 3. Remove the **ε-production**.
-
-<p align="center">
-<img src="https://upload.wikimedia.org/wikipedia/commons/0/07/Null_production_cfg_example.svg" width="420"/>
-<img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/CFG_nullable_variable_example.svg" width="420"/>
-</p>
 
 ---
 
@@ -137,11 +123,6 @@ Unit productions increase grammar complexity without adding new strings.
 
 1. Identify all **unit productions**
 2. Replace them with **direct productions**
-
-<p align="center">
-<img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Unit_production_example_cfg.svg" width="420"/>
-<img src="https://upload.wikimedia.org/wikipedia/commons/9/94/Grammar_unit_production_removal.svg" width="420"/>
-</p>
 
 ---
 
@@ -209,11 +190,6 @@ B → c
 
 Symbol **B** cannot be reached from **S**.
 
-<p align="center">
-<img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/CFG_reachable_symbols.svg" width="420"/>
-<img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/Formal_grammar_graph.svg" width="420"/>
-</p>
-
 ---
 
 # 17. Normal Forms of CFG
@@ -224,11 +200,6 @@ Two main normal forms:
 
 1. **Chomsky Normal Form**
 2. **Greibach Normal Form**
-
-<p align="center">
-<img src="https://upload.wikimedia.org/wikipedia/commons/8/8c/Chomsky_normal_form_parse_tree.svg" width="420"/>
-<img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Greibach_normal_form_example.svg" width="420"/>
-</p>
 
 ---
 
@@ -267,13 +238,6 @@ S → AB
 A → a
 B → b
 ```
-
-<p align="center">
-<img src="https://upload.wikimedia.org/wikipedia/commons/1/1c/CNF_parse_tree_example.svg" width="420"/>
-<img src="https://upload.wikimedia.org/wikipedia/commons/7/76/Formal_grammar_parse_tree.svg" width="420"/>
-</p>
-
----
 
 # 19. Conversion of CFG to CNF
 
@@ -321,13 +285,6 @@ A → BX
 X → CD
 ```
 
-<p align="center">
-<img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Grammar_transformation_example.svg" width="420"/>
-<img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Chomsky_normal_form_transformation.svg" width="420"/>
-</p>
-
----
-
 # 20. Greibach Normal Form (GNF)
 
 ## 20.1 Definition
@@ -363,11 +320,6 @@ S → aA | bB
 A → a
 B → b
 ```
-
-<p align="center">
-<img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Greibach_normal_form_example.svg" width="420"/>
-<img src="https://upload.wikimedia.org/wikipedia/commons/0/09/CFG_derivation_example.svg" width="420"/>
-</p>
 
 ---
 
