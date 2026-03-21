@@ -12,9 +12,7 @@ PDAs are widely used in parsing, compiler design, and formal language theory.
 
 A Pushdown Automaton is formally defined as a 7-tuple:
 
-[
-M = (Q, \Sigma, \Gamma, \delta, q_0, Z_0, F)
-]
+M = **Q**, **Σ (Sigma)**, **Γ (Gamma)**, **δ (Delta)**, **q₀**, **Z₀**, **F**
 
 ### Components:
 
@@ -32,9 +30,7 @@ M = (Q, \Sigma, \Gamma, \delta, q_0, Z_0, F)
 
 The transition function defines the behavior of the PDA:
 
-[
-\delta(q, a, X) = (p, \gamma)
-]
+`δ(q, a, X) = (p, γ)`
 
 ### Interpretation:
 
@@ -46,9 +42,9 @@ The transition function defines the behavior of the PDA:
 
 This operation may correspond to:
 
-* **Push** (if ( \gamma ) adds symbols)
-* **Pop** (if ( \gamma = \epsilon ))
-* **Replace** (if ( \gamma ) modifies the top symbol)
+* **Push** (if `γ` adds symbols)
+* **Pop** (if `γ = ε`)
+* **Replace** (if `γ` modifies the top symbol)
 
 ---
 
@@ -148,11 +144,9 @@ Constructing a PDA typically involves designing stack operations to track patter
 * Accept when all symbols are matched
 
 #### Transitions:
-
-* ( \delta(q_0, a, Z_0) = (q_0, aZ_0) )
-* ( \delta(q_0, a, a) = (q_0, aa) )
-* ( \delta(q_0, b, a) = (q_1, \epsilon) )
-* ( \delta(q_1, b, a) = (q_1, \epsilon) )
+* `δ(q₀, a, Z₀) = (q₀, aZ₀)`
+* `δ(q₀, a, a)  = (q₀, aa)`
+* `δ(q₀, b, a)  = (q₁, ε)`
 
 Acceptance can be defined either:
 
