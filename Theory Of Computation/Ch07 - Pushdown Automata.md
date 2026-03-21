@@ -134,8 +134,7 @@ Constructing a PDA typically involves designing stack operations to track patter
    * Use ε-transitions where necessary
 
 ---
-
-### Example: PDA for Language ( L = { a^n b^n \mid n \geq 0 } )
+### Example: PDA for Language `L = { a^n b^n | n ≥ 0 }`
 
 #### Idea:
 
