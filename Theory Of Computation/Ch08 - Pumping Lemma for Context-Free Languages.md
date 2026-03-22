@@ -1,203 +1,237 @@
 # Pumping Lemma for Context-Free Languages (CFL)
 
-## Overview
-
-The Pumping Lemma for Context-Free Languages is a fundamental concept in formal language theory. It provides a **necessary condition** that every context-free language (CFL) must satisfy. It is widely used to **prove that certain languages are not context-free**.
+The Pumping Lemma for Context-Free Languages is a fundamental result in Theory of Computation. It provides a necessary property that all context-free languages must satisfy and is widely used to prove that certain languages are **not context-free**.
 
 ---
 
 ## 1. Statement of the Pumping Lemma for CFL
 
-For every context-free language \( L \), there exists a constant \( p \) (called the *pumping length*) such that any string \( s \in L \) with \( |s| \ge p \) can be written as:
+<p align="center">
+    <img src="https://miro.medium.com/0%2A8HAC4Ulww5ThCh3f.png" alt="Image">
+</p>
 
-\[
+<p align="center">
+    <img src="https://www.mdpi.com/jof/jof-08-00900/article_deploy/html/images/jof-08-00900-g003-550.jpg" alt="Image">
+</p>
+
+Let ( L ) be a context-free language. Then there exists a constant ( p \ge 1 ) (called the **pumping length**) such that for every string ( s \in L ) with ( |s| \ge p ), the string can be decomposed as:
+
+[
 s = uvxyz
-\]
+]
 
-such that:
+satisfying the following conditions:
 
-1. \( |vxy| \le p \)  
-2. \( |vy| \ge 1 \)  
-3. For all \( i \ge 0 \):  
-   \[
+1. ( |vxy| \le p )
+2. ( |vy| > 0 )
+3. For all integers ( i \ge 0 ),
+   [
    uv^i x y^i z \in L
-   \]
-
----
-
-<div align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Pumping_lemma_for_context_free_languages_example.png" width="520"/>
-  <p><em>String decomposition into uvxyz for pumping</em></p>
-</div>
+   ]
 
 ---
 
 ## 2. Intuition Behind the Lemma
 
-Context-free grammars generate strings using **parse trees**. When a string becomes sufficiently long:
-
-- Some non-terminals must repeat (by pigeonhole principle)
-- This creates a loop in the derivation
-- That loop allows parts of the string to be **repeated (pumped)**
-
----
-
-<div align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Parse_tree_example.svg" width="450"/>
-  <p><em>Repeated non-terminals in parse trees lead to pumping</em></p>
-</div>
+* Context-free languages are generated using **parse trees**.
+* For sufficiently long strings, the parse tree must contain **repeated non-terminals** along some path.
+* This repetition introduces a recursive structure that allows certain parts of the string to be “pumped” (repeated or removed).
+* The substrings ( v ) and ( y ) correspond to portions of the derivation that can be expanded multiple times.
 
 ---
 
 ## 3. Applications of the CFL Pumping Lemma
 
-The pumping lemma is mainly used to:
+<p align="center">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Pumping_Lemma_for_regular_languages_diagram.png" alt="Image">
+</p>
 
-- Prove that a language is **not context-free**
-- Understand structural limitations of CFLs
-- Analyze grammars and pushdown automata behavior
+### 3.1 Proving Languages are Not Context-Free
 
----
+The primary use of the pumping lemma is to show that a given language does not satisfy the required properties of context-free languages.
 
-## 4. Method to Prove a Language is Not Context-Free
+### 3.2 Analyzing Language Structure
 
-To prove a language \( L \) is not context-free:
+It helps in understanding structural limitations of context-free grammars and pushdown automata.
 
-1. Assume \( L \) is context-free  
-2. Let \( p \) be the pumping length  
-3. Choose a string \( s \in L \), \( |s| \ge p \)  
-4. Consider all decompositions \( s = uvxyz \)  
-5. Show that for some \( i \):  
-   \[
-   uv^i x y^i z \notin L
-   \]
-6. Reach contradiction  
+### 3.3 Academic and Competitive Examinations
+
+This concept is frequently tested in examinations such as GATE and other theoretical computer science assessments.
 
 ---
 
-## 5. Detailed Case Analysis Strategy
+## 4. Methodology to Prove a Language is Not Context-Free
 
-The most important step is analyzing where \( vxy \) lies.
+To apply the pumping lemma effectively, follow a structured proof strategy:
 
-For a string like:
+### Step 1: Assume the Language is Context-Free
 
-\[
-s = a^p b^p c^p
-\]
+Assume that the given language ( L ) is context-free. Therefore, the pumping lemma must hold.
 
-Possible cases:
+### Step 2: Choose a Suitable String
 
-1. \( vxy \) lies entirely in **a's**
-2. Entirely in **b's**
-3. Entirely in **c's**
-4. Between **a and b**
-5. Between **b and c**
+Select a string ( s \in L ) such that:
 
-In all cases, pumping changes counts unevenly → language property breaks.
+* ( |s| \ge p )
+* The structure of ( s ) makes it sensitive to changes when pumped
+
+### Step 3: Consider All Possible Decompositions
+
+Write the string as:
+[
+s = uvxyz
+]
+
+Ensure that:
+
+* ( |vxy| \le p )
+* ( |vy| > 0 )
+
+### Step 4: Analyze All Possible Cases
+
+The substring ( vxy ) can lie in different regions of the string. Each possibility must be examined.
+
+### Step 5: Pump the String
+
+Test the string with different values of ( i ), typically:
+
+* ( i = 0 ) (removal case)
+* ( i = 2 ) (duplication case)
+
+### Step 6: Derive a Contradiction
+
+If for any case:
+[
+uv^i x y^i z \notin L
+]
+then the assumption that ( L ) is context-free is false.
 
 ---
 
-## 6. Example 1: \( L = \{ a^n b^n c^n \mid n \ge 1 \} \)
+## 5. Example: Proving a Language is Not Context-Free
+
+### Problem
+
+Prove that the language:
+[
+L = { a^n b^n c^n \mid n \ge 0 }
+]
+is not context-free.
+
+---
 
 ### Proof
 
-1. Assume \( L \) is context-free  
-2. Let pumping length = \( p \)  
-3. Choose:
-   \[
-   s = a^p b^p c^p
-   \]
+Assume that ( L ) is context-free.
+
+Let ( p ) be the pumping length.
+
+Choose the string:
+[
+s = a^p b^p c^p
+]
+
+Clearly, ( s \in L ) and ( |s| \ge p ).
+
+Now, decompose:
+[
+s = uvxyz
+]
+such that:
+
+* ( |vxy| \le p )
+* ( |vy| > 0 )
 
 ---
 
-<div align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Anbncn_not_context_free.png" width="520"/>
-  <p><em>Pumping disturbs equal counts of a, b, c</em></p>
-</div>
+### Case Analysis
+
+Since ( |vxy| \le p ), the substring ( vxy ) can lie in:
+
+1. Only ( a )'s
+2. Only ( b )'s
+3. Only ( c )'s
+4. Between ( a ) and ( b )
+5. Between ( b ) and ( c )
 
 ---
 
-4. Since \( |vxy| \le p \), substring lies in at most two types  
-5. Pump with \( i = 2 \):
+### Case 1: ( vxy ) in ( a )'s
 
-- Number of symbols becomes unequal  
-- String no longer belongs to \( L \)
-
-6. Contradiction → Not context-free  
+Pumping ( i = 2 ) increases the number of ( a )'s, but ( b )'s and ( c )'s remain unchanged.
+Thus, the counts are no longer equal, so the string is not in ( L ).
 
 ---
 
-## 7. Example 2: \( L = \{ ww \mid w \in \{a,b\}^* \} \)
+### Case 2: ( vxy ) in ( b )'s
 
-### Idea
-
-- String is duplicated pattern
-- Pumping changes only one part → breaks symmetry
-
-### Sketch
-
-Let:
-\[
-s = ww
-\]
-
-After pumping:
-\[
-uv^i x y^i z \neq ww
-\]
-
-Hence, not context-free.
+Pumping changes only the number of ( b )'s.
+This again breaks the equality ( a^n b^n c^n ).
 
 ---
 
-## 8. Example 3: Mixed Dependency Language
+### Case 3: ( vxy ) in ( c )'s
 
-\[
-L = \{ a^i b^j c^k \mid i = j \text{ or } j = k \}
-\]
-
-- Language has **two independent conditions**
-- Pumping cannot preserve both simultaneously
-- Leads to contradiction
+Pumping affects only ( c )'s, violating the required structure.
 
 ---
 
-## 9. Comparison: Regular vs CFL Pumping Lemma
+### Case 4: Between ( a ) and ( b )
 
-| Feature | Regular Languages | CFL |
-|--------|------------------|-----|
-| Decomposition | \( xyz \) | \( uvxyz \) |
-| Pumping parts | \( y \) | \( v, y \) |
-| Structure | Linear | Tree-based |
-| Power | Weaker | Stronger |
+Pumping introduces imbalance between ( a )'s and ( b )'s.
 
 ---
 
-## 10. Limitations of CFL Pumping Lemma
+### Case 5: Between ( b ) and ( c )
 
-1. It is only a **necessary condition**  
-2. Cannot prove a language is context-free  
-3. Complex case analysis required  
-4. Some languages cannot be proven using this lemma  
+Pumping introduces imbalance between ( b )'s and ( c )'s.
 
 ---
 
-## 11. Ogden’s Lemma (Advanced Insight)
+### Conclusion
 
-Ogden’s Lemma is a stronger version:
+In all possible cases, pumping results in a string not belonging to ( L ).
+This contradicts the pumping lemma.
 
-- Allows marking positions in string  
-- Provides better control over pumping  
-- Useful for difficult proofs  
+Therefore, the language is **not context-free**.
 
 ---
 
-## 12. Summary
+## 6. Limitations of the Pumping Lemma for CFL
 
-- Pumping lemma describes repetition property of CFLs  
-- Based on parse tree recursion  
-- Mainly used to prove **non-context-free languages**  
-- Requires contradiction and careful case analysis  
-- Has limitations → advanced tools like Ogden’s Lemma exist  
+<p align="center">
+    <img src="https://iq.opengenus.org/content/images/2022/02/pump.png" alt="Image">
+</p>
+
+<p align="center">
+    <img src="https://i.sstatic.net/46Py1.jpg" alt="Image">
+</p>
+
+### 6.1 Necessary but Not Sufficient Condition
+
+* The pumping lemma provides a **necessary condition**, not a sufficient one.
+* Even if a language satisfies the lemma, it is not guaranteed to be context-free.
+
+### 6.2 Not Suitable for Proving Context-Freeness
+
+* The lemma cannot be used to prove that a language is context-free.
+* Other methods such as constructing a CFG or PDA are required.
+
+### 6.3 Complex Case Analysis
+
+* Proofs often require analyzing multiple cases, which can be tedious and error-prone.
+
+### 6.4 Not Always Easy to Apply
+
+* Choosing the correct string ( s ) and handling all decompositions can be challenging.
+
+---
+
+## 7. Summary
+
+* The Pumping Lemma for CFL is a powerful tool for proving non-context-free languages.
+* It relies on the structural properties of parse trees.
+* The key idea is to show that no valid decomposition can satisfy the lemma under pumping.
+* Despite its usefulness, it has important limitations and must be applied carefully.
 
 ---
