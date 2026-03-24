@@ -21,11 +21,12 @@ Where:
 * **F** → Set of accepting (final) states
 
 ### Working Structure
-
+<p align="center">
 <img src="https://images.openai.com/static-rsc-4/nH5tGeofTbdo6dU2m8QacaxwdJmRh0cZNlIbe-Uv234iPl-D3WCVtsktpGZVxcWMjuOvAzoZMx57l8eCrk-Fa6L0eN51Ix8CbpGIxdV1QKHHfHRHs-U6pT5nDRVtXTPhltKON4-awTmY_6i13BoFZvBJfJKHZkp72MX0tXYpb0WD6acW0Bzr4E0LpiQfBdwb?purpose=fullsize" alt="Image" width="800" height="450" style="display:block; margin:16px auto; max-width:100%; height:auto; object-fit:contain;" />
-
+</p>
+<p align="center">
 <img src="https://images.openai.com/static-rsc-4/ZVOMWPhifOGzjLDNhX77hcvBL_7Wv7kSO364dtIzyayLxEs1GVpRryPo_6DnrsZlDeX_Sb-kd51ANmYNtpAw0gSBwIejiFb04iUYa5Z7iTHYJxnEKPQMnN-c5FMhfPdNn0AqRZwUtiCXc6UciWR57TSIKrn3yxkWx4jdy3xhxrQBaV_wfX5ycbAp8SASA2Tp?purpose=fullsize" alt="Image" width="800" height="450" style="display:block; margin:16px auto; max-width:100%; height:auto; object-fit:contain;" />
-
+</p>
 A Turing Machine consists of:
 
 * **Infinite Tape** divided into cells
@@ -106,11 +107,12 @@ A Turing Machine **accepts a string** if:
 * Accept if only `X` and `Y` remain
 
 ### Visualization
-
+<p align="center">
 <img src="https://images.openai.com/static-rsc-4/4WgoBeSfIoBbnF0ly-NuCXFPhQGEBnNoVMG8fzAneeSEI5dBdAt12_eIhIXsBfAQL0qL7VFssTyFrLgxNoWOypYnOXT0l_zLmYvjDCZWSS7HElKasbO7pSW8VIk18cvFpkJpyJNYF_j4y18tusthbBXEY2nsdLhDQOS_s3AMrkuBu69KACviHVFNYsbWk1rv?purpose=fullsize" alt="Image" width="800" height="450" style="display:block; margin:16px auto; max-width:100%; height:auto; object-fit:contain;" />
-
+</p>
+<p align="center">
 <img src="https://images.openai.com/static-rsc-4/SY0wF_-AO1ZqOyRo0Joo4joOQB1hrH2H4VtwqGh3DSHCk1DDtH1vuj_Nnox2mTZpCoUINUX8FyObnegjpoEY3FK6YIIcbTrwaeQFHymXT0Rh2ku_u1LKvUsB5v01Rm7ImH_oaFe0BfrocLVf3kTFpeCzaqMft12wOcAu3qz46JgQo8OGDPa0i1JubmLVh3g3?purpose=fullsize" alt="Image" width="800" height="450" style="display:block; margin:16px auto; max-width:100%; height:auto; object-fit:contain;" />
-
+</p>
 ---
 
 ### Example 2: Palindrome Language
@@ -134,13 +136,12 @@ Different variations of Turing Machines exist, but all have the same computation
 ---
 
 ### 5.1 Multi-Tape Turing Machine
-
+<p align="center">
 <img src="https://images.openai.com/static-rsc-4/-nsL7rWR9PIskAuucgXj9OwcHqAGbPrx9SlP05ninfzZTXRerJ_rCdd-umveCxfj_NLNLLJCA8Ez4shYALfutr1knGXrZu4jXRVVoZQeiIqpVnFuaNcoyc-YRSfS8ef0R2HqVy8CnLUKQz3U0IjxB2akrISGvJyPHKYyP_dwokKo4RsocXN9yudCOxflrnSo?purpose=fullsize" alt="Image" width="800" height="450" style="display:block; margin:16px auto; max-width:100%; height:auto; object-fit:contain;" />
-
+</p>
+<p align="center">
 <img src="https://images.openai.com/static-rsc-4/obfqywZRMJQ-vAak83snu5mGsSOK2tFrG-86s2xrhcKN2NjsvLV5M7baAtA9IBQoWHoyf9IFJZIgYdyqwLgKBs5pRy1_A9SeuEyJ7kUpFN0s2RezJPe3SErau9bNYUPPfuf_mU_8aqXL_cBpx8U_lW4zPjRQrJMGuYrV5-M6oB0wrUNO_UX3quaiROwyS69L?purpose=fullsize" alt="Image" width="800" height="450" style="display:block; margin:16px auto; max-width:100%; height:auto; object-fit:contain;" />
-
-<img src="https://images.openai.com/static-rsc-4/JA9vJOuUGgZGK6n0Ela2de2-xGGJFA4JzTFCfD6W4Ri3Qh_38VGILZTMfyREvjg7fi3gTQ_XM3bJ04yviWCU13qzBxbmsFIePihR6fCoTtBVU-JidZrVty3TgonLmISUJS6T9CnsmTedwSi3PhwJ7-QN2MT6rpActnExHF56t33BV9Ni2pM3ZqXeCSD9LKYU?purpose=fullsize" alt="Image" width="800" height="450" style="display:block; margin:16px auto; max-width:100%; height:auto; object-fit:contain;" />
-
+</p>
 * Has multiple tapes and heads
 * Each tape operates independently
 * Transition function:
@@ -155,13 +156,12 @@ $$
 ---
 
 ### 5.2 Non-Deterministic Turing Machine (NTM)
-
+<p align="center">
 <img src="https://images.openai.com/static-rsc-4/qO0ZEzg4Ckspj9cOvz6pK5iQtnS0UR-wimjNYHJt6qZFFUy61QcthQ3BpDm_2WYLPx4cEzw8c-l72BeF_DNNJJDWdwO4QHW4SQhdhD3J8nP8PdgFDl6BxObLLlcmvh6aXpZoed9KDdDSYJKWibOmjfnNh2yuLJojoRMzwaKXkiSa42WAl0QIwzlYdTTih3bd?purpose=fullsize" alt="Image" width="800" height="450" style="display:block; margin:16px auto; max-width:100%; height:auto; object-fit:contain;" />
-
+</p>
+<p align="center">
 <img src="https://images.openai.com/static-rsc-4/njUxF8OhOYaH1STbA2inSkzRwSuFWRCPnDtnif0gLOkX8qvHJ-Hh9GebtLZA8sIUZAxQtFgp_uoGu94ZeH45UsmBk8xfnJmhRqQXZjkwz2b-04d1i4OgVcp66dnhe_m4yHywSmHI4B9yUmp8SbSjluh2GZWhblzgeMDH5-wkHzUlxj_1GKMpkVVABmZJobMm?purpose=fullsize" alt="Image" width="800" height="450" style="display:block; margin:16px auto; max-width:100%; height:auto; object-fit:contain;" />
-
-<img src="https://images.openai.com/static-rsc-4/1gmIuZeoulfFopHEacUuPrWrUUzYBMxLTpz2EPq2KLzcWLBTWmheIPiOn77FPSrV9QjAIB3det_tZszXl-AfWNWIcWwdT4_rqy0zSjiqVByXv-GLnwqujfjD61nTs6vYmVs7E4Zrl5s2amTDK6yfi8jfN3QW1UnGE8MC4w9NYNHsLKYscVScKi7QynGr8ZfD?purpose=fullsize" alt="Image" width="800" height="450" style="display:block; margin:16px auto; max-width:100%; height:auto; object-fit:contain;" />
-
+</p>
 
 * Can have multiple possible moves for a given state
 * Explores multiple computation paths
