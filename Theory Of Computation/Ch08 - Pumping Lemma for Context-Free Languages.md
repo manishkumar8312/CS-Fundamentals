@@ -10,10 +10,6 @@ The Pumping Lemma for Context-Free Languages is a fundamental result in Theory o
     <img src="https://miro.medium.com/0%2A8HAC4Ulww5ThCh3f.png" alt="Pumping Lemma Statement Diagram" style="width:100%; max-width:900px; height:auto;">
 </p>
 
-<p align="center">
-    <img src="https://www.mdpi.com/jof/jof-08-00900/article_deploy/html/images/jof-08-00900-g003-550.jpg" alt="Context-Free Grammar Tree Illustration" style="width:100%; max-width:900px; height:auto;">
-</p>
-
 Let `L` be a context-free language. Then there exists a constant `p >= 1` (called the **pumping length**) such that for every string `s in L` with `|s| >= p`, the string can be decomposed as:
 
 `s = uvxyz`
