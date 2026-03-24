@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="320" viewBox="0 0 1200 320" role="img" aria-labelledby="title desc">
+  <title id="title">CS Fundamentals Banner</title>
+  <desc id="desc">Professional banner for the CS Fundamentals repository.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0A2540" />
+      <stop offset="50%" stop-color="#134074" />
+      <stop offset="100%" stop-color="#1B6CA8" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="320" fill="url(#bg)" />
+
+  <circle cx="140" cy="160" r="88" fill="rgba(255,255,255,0.10)" />
+  <circle cx="1070" cy="70" r="42" fill="rgba(255,255,255,0.14)" />
+  <circle cx="1030" cy="255" r="62" fill="rgba(255,255,255,0.08)" />
+
+  <text x="240" y="145" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="52" font-weight="700">
+    CS Fundamentals
+  </text>
+  <text x="240" y="195" fill="#D9E8F5" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="500">
+    DSA • OS • DBMS • CN • OOP • COA
+  </text>
+
+  <rect x="240" y="220" width="400" height="4" rx="2" fill="#9FD3FF" />
+</svg>
