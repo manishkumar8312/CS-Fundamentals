@@ -39,7 +39,6 @@ We focus on **growth rate**, not exact execution time.
   <img src="https://images.openai.com/static-rsc-4/yMB56x4OxVVujq5dwmuO9g_uZ51RwTFUfanbs1-uA5hgB88riFijSUwC8hWyPy2CNNg5Cq68WxE24SGP9mK2sF_0pB8vrnzltv7RIslD2JXtAEDKXoBLMrhj7aGQ426U3-CdlMkWHM_PW_IM07ZXOuPX_XuQZp2tn64yEC2pIJu6t3HbJzNRGEC5zAJQKU7M?purpose=fullsize" alt="Space complexity diagram 1" width="280" height="180" />
   <img src="https://images.openai.com/static-rsc-4/1fReh8O95kHWE5gCWZFd2cOGMmhgICKYzBOClUdCxCDpUzXiRwduFs5FjQJuVMzBfkkQcVubECT6adFOSNAMPjKIhZnuSfqAjgc3jfgMcfd5_8ORqvOICg5sYnMLDw20MfCKU0uGT-DXa8RSrv4Tvyt8EhyYcroLBLwFNHCqnraJsl2PpRvV9Nf6QuCOYjpZ?purpose=fullsize" alt="Space complexity diagram 2" width="280" height="180" />
   <img src="https://images.openai.com/static-rsc-4/d1CwtBrYbnyZiHKqc-oYC3ySxq91xHAPnoOgC3qqmSOsONnUaeErF6w55nVLekWQw3LMVVYMyYJvBqRNy-Qbh0rUWFOzNJEqFwHLVvzAaili7RT3Rym4GHJe1zC1hpK1ZjwK0vBAkzeXXZpSEY1980lECcasOfNlJQu4d36sFjmIq7P_0-8OARG8JchjJ1Uz?purpose=fullsize" alt="Space complexity diagram 3" width="280" height="180" />
-  <img src="https://images.openai.com/static-rsc-4/xNeXZCm8fLMZ9QKaV8ZrErEB6DADOd4QmRtfpyj0xsGmofGxd-sVPhCsweSqhBadi6-nmcyVBtsIj5FJbwop4GjU6q7wqWyuOIgcjKnJj9iL9cnaZxjuwf0ENyGXPSjovnkijqYSEJfD6kbvThpPr4CXguMg_nTxXqN-AMJq3yYMj8toeXrZCYE4NzgelhoG?purpose=fullsize" alt="Space complexity diagram 4" width="280" height="180" />
 </div>
 
 ### Definition
