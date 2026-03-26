@@ -4,7 +4,7 @@ A structured and exam-oriented syllabus covering the **fundamental theoretical c
 
 ---
 
-## 1. Introduction to Theory of Computation
+## Chapter 1. Introduction to Theory of Computation
 
 ### Topics
 
@@ -18,7 +18,7 @@ A structured and exam-oriented syllabus covering the **fundamental theoretical c
 
 ---
 
-## 2. Finite Automata
+## Chapter 2. Finite Automata
 
 ### Topics
 
@@ -35,7 +35,7 @@ A structured and exam-oriented syllabus covering the **fundamental theoretical c
 
 ---
 
-## 3. Regular Languages and Regular Expressions
+## Chapter 3. Regular Languages and Regular Expressions
 
 ### Topics
 
@@ -48,7 +48,7 @@ A structured and exam-oriented syllabus covering the **fundamental theoretical c
 
 ---
 
-## 4. Pumping Lemma for Regular Languages
+## Chapter 4. Pumping Lemma for Regular Languages
 
 ### Topics
 
@@ -60,7 +60,7 @@ A structured and exam-oriented syllabus covering the **fundamental theoretical c
 
 ---
 
-## 5. Context-Free Grammars (CFG)
+## Chapter 5. Context-Free Grammars (CFG)
 
 ### Topics
 
@@ -73,7 +73,7 @@ A structured and exam-oriented syllabus covering the **fundamental theoretical c
 
 ---
 
-## 6. Simplification and Normal Forms of CFG
+## Chapter 6. Simplification and Normal Forms of CFG
 
 ### Topics
 
@@ -86,7 +86,7 @@ A structured and exam-oriented syllabus covering the **fundamental theoretical c
 
 ---
 
-## 7. Pushdown Automata (PDA)
+## Chapter 7. Pushdown Automata (PDA)
 
 ### Topics
 
@@ -99,7 +99,7 @@ A structured and exam-oriented syllabus covering the **fundamental theoretical c
 
 ---
 
-## 8. Pumping Lemma for Context-Free Languages
+## Chapter 8. Pumping Lemma for Context-Free Languages
 
 ### Topics
 
@@ -110,7 +110,7 @@ A structured and exam-oriented syllabus covering the **fundamental theoretical c
 
 ---
 
-## 9. Turing Machines
+## Chapter 9. Turing Machines
 
 ### Topics
 
@@ -126,7 +126,7 @@ A structured and exam-oriented syllabus covering the **fundamental theoretical c
 
 ---
 
-## 10. Decidability and Undecidability
+## Chapter 10. Decidability and Undecidability
 
 ### Topics
 
@@ -139,7 +139,7 @@ A structured and exam-oriented syllabus covering the **fundamental theoretical c
 
 ---
 
-## 11. Chomsky Hierarchy
+## Chapter 11. Chomsky Hierarchy
 
 ### Topics
 
@@ -151,7 +151,7 @@ A structured and exam-oriented syllabus covering the **fundamental theoretical c
 
 ---
 
-## 12. Introduction to Computational Complexity
+## Chapter 12. Introduction to Computational Complexity
 
 ### Topics
 

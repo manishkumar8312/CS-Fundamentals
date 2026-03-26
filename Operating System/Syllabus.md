@@ -1,7 +1,7 @@
 # 🖥️ Operating System
 
 
-# 1️⃣ Introduction to Operating Systems
+# Chapter 1: Introduction to Operating Systems
 
 ### Topics
 
@@ -25,7 +25,7 @@
 
 ---
 
-# 2️⃣ Process Management
+# Chapter 2: Process Management
 
 ### Topics
 
@@ -45,7 +45,7 @@
 
 ---
 
-# 3️⃣ Thread Management
+# Chapter 3: Thread Management
 
 ### Topics
 
@@ -60,7 +60,7 @@
 
 ---
 
-# 4️⃣ CPU Scheduling
+# Chapter 4: CPU Scheduling
 
 ### Topics
 
@@ -85,7 +85,7 @@
 
 ---
 
-# 5️⃣ Process Synchronization
+# Chapter 5: Process Synchronization
 
 ### Topics
 
@@ -108,7 +108,7 @@
 
 ---
 
-# 6️⃣ Deadlocks
+# Chapter 6: Deadlocks
 
 ### Topics
 
@@ -125,7 +125,7 @@
 
 ---
 
-# 7️⃣ Memory Management (Most Important Section)
+# Chapter 7: Memory Management (Most Important Section)
 
 ### Topics
 
@@ -154,7 +154,7 @@
 
 ---
 
-# 8️⃣ File System
+# Chapter 8: File System
 
 ### Topics
 
@@ -174,7 +174,7 @@
 
 ---
 
-# 9️⃣ I/O Management
+# Chapter 9: I/O Management
 
 ### Topics
 
@@ -194,7 +194,7 @@
 
 ---
 
-# 🔟 Protection and Security
+# Chapter 10: Protection and Security
 
 ### Topics
 
