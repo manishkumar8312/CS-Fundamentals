@@ -176,5 +176,6 @@ This syllabus covers the **entire official scope of Theory of Computation** requ
 It emphasizes **formal models, language theory, decidability, and computational limits**.
 
 ---
+## ⭐ Support
 
-⭐ **Star this repository if you find it helpful**
+If this repository adds value to your learning, consider giving it a ⭐ to show your support.
