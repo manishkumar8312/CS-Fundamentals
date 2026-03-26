@@ -13,7 +13,7 @@ Computational complexity studies the **resources required to solve computational
 
 ### Definition
 
-Time complexity measures the **number of basic operations** an algorithm performs as a function of input size ( n ).
+Time complexity measures the **number of basic operations** an algorithm performs as a function of input size $n$.
 
 ### Common Cases
 
@@ -23,9 +23,9 @@ Time complexity measures the **number of basic operations** an algorithm perform
 
 ### Examples
 
-* Linear Search → ( O(n) )
-* Binary Search → ( O(\log n) )
-* Bubble Sort → ( O(n^2) )
+* Linear Search -> $O(n)$
+* Binary Search -> $O(\log n)$
+* Bubble Sort -> $O(n^2)$
 
 ### Key Insight
 
@@ -51,8 +51,8 @@ Space complexity measures the **total memory used** by an algorithm, including:
 
 ### Examples
 
-* Iterative algorithm → ( O(1) ) space
-* Recursive Fibonacci → ( O(n) ) stack space
+* Iterative algorithm -> $O(1)$ space
+* Recursive Fibonacci -> $O(n)$ stack space
 
 ### Key Insight
 
@@ -74,26 +74,26 @@ To describe **growth of functions** for large input sizes.
 
 ### Important Notations
 
-#### 1. Big-O Notation ( O(f(n)) )
+#### 1. Big-O Notation $O(f(n))$
 
 * Upper bound (worst-case)
-* Example: ( O(n^2) )
+* Example: $O(n^2)$
 
-#### 2. Omega Notation ( \Omega(f(n)) )
+#### 2. Omega Notation $\Omega(f(n))$
 
 * Lower bound (best-case)
 
-#### 3. Theta Notation ( \Theta(f(n)) )
+#### 3. Theta Notation $\Theta(f(n))$
 
 * Tight bound (exact growth)
 
 ### Example
 
-If an algorithm takes ( 3n^2 + 5n + 2 ), then:
+If an algorithm takes $3n^2 + 5n + 2$, then:
 
-* ( O(n^2) )
-* ( \Omega(n^2) )
-* ( \Theta(n^2) )
+* $O(n^2)$
+* $\Omega(n^2)$
+* $\Theta(n^2)$
 
 ---
 
@@ -119,8 +119,8 @@ Class **P** contains problems that can be solved in **polynomial time** by a det
 
 ### Examples
 
-* Sorting (Merge Sort → ( O(n \log n) ))
-* Shortest path (Dijkstra’s algorithm)
+* Sorting (Merge Sort -> $O(n \log n)$)
+* Shortest path (Dijkstra's algorithm)
 
 ### Key Idea
 
@@ -147,9 +147,9 @@ Class **NP** contains problems whose solutions can be **verified in polynomial t
 
 ## Relationship Between P and NP
 
-* ( P \subseteq NP )
+* $P \subseteq NP$
 * Big open problem:
-   **Is ( P = NP )?** (unsolved)
+  **Is $P = NP$?** (unsolved)
 
 ---
 
@@ -185,7 +185,7 @@ A problem is **NP-Complete** if:
 ### Key Insight
 
 * Hardest problems within NP
-* If one NP-Complete problem is solved in polynomial time →
+* If one NP-Complete problem is solved in polynomial time ->
   All NP problems become polynomial
 
 ### Examples
@@ -198,7 +198,6 @@ A problem is **NP-Complete** if:
 ## Relationships Among Classes
 
 <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 12px 0;">
-  <img src="https://images.openai.com/static-rsc-4/CdqBkaLON5fyAkR4bNOOsTjlCPG-rrbxrSVHWS9VqdRuxlo6QKzSVBNK6LP7s7XdKJgITyW5uX0xIuOvIr2HcAWByuyfidI1_eg9vk-hBwxw_a2ZKpeXF77hQfD9lylWfuu07QYX8fyWdooEk9WvIDhzJQVcTaKIQQSEf4nDkkmi3FB8ZJts2L9zuPxJIqHf?purpose=fullsize" alt="Class relationship diagram 1" width="280" height="180" />
   <img src="https://images.openai.com/static-rsc-4/Q4bltzwHHx0tpjTvX90IsJGdsmy-YlHMOvmkP90aOa1VElQLawLt8xp6M5c0bwzhlV3cGITttoTfcD_np4XbaRjP_QFIpGKrbLT4y9ucrzLNsvx8sq7whz07GOLnRRKvK-jtw8kf7Zvf5Z1nyUmYmCrw_LhuR6yolvCRzHK6ZpA7R4g5wvcHvqmN-mr9Avxg?purpose=fullsize" alt="Class relationship diagram 2" width="280" height="180" />
   <img src="https://images.openai.com/static-rsc-4/e9ocJLOr_bTKBKl6B4IjTRW_650meh6OFR5s2ANS03_8fOps1zYNH9jG6QBfJ40iPLDYmBhQDUB18DlpW6N0VQ9KREzR9cNoTWIvHoOFBu243w-IXDSEAQO5YXf6DZN864k2k3otna_pvybLI8NKfkADkfonzvKm45zGBHL_6wD32aL-iAoFDVtvsG25Sct5?purpose=fullsize" alt="Class relationship diagram 3" width="280" height="180" />
   <img src="https://images.openai.com/static-rsc-4/qAaWWO_y8ZA8aWNuwO6eWgDuUHm6_bluqWMDMebvAYJ5FQnZwIVKVjJXC9oQ5uDvbZUVDbEEc6CtUSclvJEx2i3ma_choA60kNDbNX8i8xKpH10ohhOYPdUlhYc7ucfm8f4vCkcBPbZYjZp3yjbxU1epu_3NCGGcpavGwJV7_fHx7eqVqVxfTtHN7AVIMcbC?purpose=fullsize" alt="Class relationship diagram 4" width="280" height="180" />
@@ -206,9 +205,14 @@ A problem is **NP-Complete** if:
 
 ### Inclusion Structure
 
-* ( P \subseteq NP )
-* ( NP\text{-Complete} \subseteq NP )
-* ( NP\text{-Hard} \supseteq NP\text{-Complete} )
+- **P ⊆ NP**  
+  Problems solvable in polynomial time are also verifiable in polynomial time.
+
+- **NP-Complete ⊆ NP**  
+  NP-Complete problems are a subset of NP.
+
+- **NP-Hard ⊇ NP-Complete**  
+  NP-Hard problems include all NP-Complete problems (and possibly more).
 
 ### Visual Interpretation
 
@@ -230,9 +234,9 @@ A problem is **NP-Complete** if:
 
 ## Final Understanding
 
-* **Time & Space Complexity** → Measure efficiency
-* **Asymptotic Notations** → Describe growth
-* **P vs NP** → Efficiency vs verification
-* **NP-Complete** → Most critical problems in CS
+* **Time & Space Complexity** -> Measure efficiency
+* **Asymptotic Notations** -> Describe growth
+* **P vs NP** -> Efficiency vs verification
+* **NP-Complete** -> Most critical problems in CS
 
 ---
