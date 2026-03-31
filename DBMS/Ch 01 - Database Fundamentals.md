@@ -1,4 +1,4 @@
-## Chapter 1: Database Fundamentals (Detailed Explanation with Examples & Practice Questions)
+## Chapter 1: Database Fundamentals
 
 ---
 
