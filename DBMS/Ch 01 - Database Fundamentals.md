@@ -4,7 +4,7 @@
 
 ## 1. What is a DBMS?
 
-<div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; margin: 20px 0; padding: 15px;">
 
 ![Image](https://images.openai.com/static-rsc-4/2D2zeCfsggvthzggSfg447dXvXJhrR6x_i59p1vLaOWtBW52-WPuZH737RIb_Q3zS61OJYBDZvN8iBBfINUlcrCdovpMMatosFInWynLHQJAfc_wMT47uY-3HGyzIILVSsBDv9NBWYM7NipTZrDx8CQxXy7rIly1VKC-J2uAbyK1QLOBkBIMvpUSLMq1EhdV?purpose=fullsize){width="280" height="200"}
 
@@ -51,7 +51,7 @@ DBMS handles storage, joins, and retrieval internally.
 
 ## 2. Advantages of DBMS over File System
 
-<div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; margin: 20px 0; padding: 15px;">
 
 ![Image](https://images.openai.com/static-rsc-4/_ck5vKXQ62VJyD4UVfqGM1V5ZFbKCWmxyYiO9hoAiTO_gNwcSoFgTiXnnLuSDRO6MoAQzZQT5FgArpNJgwDNPg-6T9Q1S0tXSMXV-fkzZizeOMefBSqrliciyXW0lBmg_FRIKX87Na29-snVXWHnwM9GT7Nd2tgJGITRhKLX8lsOhaTLIt0T1bJETQBsf-iK?purpose=fullsize){width="280" height="200"}
 
@@ -93,7 +93,7 @@ Data is stored in separate files → leads to duplication and inconsistency.
 
 ## 3. Data Abstraction
 
-<div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; margin: 20px 0; padding: 15px;">
 
 ![Image](https://images.openai.com/static-rsc-4/j73MQuqcKwnwvO7XuAD-_zfu-vGjifmMeFVoLAOW5jVcPplHR4GdWhXEjI-Rbhh268yLb7jfJXCW0jN1YhQjwJhnT17U_i9owfzRYcuvojsgiQFoQVfWrJ8T2WMQYiPGqZk5Z3vdsnUZGE-p9NuNj-c7VVsMfu4be-84-zbf2aaM9uSn-UGeFV3ubQGobGoH?purpose=fullsize){width="300" height="200"}
 
@@ -139,7 +139,7 @@ Data abstraction means **hiding complex details and showing only necessary infor
 
 ## 4. Data Independence
 
-<div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; margin: 20px 0; padding: 15px;">
 
 ![Image](https://images.openai.com/static-rsc-4/uyGICWljSIREeCCOoAXikBcFYRoNZYHZOWSL4ejrLX7EPTXUUowPeZoTLJ4bqbFYs_5nb3uwGZffUkXTR0g9-uy1-4AYw_C_UDg9__D5A8e8stx5zSXKU67EsX1pgEjp1EZos29QPjgI2sokjqciQ5hAHY97Q1SLI3ilt2PYjgQCJz0ft1uK1IgZK7THuWjE?purpose=fullsize){width="280" height="200"}
 
@@ -176,7 +176,7 @@ Data independence ensures that **changes at one level do not affect others**.
 
 ## 5. Schema vs Instance
 
-<div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; margin: 20px 0; padding: 15px;">
 
 ![Image](https://images.openai.com/static-rsc-4/W8KfDIGsq0UGv9tPSEtS_pX9-iGyU9E1qLHiYIWDwX8U_oZaWzfvXlV4zhicpi23enFJO4oOT8AMWPPXXXzhzdjEPc8ZrK1U0wVGGZ9_iqQGsIzS-ua0Fq9rd7U56hyrpQG7c5hVwlBVO8TZQLCO6tJ1FP_BtO_AwQ8Tt55itpslr1zA791zzWkqI3BykyCS?purpose=fullsize){width="300" height="200"}
 
