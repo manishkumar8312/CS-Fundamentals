@@ -50,10 +50,6 @@ DBMS handles storage, joins, and retrieval internally.
 <div align="center" style="margin: 20px 0;">
 <img src="https://images.openai.com/static-rsc-4/_ck5vKXQ62VJyD4UVfqGM1V5ZFbKCWmxyYiO9hoAiTO_gNwcSoFgTiXnnLuSDRO6MoAQzZQT5FgArpNJgwDNPg-6T9Q1S0tXSMXV-fkzZizeOMefBSqrliciyXW0lBmg_FRIKX87Na29-snVXWHnwM9GT7Nd2tgJGITRhKLX8lsOhaTLIt0T1bJETQBsf-iK?purpose=fullsize" width="280" height="200" />
 <img src="https://images.openai.com/static-rsc-4/Gu5eMltRDBsp9ChQyJLPSt0NNbUjzLquTORt7dlklxLIUmposoUmd89JzfUJ0j6oTa1m51QMyVudKyZ6drXkS9S2D0cT_MGDX0VX2LMM6hTs-W20g9AWDMkuAPBFjeTvKW23q2biHDJKJHxGT3fgPgKXkCOo28idc9UQFyquoSaPQOMOjdhDQGDlpvRTIpQE?purpose=fullsize" width="280" height="200" />
-<img src="https://images.openai.com/static-rsc-4/_rs9e7_Be69EHZqAeU_h1-yKs25I27vtGnWgwqtUbFqSw_MUY1NzvTT43skUwuE6ftYlwFh6lurmg7QjyO6jtOwKaIws0s2wbk18ik-r7bo-boVDS82RrCJ-Xrs7dBkUeQMfn2ATXGqv9PWUt3Xi40OESYbcs-5dve3p-18AhmcSa674NqRMC5?purpose=fullsize" width="280" height="200" />
-</div>
-
-
 
 ### Problem with File System:
 
@@ -163,7 +159,6 @@ Data independence ensures that **changes at one level do not affect others**.
 
 <div align="center" style="margin: 20px 0;">
 <img src="https://images.openai.com/static-rsc-4/W8KfDIGsq0UGv9tPSEtS_pX9-iGyU9E1qLHiYIWDwX8U_oZaWzfvXlV4zhicpi23enFJO4oOT8AMWPPXXXzhzdjEPc8ZrK1U0wVGGZ9_iqQGsIzS-ua0Fq9rd7U56hyrpQG7c5hVwlBVO8TZQLCO6tJ1FP_BtO_AwQ8Tt55itpslr1zA791zzWkqI3BykyCS?purpose=fullsize" width="300" height="200" />
-<img src="https://images.openai.com/static-rsc-4/J7D2EYDBG7BVjLGxZulYmZHFs3aypT5GkbCpeAPR7TzoPvc4BW-6VpRQWstyzEqILcVh99xKI-zZTxdQONccNm2i_nNcMG0jMYWGMYVsL8xECoPxJHO5bXZwVb9qYmxmKpJ-fSGB_heREe7FwWVl6mt6Zut__S-4ArC_Lg3g1Uk2FJzUaj-9cKo8XiN5XIX?purpose=fullsize" width="300" height="200" />
 <img src="https://images.openai.com/static-rsc-4/azjxERBwzFi6Z3hVvrVdtfuxDFA5hpGr9gTMnbbzwCQzxWlGHv0HPr1-bBvSs2KVaU9e3WyZpwpIOMN5SY7Z2IooQtJTNHu_W7FJLmBHZS9_EL3H54fZD4Bx3d50wsR08S9p4-ihMeoz6Zrj9NtyGc67Hzh1BYPjA5tDxVWrswxtv_058LtuBvqOKxeiDMXk?purpose=fullsize" width="300" height="200" />
 </div>
 
