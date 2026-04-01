@@ -209,9 +209,10 @@ All Attribute Subsets
 
 ## 3. Integrity Constraints
 <p align="center">
-  <img width="600" height="500" alt="image" src="https://github.com/user-attachments/assets/1878b1c6-6c38-4f53-b848-042c5e448973" />
-  <img width="600" height="500" alt="image" src="https://github.com/user-attachments/assets/eae24c86-7330-4d98-9032-471c33e21208" />
+  <img width="500" height="600" alt="image" src="https://github.com/user-attachments/assets/1878b1c6-6c38-4f53-b848-042c5e448973" />
+  <img width="500" height="600" alt="image" src="https://github.com/user-attachments/assets/eae24c86-7330-4d98-9032-471c33e21208" />
 </p>
+
 Integrity constraints are **rules** enforced by the DBMS to maintain the correctness and consistency of the database.
 
 ---
