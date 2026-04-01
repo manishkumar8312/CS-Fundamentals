@@ -11,7 +11,6 @@ The **Relational Model**, introduced by E.F. Codd in 1970, is the mathematical f
 3. [Integrity Constraints](#3-integrity-constraints)
 4. [Relational Schema](#4-relational-schema)
 5. [Quick Reference Summary](#5-quick-reference-summary)
-6. [GATE PYQ Pointers](#6-gate-pyq-pointers)
 
 ---
 
