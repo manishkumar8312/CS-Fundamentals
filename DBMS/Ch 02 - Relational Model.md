@@ -19,9 +19,15 @@ The **Relational Model**, introduced by E.F. Codd in 1970, is the mathematical f
 ### Relation
 
 A **relation** is a two-dimensional table with rows and columns. Formally, a relation $R$ on domains $D_1, D_2, \ldots, D_n$ is a subset of the Cartesian product $D_1 \times D_2 \times \cdots \times D_n$.
+<p align="center" >
+<img width="500" height="600" alt="image" src="https://github.com/user-attachments/assets/e1c1c3aa-475f-44cd-8d1d-7f72da20d364" />
+  <img width="500" height="600" alt="image" src="https://github.com/user-attachments/assets/badc4c92-0400-4c69-94c9-476653f82dfb" />
+</p>
 
 **Key properties of a relation:**
-
+<p align="center">
+<img width="500" height="600" alt="image" src="https://github.com/user-attachments/assets/ada9be3e-24aa-4b48-aa9f-5f1e2a7ba6c3" />
+</p>
 - Every cell contains exactly one atomic (indivisible) value — **1NF** requirement.
 - All values in a column are of the same domain.
 - Column order is insignificant.
@@ -202,7 +208,10 @@ All Attribute Subsets
 ---
 
 ## 3. Integrity Constraints
-
+<p align="center">
+  <img width="600" height="500" alt="image" src="https://github.com/user-attachments/assets/1878b1c6-6c38-4f53-b848-042c5e448973" />
+  <img width="600" height="500" alt="image" src="https://github.com/user-attachments/assets/eae24c86-7330-4d98-9032-471c33e21208" />
+</p>
 Integrity constraints are **rules** enforced by the DBMS to maintain the correctness and consistency of the database.
 
 ---
