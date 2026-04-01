@@ -19,6 +19,9 @@ The **Relational Model**, introduced by E.F. Codd in 1970, is the mathematical f
 ### Relation
 
 A **relation** is a two-dimensional table with rows and columns. Formally, a relation $R$ on domains $D_1, D_2, \ldots, D_n$ is a subset of the Cartesian product $D_1 \times D_2 \times \cdots \times D_n$.
+<p align="center">
+    ![alt text](image.png)
+</p>
 
 **Key properties of a relation:**
 
