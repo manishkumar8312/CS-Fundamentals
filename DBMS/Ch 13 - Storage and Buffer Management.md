@@ -46,7 +46,10 @@ The database management system (DBMS) maps logical database objects (tables, ind
 
 ```mermaid
 flowchart LR
-    DB[Database Tables] --> File[File] --> Extent[Extents] --> Block[Blocks (4-16 KB)] --> Sector[Sectors (512 B)]
+    DB["Database Tables"] --> File["File"]
+    File --> Extent["Extents"]
+    Extent --> Block["Blocks (4-16 KB)"]
+    Block --> Sector["Sectors (512 B)"]
 ```
 
 ## 13.2 Buffer Management
