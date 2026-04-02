@@ -75,12 +75,12 @@ Given a relation R with candidate keys and a set of FDs F:
 
 ```mermaid
 flowchart TD
-    subgraph "1NF with composite key"
-        R[Enroll(student_id, course_id, student_name, grade)<br/>Partial: student_id → student_name]
+    subgraph "Before 2NF (1NF with composite key)"
+        R["Enroll(student_id, course_id, student_name, grade)<br>Partial FD: student_id -> student_name"]
     end
-    subgraph "2NF Decomposition"
-        S[Student(student_id, student_name)]
-        E[Enroll(student_id, course_id, grade)]
+    subgraph "After 2NF Decomposition"
+        S["Student(student_id, student_name)"]
+        E["Enroll(student_id, course_id, grade)"]
     end
     R --> S
     R --> E
@@ -129,8 +129,8 @@ flowchart LR
         A[emp_id] --> B[dept_id] --> C[dept_location]
     end
     subgraph "3NF Decomposition"
-        R1[Employee(emp_id, dept_id)]
-        R2[Department(dept_id, dept_location)]
+        R1["Employee(emp_id, dept_id)"]
+        R2["Department(dept_id, dept_location)"]
     end
 ```
 
@@ -200,11 +200,11 @@ The repetition is eliminated by decomposing into:
 ```mermaid
 graph LR
     subgraph "Before 4NF (redundancy)"
-        A[emp_id | skill | language<br/>1 | Java | English<br/>1 | Java | French<br/>1 | SQL  | English<br/>1 | SQL  | French]
+        A["emp_id  skill  language\n1      Java   English\n1      Java   French\n1      SQL    English\n1      SQL    French"]
     end
     subgraph "After 4NF"
-        B[emp_id | skill<br/>1 | Java<br/>1 | SQL]
-        C[emp_id | language<br/>1 | English<br/>1 | French]
+        B["emp_id  skill\n1      Java\n1      SQL"]
+        C["emp_id  language\n1      English\n1      French"]
     end
     A --> B
     A --> C
