@@ -25,14 +25,14 @@ A **relation** is a two-dimensional table with rows and columns. Formally, a rel
 </p>
 
 **Key properties of a relation:**
-<p align="center">
-<img width="500" height="600" alt="image" src="https://github.com/user-attachments/assets/ada9be3e-24aa-4b48-aa9f-5f1e2a7ba6c3" />
-</p>
 - Every cell contains exactly one atomic (indivisible) value — **1NF** requirement.
 - All values in a column are of the same domain.
 - Column order is insignificant.
 - Row order is insignificant.
 - No two rows are identical (no duplicate tuples).
+<p align="center">
+<img width="500" height="600" alt="image" src="https://github.com/user-attachments/assets/ada9be3e-24aa-4b48-aa9f-5f1e2a7ba6c3" />
+</p>
 
 **Example — `Student` Relation:**
 
