@@ -126,24 +126,23 @@ Here’s a table of common protocols (not every protocol fits perfectly – some
 The TCP/IP model is a practical, simpler model used on the real Internet. It has **4 layers** (sometimes 5, depending on how you count). It was developed by the U.S. Department of Defense (ARPANET).
 
 ### TCP/IP Layers vs OSI Layers
-
 ```mermaid
 graph TD
-    subgraph OSI Model
-        O7[7. Application]
-        O6[6. Presentation]
-        O5[5. Session]
-        O4[4. Transport]
-        O3[3. Network]
-        O2[2. Data Link]
-        O1[1. Physical]
+    subgraph OSI["OSI Model"]
+        O7["7. Application"]
+        O6["6. Presentation"]
+        O5["5. Session"]
+        O4["4. Transport"]
+        O3["3. Network"]
+        O2["2. Data Link"]
+        O1["1. Physical"]
     end
     
-    subgraph TCP/IP Model
-        T4[4. Application Layer<br/>(HTTP, FTP, SMTP, DNS)]
-        T3[3. Transport Layer<br/>(TCP, UDP)]
-        T2[2. Internet Layer<br/>(IP, ICMP, ARP)]
-        T1[1. Network Access Layer<br/>(Ethernet, Wi‑Fi, etc.)]
+    subgraph TCPIP["TCP/IP Model"]
+        T4["4. Application Layer (HTTP, FTP, SMTP, DNS)"]
+        T3["3. Transport Layer (TCP, UDP)"]
+        T2["2. Internet Layer (IP, ICMP, ARP)"]
+        T1["1. Network Access Layer (Ethernet, Wi-Fi, etc.)"]
     end
     
     O7 --> T4
@@ -154,7 +153,6 @@ graph TD
     O2 --> T1
     O1 --> T1
 ```
-
 ### 2.5.1 Functions of Each TCP/IP Layer
 
 | TCP/IP Layer | Function | Equivalent OSI Layers | Example Protocols |
