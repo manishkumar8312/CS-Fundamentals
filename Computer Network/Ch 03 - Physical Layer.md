@@ -49,9 +49,6 @@ stateDiagram-v2
     note right of Bit1_High : +V
     note right of Bit0_Low : -V
 ```
-
-*Analog signal*: continuous waveform (e.g., sine wave) – Mermaid cannot draw smooth curves, but imagine a wave that changes value continuously.
-
 ---
 
 ### 3. Transmission Modes
