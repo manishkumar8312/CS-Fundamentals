@@ -6,18 +6,19 @@
 
 ```mermaid
     flowchart TD
-    A[Guided Media] --> B[Twisted Pair]
-    A --> C[Coaxial Cable]
-    A --> D[Optical Fiber]
+        A[Guided Media] --> B[Twisted Pair]
+        A --> C[Coaxial Cable]
+        A --> D[Optical Fiber]
 
-    B --> B1["UTP (Unshielded)\ne.g., Cat5e, Cat6"]
-    B --> B2[STP (Shielded)]
+        B --> B1[UTP Unshielded]
+        B --> B2[STP Shielded]
+        B1 -.-> B1a[Cat5e, Cat6]
 
-    C --> C1["Baseband\nDigital signalling"]
-    C --> C2["Broadband\nAnalog signalling"]
+        C --> C1[Baseband Digital]
+        C --> C2[Broadband Analog]
 
-    D --> D1["Single-mode\nLong distance"]
-    D --> D2["Multi-mode\nShort distance"]
+        D --> D1[Single-mode Long distance]
+        D --> D2[Multi-mode Short distance]
 ```
 
 #### 1.2 Unguided Media (Wireless)
