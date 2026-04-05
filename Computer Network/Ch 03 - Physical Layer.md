@@ -35,7 +35,7 @@ flowchart LR
 ---
 
 ### 2. Signal Types: Analog vs Digital
-
+**Digital Signal:** A digital signal is a discrete signal that represents data using specific values, usually in binary form (0 and 1). It changes in steps rather than continuously. Digital signals are less affected by noise, easier to store, process, and transmit, and are widely used in computers and modern communication systems.
 *Digital signal representation using state diagram* – each state is a voltage level over a bit interval:
 
 ```mermaid
@@ -49,6 +49,8 @@ stateDiagram-v2
     note right of Bit1_High : +V
     note right of Bit0_Low : -V
 ```
+**Analog Signal:** An analog signal is a continuous signal that varies smoothly with time. It can take an infinite number of values within a given range. These signals represent real-world physical quantities such as sound, temperature, and light. However, analog signals are more prone to noise and distortion during transmission.
+
 ---
 
 ### 3. Transmission Modes
