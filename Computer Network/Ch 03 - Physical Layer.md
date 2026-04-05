@@ -150,33 +150,35 @@ stateDiagram-v2
 
 #### 5.1 Nyquist Theorem (Noiseless)
 
-Formula:  
-\[
-C = 2B \log_2(L)
-\]
+Formula:
+
+```text
+C = 2B log2(L)
+```
 
 #### 5.2 Shannon Capacity (Noisy)
 
-Formula:  
-\[
-C = B \log_2\left(1 + \frac{S}{N}\right)
-\]
+Formula:
+
+```text
+C = B log2(1 + S/N)
+```
 
 **Relationship diagram** – using a flowchart:
 
 ```mermaid
 flowchart TD
-    subgraph Nyquist
-        N1[Max symbol rate = 2B symbols/s]
-        N2[With L levels: C = 2B log₂(L)]
+    subgraph NYQ[Nyquist Theorem]
+        N1["Max symbol rate = 2B symbols/s"]
+        N2["With L levels: C = 2B log2(L)"]
     end
-    subgraph Shannon
-        S1[Max bits/s given SNR]
-        S2[C = B log₂(1 + S/N)]
+    subgraph SHN[Shannon Capacity]
+        S1["Max bits/s given SNR"]
+        S2["C = B log2(1 + S/N)"]
     end
-    Practical[Actual data rate ≤ min(Nyquist, Shannon)]
-    Nyquist --> Practical
-    Shannon --> Practical
+    PRAC["Actual data rate <= min(Nyquist, Shannon)"]
+    NYQ --> PRAC
+    SHN --> PRAC
 ```
 
 **Key insight**:  
@@ -194,7 +196,7 @@ flowchart TD
 
 | Concept | Formula | Limiting Factor |
 |---------|---------|----------------|
-| **Nyquist** | \(C = 2B \log_2 L\) | Bandwidth & number of levels |
-| **Shannon** | \(C = B \log_2(1+S/N)\) | Bandwidth & SNR |
+| **Nyquist** | C = 2B log2(L) | Bandwidth & number of levels |
+| **Shannon** | C = B log2(1+S/N) | Bandwidth & SNR |
 
 ---
