@@ -163,9 +163,9 @@ with:
 ```mermaid
 flowchart LR
     subgraph Schema
-        S[Student(RollNo, Name, Age)]
-        E[Enroll(RollNo, CourseCode, Grade)]
-        C[Course(CourseCode, Title, Credits)]
+        S["Student(RollNo, Name, Age)"]
+        E["Enroll(RollNo, CourseCode, Grade)"]
+        C["Course(CourseCode, Title, Credits)"]
     end
     E -->|FK RollNo| S
     E -->|FK CourseCode| C
