@@ -152,7 +152,7 @@ stateDiagram-v2
 Formula:
 
 ```text
-C = 2B log2(L)
+C = 2B log2(L)  | B = Bandwidth, L = number of levels,C = Capacity
 ```
 
 #### 5.2 Shannon Capacity (Noisy)
@@ -160,7 +160,7 @@ C = 2B log2(L)
 Formula:
 
 ```text
-C = B log2(1 + S/N)
+C = B log2(1 + S/N) | C = Capacity, B = Bandwidth, S/N = Signal to Noise Ratio
 ```
 
 **Relationship diagram** – using a flowchart:
