@@ -1,368 +1,205 @@
 # Chapter 2: Relational Model
 
-The **Relational Model**, introduced by E.F. Codd in 1970, is the mathematical foundation of modern relational database systems. It organizes data into **relations** (tables) governed by strict structural and integrity rules. This chapter covers the core concepts tested in GATE.
+## 1. Relation, Tuple, Attribute
 
----
+The relational model represents data as a **table** (relation).
 
-## Table of Contents
+| Term | Definition | Analogy |
+|------|------------|---------|
+| **Relation** | A table with rows and columns | A spreadsheet |
+| **Tuple** | A row in the relation | A record / row |
+| **Attribute** | A column in the relation | A field |
 
-1. [Core Terminology](#1-core-terminology)
-2. [Keys](#2-keys)
-3. [Integrity Constraints](#3-integrity-constraints)
-4. [Relational Schema](#4-relational-schema)
-5. [Quick Reference Summary](#5-quick-reference-summary)
+**Example** – `Student` relation:
 
----
+| RollNo (Attribute) | Name (Attribute) | Age (Attribute) |
+|--------------------|------------------|----------------|
+| 101                | Alice            | 20              | ← Tuple
+| 102                | Bob              | 22              | ← Tuple
 
-## 1. Core Terminology
+```mermaid
+flowchart TD
+    subgraph Relation[Relation: Student]
+        direction TB
+        A1[Attribute: RollNo] 
+        A2[Attribute: Name]
+        A3[Attribute: Age]
+        T1[Tuple: 101, Alice, 20]
+        T2[Tuple: 102, Bob, 22]
+    end
+```
 
-### Relation
-
-A **relation** is a two-dimensional table with rows and columns. Formally, a relation $R$ on domains $D_1, D_2, \ldots, D_n$ is a subset of the Cartesian product $D_1 \times D_2 \times \cdots \times D_n$.
-<p align="center" >
-<img width="500" height="600" alt="image" src="https://github.com/user-attachments/assets/e1c1c3aa-475f-44cd-8d1d-7f72da20d364" />
-  <img width="500" height="600" alt="image" src="https://github.com/user-attachments/assets/badc4c92-0400-4c69-94c9-476653f82dfb" />
-</p>
-
-**Key properties of a relation:**
-- Every cell contains exactly one atomic (indivisible) value — **1NF** requirement.
-- All values in a column are of the same domain.
-- Column order is insignificant.
-- Row order is insignificant.
-- No two rows are identical (no duplicate tuples).
-<p align="center">
-<img width="500" height="600" alt="image" src="https://github.com/user-attachments/assets/ada9be3e-24aa-4b48-aa9f-5f1e2a7ba6c3" />
-</p>
-
-**Example — `Student` Relation:**
-
-| RollNo | Name    | Age | Branch |
-|--------|---------|-----|--------|
-| 101    | Arjun   | 20  | CSE    |
-| 102    | Priya   | 21  | ECE    |
-| 103    | Rahul   | 20  | CSE    |
-
----
-
-### Tuple
-
-A **tuple** is a single row in a relation. It represents one entity instance. In the example above, `(101, Arjun, 20, CSE)` is a tuple.
-
-- The number of tuples in a relation is its **cardinality**.
-
----
-
-### Attribute
-
-An **attribute** is a named column of a relation. Each attribute has an associated **domain** — the set of permissible values.
-
-- The number of attributes is the **degree** (or **arity**) of the relation.
-- For the `Student` table: degree = 4, cardinality = 3.
-
----
-
-### Domain
-
-A **domain** is the set of all possible atomic values an attribute can take.
-
-| Attribute | Domain Example         |
-|-----------|------------------------|
-| `Age`     | Integers in [1, 150]   |
-| `Name`    | Strings of length ≤ 50 |
-| `Branch`  | {CSE, ECE, ME, CE}     |
-
-> **NULL** is a special marker indicating an unknown or missing value. NULL belongs to every domain.
+**Properties of relations**:
+- Each tuple is unique (no duplicate rows).
+- Order of tuples does not matter.
+- Order of attributes does not matter (but usually fixed).
+- Each attribute has a domain (data type).
 
 ---
 
 ## 2. Keys
 
-Keys are used to **uniquely identify tuples** in a relation and to **establish relationships** between relations.
-
----
+Keys are attributes (or sets of attributes) that uniquely identify tuples.
 
 ### 2.1 Super Key
 
-> A **super key** is any set of one or more attributes that can **uniquely identify** every tuple in a relation.
+A **super key** is any set of attributes that uniquely identifies a tuple. It may contain extra attributes.
 
-A super key may contain extra (redundant) attributes.
-
-**Example — `Student(RollNo, Name, Age, Branch)`:**
-
-- `{RollNo}` — super key
-- `{RollNo, Name}` — super key (redundant `Name`)
-- `{RollNo, Name, Age}` — super key (redundant `Name`, `Age`)
-- `{Name}` — NOT necessarily a super key (two students can share a name)
-
-**Formula:** If $K$ is a super key of $R$, then for any two distinct tuples $t_1, t_2 \in R$: $t_1[K] \neq t_2[K]$.
-
----
+**Example**: In `Student(RollNo, Name, Age)`
+- `{RollNo}` → super key (minimal)
+- `{RollNo, Name}` → super key (redundant)
+- `{Name, Age}` → not a super key (Name may duplicate)
 
 ### 2.2 Candidate Key
 
-> A **candidate key** is a **minimal super key** — a super key with no redundant attributes.
+A **candidate key** is a minimal super key – no proper subset is a super key.
 
-Removing any attribute from a candidate key causes it to lose uniqueness.
-
-**Example:**
-
-Relation: `Employee(EmpID, Aadhar, Name, Dept)`
-
-Suppose both `EmpID` and `Aadhar` uniquely identify an employee.
-
-| Key | Is Minimal? | Is Candidate Key? |
-|-----|-------------|-------------------|
-| `{EmpID}` | Yes | **Yes** |
-| `{Aadhar}` | Yes | **Yes** |
-| `{EmpID, Aadhar}` | No | No (super key) |
-| `{EmpID, Name}` | No | No (super key) |
-
-> A relation may have **multiple candidate keys**. One of them is chosen as the primary key.
-
----
+**Example**:
+- `{RollNo}` is a candidate key (if RollNo is unique).
+- `{Name}` may be a candidate key only if names are guaranteed unique (rare).
 
 ### 2.3 Primary Key
 
-> A **primary key** is the candidate key **selected by the database designer** to uniquely identify tuples. It is denoted by underlining the attribute name in the schema.
+The **primary key** is one candidate key chosen by the database designer as the main identifier. It cannot be `NULL`.
 
-**Rules:**
-
-- Only **one** primary key per relation.
-- Must be **unique** across all tuples.
-- Must **not contain NULL** (Entity Integrity Rule).
-
-**Schema Notation:**
-
-```
-Student(<u>RollNo</u>, Name, Age, Branch)
-```
-
-**Example:**
-
-From the candidate keys `{EmpID}` and `{Aadhar}`, the designer chooses `EmpID` as the primary key.
-
-```
-Employee(<u>EmpID</u>, Aadhar, Name, Dept)
-```
-
----
+**Example**: `RollNo` chosen as primary key.
 
 ### 2.4 Foreign Key
 
-> A **foreign key** is an attribute (or set of attributes) in relation $R_1$ that **references the primary key** of relation $R_2$, enforcing a link between the two relations.
+A **foreign key** is an attribute (or set) in one relation that refers to the primary key of another relation. It establishes a relationship between tables.
 
-**Rules:**
+**Example**: `Enroll` table has `Stud_RollNo` that references `Student(RollNo)`.
 
-- The foreign key value must either match some primary key value in the referenced relation, or be NULL.
-- This is enforced by the **Referential Integrity Constraint**.
-
-**Example:**
-
-```
-Department(<u>DeptID</u>, DeptName)
-
-Employee(<u>EmpID</u>, Name, DeptID*)
-                              ↑
-                    Foreign Key → references Department(DeptID)
+```mermaid
+flowchart LR
+    subgraph Student
+        PK[Primary Key: RollNo]
+    end
+    subgraph Enroll
+        FK[Foreign Key: Stud_RollNo]
+    end
+    FK -->|references| PK
 ```
 
-| Employee |        |        |
-|----------|--------|--------|
-| EmpID    | Name   | DeptID |
-| E01      | Arjun  | D01    |
-| E02      | Priya  | D02    |
-| E03      | Rahul  | D01    |
+**Hierarchy of keys**:
 
-| Department |           |
-|------------|-----------|
-| DeptID     | DeptName  |
-| D01        | CSE       |
-| D02        | ECE       |
-
-`DeptID` in `Employee` is a **foreign key** referencing `DeptID` in `Department`.
-
-> **Important:** A foreign key need not have the same attribute name as the referenced primary key, but their **domains must match**.
-
----
-
-### Key Hierarchy — Summary
-
-```
-All Attribute Subsets
-        │
-        ▼
-    Super Keys
-  (uniquely identify tuples)
-        │
-        ▼
-  Candidate Keys
-  (minimal super keys)
-        │
-        ▼
-   Primary Key          ←── one candidate key selected
-  (not null, unique)
-
-   Foreign Key          ←── references a primary key in another relation
+```mermaid
+flowchart TD
+    SK[Super Key - any unique identifier, may have extra attributes]
+    SK --> CK[Candidate Key - minimal super key]
+    CK --> PK[Primary Key - chosen candidate key, no nulls]
+    CK --> AK[Alternate Keys - other candidate keys]
+    FK[Foreign Key - references primary key of another table]
+    PK -.-> FK
 ```
 
 ---
 
 ## 3. Integrity Constraints
-<p align="center">
-  <img width="500" height="600" alt="image" src="https://github.com/user-attachments/assets/1878b1c6-6c38-4f53-b848-042c5e448973" />
-  <img width="500" height="600" alt="image" src="https://github.com/user-attachments/assets/eae24c86-7330-4d98-9032-471c33e21208" />
-</p>
 
-Integrity constraints are **rules** enforced by the DBMS to maintain the correctness and consistency of the database.
+Integrity constraints ensure data accuracy and consistency.
 
----
+| Constraint | Description | Example |
+|------------|-------------|---------|
+| **Domain constraint** | Attribute values must be from a predefined domain (data type, range) | Age between 0 and 120 |
+| **Key constraint** | No two tuples have the same primary key value | RollNo unique |
+| **Entity integrity** | Primary key cannot be `NULL` | RollNo always present |
+| **Referential integrity** | Foreign key value must match an existing primary key in the referenced table (or be `NULL` if allowed) | Every `Stud_RollNo` in Enroll must exist in Student |
+| **User-defined constraint** | Business rules not covered by others | Salary > 0, Email format |
 
-### 3.1 Domain Constraint
-
-Every attribute value must belong to the attribute's domain. No value outside the domain is permitted.
-
-```
-Age = -5     → VIOLATION (age cannot be negative)
-Branch = XYZ → VIOLATION (XYZ not in {CSE, ECE, ME, CE})
-```
-
----
-
-### 3.2 Entity Integrity Constraint
-
-> The **primary key** of a relation must **never be NULL**.
-
-Since the primary key uniquely identifies a tuple, a NULL value would mean the tuple cannot be identified — which is logically unsound.
-
-```
-Student(RollNo=NULL, Name='Arjun', ...) → VIOLATION
+```mermaid
+flowchart TD
+    subgraph Constraints
+        DC[Domain Constraint - valid data type and range]
+        KC[Key Constraint - unique primary key]
+        EI[Entity Integrity - primary key not null]
+        RI[Referential Integrity - foreign key matches primary key]
+        UC[User-defined Constraints - business rules]
+    end
+    DC --> Table[Relation / Table]
+    KC --> Table
+    EI --> Table
+    RI --> Table
+    UC --> Table
 ```
 
----
+**Referential integrity diagram** (using sequence diagram style):
 
-### 3.3 Referential Integrity Constraint
-
-> Every **foreign key** value must either:
-> 1. Match a value in the **primary key of the referenced relation**, or  
-> 2. Be **NULL**.
-
-**Example violation:**
-
-```
-Employee(EmpID='E04', Name='Sneha', DeptID='D99')
-```
-If `D99` does not exist in `Department`, this is a **referential integrity violation**.
-
-**On Delete / On Update Actions:**
-
-| Action | Behavior |
-|--------|----------|
-| `CASCADE` | Propagate the change to referencing tuples |
-| `SET NULL` | Set the foreign key to NULL |
-| `SET DEFAULT` | Set the foreign key to its default value |
-| `RESTRICT / NO ACTION` | Reject the operation |
-
----
-
-### 3.4 Key Constraint
-
-- All values of the primary key (and candidate keys) must be **unique** across all tuples.
-
----
-
-### 3.5 Semantic Integrity (General Constraints)
-
-Business rules not captured by the above, often enforced with `CHECK` clauses.
-
-```sql
-CHECK (Age >= 18 AND Age <= 60)
-CHECK (Salary > 0)
+```mermaid
+sequenceDiagram
+    participant Enroll
+    participant Student
+    Enroll->>Student: Check FK (Stud_RollNo) exists?
+    alt exists
+        Student-->>Enroll: OK, insert allowed
+    else not exists
+        Student-->>Enroll: ERROR, reject insert
+    end
 ```
 
 ---
 
 ## 4. Relational Schema
 
-A **relational schema** is the **structural description** of a relation — its name, attributes, domains, and constraints. It does not contain actual data.
+A **relational schema** describes the structure of a relation – its name, attributes, domains, and constraints.
 
-**Notation:**
+**Notation**:
+- Relation name followed by list of attributes.
+- Primary key underlined.
+- Foreign key indicated with arrow.
+
+**Example** – University database:
 
 ```
-RelationName(Attribute1 : Domain1, Attribute2 : Domain2, ..., AttributeN : DomainN)
+Student( RollNo, Name, Age )
+Enroll( RollNo, CourseCode, Grade )
+Course( CourseCode, Title, Credits )
 ```
 
-Or more commonly in GATE:
+with:
+- Primary keys: `RollNo` in Student, `CourseCode` in Course, `(RollNo, CourseCode)` in Enroll.
+- Foreign key: `Enroll.RollNo` references `Student.RollNo`; `Enroll.CourseCode` references `Course.CourseCode`.
 
+```mermaid
+flowchart LR
+    subgraph Schema
+        S[Student(RollNo, Name, Age)]
+        E[Enroll(RollNo, CourseCode, Grade)]
+        C[Course(CourseCode, Title, Credits)]
+    end
+    E -->|FK RollNo| S
+    E -->|FK CourseCode| C
 ```
-RelationName(<u>PrimaryKeyAttr</u>, Attr2, Attr3, ForeignKeyAttr*)
+
+**Schema diagram** (detailed):
+
+```mermaid
+flowchart TD
+    Student[Student<br/>PK: RollNo<br/>Name, Age]
+    Course[Course<br/>PK: CourseCode<br/>Title, Credits]
+    Enroll[Enroll<br/>PK: RollNo + CourseCode<br/>Grade<br/>FK: RollNo → Student<br/>FK: CourseCode → Course]
+    
+    Enroll --> Student
+    Enroll --> Course
 ```
 
 ---
 
-### Full Schema Example
+## Summary Table
 
-Consider a small university database:
-
-```
-Student(<u>RollNo</u>, Name, Age, DeptID*)
-
-Department(<u>DeptID</u>, DeptName, HOD*)
-
-Faculty(<u>FacultyID</u>, Name, DeptID*)
-
-Course(<u>CourseID</u>, Title, Credits, FacultyID*)
-
-Enrollment(<u>RollNo*</u>, <u>CourseID*</u>, Grade)
-```
-
-**Observations:**
-
-- `Enrollment` has a **composite primary key** `(RollNo, CourseID)`.
-- `Enrollment.RollNo` → foreign key referencing `Student(RollNo)`.
-- `Enrollment.CourseID` → foreign key referencing `Course(CourseID)`.
-- `Department.HOD` → foreign key referencing `Faculty(FacultyID)`.
+| Concept | Definition |
+|---------|------------|
+| **Relation** | Table with rows and columns |
+| **Tuple** | Row of a relation |
+| **Attribute** | Column of a relation |
+| **Super key** | Set of attributes that uniquely identifies a tuple |
+| **Candidate key** | Minimal super key |
+| **Primary key** | Chosen candidate key, not null |
+| **Foreign key** | References primary key of another relation |
+| **Domain constraint** | Attribute values must be from allowed set |
+| **Key constraint** | No duplicate primary keys |
+| **Entity integrity** | Primary key cannot be null |
+| **Referential integrity** | Foreign key must match existing primary key |
+| **Relational schema** | Description of relation structure (name, attributes, keys) |
 
 ---
-
-### Schema vs Instance
-
-| Aspect | Schema | Instance |
-|--------|--------|----------|
-| Definition | Structure / blueprint of the relation | Actual data stored at a point in time |
-| Changes | Rarely (DDL operations) | Frequently (DML operations) |
-| Also called | Intension | Extension |
-| Example | `Student(RollNo, Name, Age)` | The rows in the `Student` table |
-
----
-
-## 5. Quick Reference Summary
-
-| Concept | Definition | Key Rule |
-|---------|------------|----------|
-| **Relation** | A table with rows and columns | No duplicate tuples; atomic values |
-| **Tuple** | A single row | Represents one entity instance |
-| **Attribute** | A named column | Has an associated domain |
-| **Super Key** | Set of attributes that uniquely identifies tuples | May have redundant attributes |
-| **Candidate Key** | Minimal super key | No proper subset is a super key |
-| **Primary Key** | Chosen candidate key | Unique + NOT NULL |
-| **Foreign Key** | Attribute referencing another relation's PK | Must match PK or be NULL |
-| **Entity Integrity** | PK cannot be NULL | Mandatory |
-| **Referential Integrity** | FK must match PK or be NULL | Enforced on insert/update/delete |
-| **Domain Constraint** | Value must lie within attribute domain | Mandatory |
-| **Schema** | Structural description of a relation | Does not include data |
-| **Instance** | Actual data at a point in time | Changes with DML operations |
-
----
-
-## 6. Summary 
-
-
-1. **Counting super keys:** If a relation has $n$ attributes and the minimal candidate key has $k$ attributes, the number of super keys = $2^{n-k}$ (since any subset of non-key attributes can be added to the candidate key). Adjust when multiple candidate keys exist.
-
-2. **Candidate key identification:** Given functional dependencies, find the closure of attribute sets and determine which sets are candidate keys (their closure = all attributes, and no proper subset achieves this).
-
-3. **Referential integrity violations:** Given two tables and a DML operation, identify whether it violates referential integrity. Pay attention to insertions into the referencing table and deletions from the referenced table.
-
-4. **NULL handling:** NULL is not equal to NULL (`NULL ≠ NULL` in SQL logic). Entity integrity prohibits NULL in primary keys. Foreign keys may be NULL.
-
-5. **Schema normalization connection:** Understanding candidate keys is a prerequisite for BCNF/3NF questions in later chapters.
