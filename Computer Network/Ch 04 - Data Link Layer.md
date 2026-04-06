@@ -36,7 +36,7 @@ After bit stuffing:011111 01110 011111010
                    (0 inserted)   (0 inserted)
 ```
 
-### Mermaid Diagram – Framing Process
+### Framing Process
 
 ```mermaid
 flowchart LR
