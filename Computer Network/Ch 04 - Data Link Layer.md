@@ -1,6 +1,11 @@
 # Chapter 4: Data Link Layer
 
-The **Data Link Layer** (Layer 2 of the OSI model) transforms a raw transmission medium into a reliable link. Its four core functions ensure that data is correctly framed, delivered without errors, not lost due to speed mismatches, and fairly shared among nodes.
+The **Data Link Layer** (Layer 2 of the OSI model) ensures reliable node‑to‑node data transfer across a physical link. Its main functions are:
+
+- **Framing** – Delimiting bits into frames.
+- **Error detection and correction** – Identifying and fixing bit errors.
+- **Flow control** – Preventing sender from overwhelming receiver.
+- **Access control** – Managing who transmits on a shared medium.
 
 ```mermaid
 flowchart LR
@@ -14,38 +19,31 @@ flowchart LR
 
 ## 1. Framing
 
-Framing divides a stream of bits into manageable **frames** so that the receiver can recognise where a frame starts and ends.
+Framing allows the receiver to detect where a frame starts and ends. Common methods:
 
-### Methods of Framing
-
-| Method               | How it works | Example protocol |
-|----------------------|--------------|------------------|
-| **Character count**  | First field gives number of bytes in frame | DECnet |
-| **Byte stuffing**    | Special flag byte (e.g., `01111110`) at start/end; escape byte inserted inside data | PPP |
-| **Bit stuffing**     | Flag `01111110`; after five consecutive `1`s insert a `0` in data | HDLC, USB |
+| Method               | Description | Example Protocol |
+|----------------------|-------------|------------------|
+| **Character count**  | First field tells frame length | DECnet |
+| **Byte stuffing**    | Flag byte (e.g., `01111110`) at start/end; escape byte inserted inside data | PPP |
+| **Bit stuffing**     | Flag `01111110`; after five `1`s, insert a `0` | HDLC, USB |
 | **Physical coding violation** | Use invalid signal levels as delimiters | Ethernet (Manchester) |
 
-### Example: Bit Stuffing (HDLC)
-
-**Rule:** After every sequence of **five `1`s**, the sender inserts a `0`. The receiver removes a `0` that follows five `1`s.
+### Example – Bit Stuffing (HDLC)
 
 ```
 Original data:     011111 11110 01111110
-                      ↑   ↑        ↑
-After bit stuffing:011111 01110 011111010
-                   (0 inserted)   (0 inserted)
+After stuffing:    011111 01110 011111010
+                  (0 inserted)   (0 inserted)
 ```
-
-### Framing Process
 
 ```mermaid
 flowchart LR
     subgraph Sender
-        A[Raw data bits] --> B[Add flags and stuff bits/bytes]
-        B --> C[Frame ready]
+        A[Raw bits] --> B[Add flags & stuff bits]
+        B --> C[Frame]
     end
     subgraph Receiver
-        C -- physical link --> D[Receive bitstream]
+        C --> D[Receive bitstream]
         D --> E[Detect flags & unstuff]
         E --> F[Original data]
     end
@@ -55,52 +53,79 @@ flowchart LR
 
 ## 2. Error Detection and Correction
 
-Bits can be corrupted by noise. The Data Link Layer adds **redundant bits** to detect (and sometimes correct) errors.
+### 2.1 Parity Check
 
-### Error Detection
+Adds a single bit to make the number of `1`s even (even parity) or odd (odd parity).
 
-| Method        | Description | Example |
-|---------------|-------------|---------|
-| **Parity bit** | Single bit to make number of `1`s even/odd | Simple, detects odd number of errors |
-| **Checksum**   | Sum of data bytes, transmitted alongside | TCP/IP (weak) |
-| **CRC (Cyclic Redundancy Check)** | Treat data as polynomial; divide by generator polynomial; send remainder | Ethernet, HDLC (strong) |
-
-#### CRC Example (Generator `1001`, data `1101011011`)
+- **Detects** odd number of bit errors.
+- **Fails** with even number of errors.
 
 ```
-Data:          1101011011  (append 3 zeros because generator is 4 bits)
-Divisor:       1001
-Remainder:     011   (after polynomial division)
-Transmitted:   1101011011 011
-Receiver divides by 1001 → remainder = 0 → no error.
+Example (even parity): Data 1011001 → 4 ones → parity bit = 0
+Transmitted: 10110010
 ```
 
-### Error Correction (Hamming Code)
+### 2.2 Checksum
 
-Hamming codes can **detect and correct single‑bit errors**. For `m` data bits, we need `r` check bits such that `2^r ≥ m + r + 1`.
+Treats data as a sequence of integers (e.g., 16‑bit words), sums them, and transmits the sum (1’s complement). Receiver recomputes sum; if result is all `1`s, no error.
 
-**Example (7,4) Hamming code** – 4 data bits + 3 parity bits.
+- Used in TCP/IP (weak compared to CRC).
+
+### 2.3 CRC (Cyclic Redundancy Check)
+
+Treats data as a polynomial. Divide by a generator polynomial; send the remainder. Very strong error detection.
+
+**Example:** Generator `1001` (x³+1), data `1101011011`
+
+```
+Data:           1101011011 000   (append 3 zeros because generator is 4 bits)
+Divisor:        1001
+Remainder:      011
+Transmitted:    1101011011 011
+Receiver divides by 1001 → remainder 0 → no error.
+```
 
 ```mermaid
 flowchart TD
-    D[Data bits: d1 d2 d3 d4] --> P[Compute parity bits p1 p2 p3]
-    P --> T[Transmit 7-bit codeword]
-    T --> R[Receive possibly corrupted]
-    R --> S[Syndrome calculation]
-    S --> C{All syndrome bits 0?}
-    C -- Yes --> OK[No error]
-    C -- No --> F[Flip erroneous bit position]
+    D[Data bits] --> CRC[Compute CRC remainder]
+    CRC --> Tx[Transmit frame]
+    Tx --> Rx[Receive frame]
+    Rx --> Recompute[Recompute remainder]
+    Recompute --> Check{Remainder = 0?}
+    Check -- Yes --> Accept[Accept]
+    Check -- No --> Reject[Reject / retransmit]
+```
+
+### 2.4 Hamming Code (Error Correction)
+
+Can **detect and correct single‑bit errors**. For `m` data bits, we need `r` check bits such that `2^r ≥ m + r + 1`.
+
+**Example (7,4) Hamming code** – 4 data bits + 3 parity bits.
+
+Parity bits cover overlapping sets of bit positions. The receiver computes a **syndrome** that directly indicates the erroneous bit position.
+
+```mermaid
+flowchart LR
+    subgraph Hamming Encoding
+        D[4 data bits] --> P[Insert 3 parity bits]
+        P --> Code[7-bit codeword]
+    end
+    subgraph Hamming Decoding
+        Code --> Rx[Received codeword]
+        Rx --> Syn[Compute syndrome]
+        Syn --> Correct[Flip wrong bit if syndrome ≠ 0]
+    end
 ```
 
 ---
 
-## 3. Flow Control
+## 3. Flow & Error Control Protocols
 
-Flow control prevents a fast sender from overwhelming a slow receiver.
+These protocols combine **flow control** (prevent receiver overload) and **error control** (retransmit lost/corrupted frames).
 
-### Stop‑and‑Wait
+### 3.1 Stop‑and‑Wait
 
-Sender transmits one frame, waits for an **acknowledgment (ACK)**, then sends the next.
+Sender transmits one frame, waits for an **acknowledgment (ACK)**, then sends the next. Simple but inefficient on high‑bandwidth long‑delay links.
 
 ```mermaid
 sequenceDiagram
@@ -112,100 +137,148 @@ sequenceDiagram
     Receiver-->>Sender: ACK
 ```
 
-- **Inefficient** on long, high‑bandwidth links.
+### 3.2 Sliding Window
 
-### Sliding Window
+Allows multiple outstanding frames. Uses a **window** (number of unacknowledged frames). Two common ARQ (Automatic Repeat reQuest) schemes:
 
-Allows multiple outstanding frames. Two variants:
+#### a) Go‑Back‑N ARQ
 
-1. **Go‑Back‑N** – Receiver accepts only in‑order frames; sender retransmits from lost frame onward.
-2. **Selective Repeat** – Receiver buffers out‑of‑order frames; sender retransmits only the lost frame.
+- Receiver accepts only **in‑order** frames.
+- If a frame is lost, the sender retransmits that frame **and all following frames** (even if they were received correctly).
 
-#### Example: Go‑Back‑N with window size 4
+**Example (window size 4, frame 1 lost):**
 
 ```mermaid
 sequenceDiagram
     participant Sender
     participant Receiver
     Sender->>Receiver: Frame 0
-    Sender->>Receiver: Frame 1
+    Sender->>Receiver: Frame 1 (lost)
     Sender->>Receiver: Frame 2
     Sender->>Receiver: Frame 3
-    Note over Receiver: Frame 1 lost
-    Receiver-->>Sender: ACK 0 only (cumulative)
+    Note over Receiver: Frame 1 missing → discard 2,3
+    Receiver-->>Sender: ACK 0 (cumulative)
     Sender->>Receiver: Frame 1 (retransmit)
     Sender->>Receiver: Frame 2 (retransmit)
     Sender->>Receiver: Frame 3 (retransmit)
 ```
 
-- **Piggybacking** – ACKs are carried inside data frames going in the opposite direction.
+#### b) Selective Repeat ARQ
+
+- Receiver buffers out‑of‑order frames.
+- Sender retransmits **only the lost frame**.
+
+```mermaid
+sequenceDiagram
+    participant Sender
+    participant Receiver
+    Sender->>Receiver: Frame 0
+    Sender->>Receiver: Frame 1 (lost)
+    Sender->>Receiver: Frame 2
+    Note over Receiver: Buffer frame 2
+    Sender->>Receiver: Frame 3
+    Note over Receiver: Buffer frame 3
+    Receiver-->>Sender: NAK for frame 1
+    Sender->>Receiver: Frame 1 (retransmit only)
+    Receiver-->>Sender: ACK for 1,2,3
+```
 
 ---
 
-## 4. Access Control (Medium Access Control – MAC)
+## 4. MAC Sub‑layer (Medium Access Control)
 
-On shared media (e.g., Wi‑Fi, Ethernet bus), a protocol decides **which node transmits when**.
+The MAC sub‑layer controls access to the shared physical medium and defines **MAC addressing**.
 
-### Multiple Access Protocols
+### 4.1 MAC Addressing
 
-| Protocol              | Principle | Used in |
-|-----------------------|-----------|---------|
-| **ALOHA**             | Transmit whenever; collide → retransmit after random delay | Satellite |
-| **CSMA/CD**           | Listen before transmitting; if collision → jam and backoff | Wired Ethernet |
-| **CSMA/CA**           | Listen, but avoid collisions using RTS/CTS handshake | Wi‑Fi (802.11) |
-| **Token Passing**     | Special token circulates; only token holder can transmit | Token Ring, FDDI |
+- A **48‑bit** (or 64‑bit) hardware address burned into network interfaces.
+- Example: `00:1A:2B:3C:4D:5E`
+- Uniquely identifies each node on the same local network.
 
-### CSMA/CD (Ethernet) State Diagram
+### 4.2 Channel Access Protocols
+
+#### ALOHA
+
+- **Pure ALOHA**: Transmit whenever data is ready. If collision occurs, wait a random time and retransmit. Throughput max ≈ 18.4%.
+- **Slotted ALOHA**: Time is divided into slots. Transmit only at slot boundaries. Throughput max ≈ 36.8%.
+
+```mermaid
+flowchart LR
+    subgraph Pure ALOHA
+        A1[Any transmission time] --> A2[Collision possible]
+    end
+    subgraph Slotted ALOHA
+        S1[Slots] --> S2[Transmit at slot start]
+        S2 --> S3[Fewer collisions]
+    end
+```
+
+#### CSMA/CD (Carrier Sense Multiple Access with Collision Detection)
+
+- **Listen before talking** (carrier sense).
+- If channel idle, transmit; if busy, wait.
+- **Collision detection**: While transmitting, listen. If collision detected → send jam signal → backoff (exponential backoff) → retry.
+
+Used in **wired Ethernet** (half‑duplex).
 
 ```mermaid
 stateDiagram-v2
     [*] --> Idle
-    Idle --> Transmit: Frame ready
+    Idle --> Transmit: Frame ready & channel idle
     Transmit --> CollisionDetected: Collision
     CollisionDetected --> Backoff: Send jam signal
-    Backoff --> Idle: Random wait, then retry
-    Transmit --> Done: Transmission complete
+    Backoff --> Idle: Random wait
+    Transmit --> Done: Success
 ```
 
-### Example: CSMA/CA (Wi‑Fi) RTS/CTS Handshake
+#### CSMA/CA (Collision Avoidance)
+
+Used in **Wi‑Fi (802.11)**. Avoids collisions rather than detecting them (wireless can’t detect collisions reliably). Uses:
+
+- **RTS/CTS handshake** (Request to Send / Clear to Send) to reserve the medium.
+- **Random backoff** after each transmission.
 
 ```mermaid
 sequenceDiagram
     participant StationA
     participant AccessPoint
     participant StationB
-    StationA->>AccessPoint: RTS (Ready to Send)
-    AccessPoint-->>StationA: CTS (Clear to Send)
+    StationA->>AccessPoint: RTS
+    AccessPoint-->>StationA: CTS
     AccessPoint-->>StationB: CTS (defer)
     StationA->>AccessPoint: Data
     AccessPoint-->>StationA: ACK
 ```
 
-- **Purpose:** Hide the sender from other stations (hidden terminal problem).
-
 ---
 
 ## Summary Table
 
-| Function               | Goal                              | Key Technique(s)                 |
-|------------------------|-----------------------------------|----------------------------------|
-| **Framing**            | Identify frame boundaries         | Bit stuffing, byte stuffing      |
-| **Error control**      | Detect/correct bit errors         | CRC, Hamming code, checksum      |
-| **Flow control**       | Prevent receiver overload         | Stop‑and‑wait, sliding window    |
-| **Access control**     | Coordinate shared medium access   | CSMA/CD, CSMA/CA, token passing  |
-
-> **Real‑world example:** Ethernet uses **framing** (preamble + SFD), **CRC‑32** for error detection, **sliding window** (for reliable links), and **CSMA/CD** (historically) or full‑duplex switching (modern).
+| Function               | Key Techniques / Protocols                |
+|------------------------|-------------------------------------------|
+| **Framing**            | Bit stuffing, byte stuffing               |
+| **Error detection**    | Parity, Checksum, CRC                     |
+| **Error correction**   | Hamming code                              |
+| **Flow & error control** | Stop‑and‑Wait, Go‑Back‑N, Selective Repeat |
+| **MAC access control** | ALOHA, CSMA/CD, CSMA/CA                   |
 
 ---
 
-## Further Reading & Code Examples
+## Further Code Examples
 
-- **CRC calculation in Python** – [GitHub gist](https://gist.github.com/example)
-- **Simulate stop‑and‑wait** – Simple socket programming
-- **HDLC bit stuffing** – C / Python implementation
+### CRC‑32 in Python (using `binascii`)
 
 ```python
-# Example: Bit stuffing (HDLC)
+import binascii
+
+data = b"Hello, Data Link Layer"
+crc = binascii.crc32(data) & 0xFFFFFFFF
+print(f"CRC-32: {crc:08x}")
+```
+
+### Bit Stuffing Simulation
+
+```python
 def bit_stuff(data: str) -> str:
     stuffed = ""
     count = 0
