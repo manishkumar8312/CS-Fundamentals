@@ -1,4 +1,4 @@
-# Chapter 4: Data Link Layer – Functions, Examples & Diagrams
+# Chapter 4: Data Link Layer
 
 The **Data Link Layer** (Layer 2 of the OSI model) transforms a raw transmission medium into a reliable link. Its four core functions ensure that data is correctly framed, delivered without errors, not lost due to speed mismatches, and fairly shared among nodes.
 
