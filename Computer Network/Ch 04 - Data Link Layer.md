@@ -17,12 +17,14 @@ The Data Link Layer performs four main tasks:
 **Diagram – Data Link Layer in context:**
 
 ```mermaid
-flowchart TD
-    subgraph "Sender"
+flowchart LR
+    subgraph Sender
+        direction LR
         A[Network Layer] --> B[Data Link Layer<br/>Framing, Error, Flow, Access]
         B --> C[Physical Layer]
     end
-    subgraph "Receiver"
+    subgraph Receiver
+        direction LR
         D[Physical Layer] --> E[Data Link Layer<br/>Extract frames, check errors]
         E --> F[Network Layer]
     end
