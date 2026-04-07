@@ -52,8 +52,8 @@ If a single bit flips, the receiver will detect an odd number of 1s and know an 
 
 ```mermaid
 flowchart LR
-    Data["Data: 1011010"] --> Count{Count 1's}
-    Count -->|4 (even)| Even[Parity bit = 0]
+    Data["Data: 1011010"] --> Count{"Count 1's"}
+    Count -->|"4 (even)"| Even[Parity bit = 0]
     Even --> Frame["Frame: 10110100"]
 ```
 
