@@ -384,4 +384,3 @@ sequenceDiagram
 | CSMA/CA | Avoid collision using RTS/CTS | Wi‑Fi |
 
 This chapter gives you the foundation to understand how data reliably moves across a single link. The next step is to explore how these protocols work together in real networks like Ethernet and Wi‑Fi.
-```
