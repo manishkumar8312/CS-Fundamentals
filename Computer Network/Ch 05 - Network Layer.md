@@ -206,15 +206,15 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-    subgraph Area 0 (Backbone)
+    subgraph "Area 0 (Backbone)"
         R1 --- R2
         R2 --- R3
     end
-    subgraph Area 1
+    subgraph "Area 1"
         R4 --- R5
         R4 --- R6
     end
-    subgraph Area 2
+    subgraph "Area 2"
         R7 --- R8
     end
     R3 --- R4
