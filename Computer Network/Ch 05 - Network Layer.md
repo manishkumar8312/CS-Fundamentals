@@ -47,7 +47,7 @@ IPv4 addresses are 32 bits long, usually written as four decimal octets. Origina
 | E     | 1111         | 240 – 255           | None         | Experimental     |
 
 ```mermaid
-pie title IPv4 Address Space Distribution (Conceptual)
+pie title IPv4 Address Space Distribution
     "Class A (50%)" : 50
     "Class B (25%)" : 25
     "Class C (12.5%)" : 12.5
