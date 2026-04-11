@@ -162,13 +162,14 @@ UDP is a simple, connectionless transport protocol that provides minimal service
 ### UDP Datagram Format
 
 ```mermaid
-packet-beta
-    title UDP Datagram
-    0-15: "Source Port"
-    16-31: "Destination Port"
-    32-47: "Length"
-    48-63: "Checksum"
-    64-...(optional): "Payload (Data)"
+flowchart LR
+    subgraph UDP Header
+        direction LR
+        A[Source Port<br/>16 bits] --> B[Destination Port<br/>16 bits]
+        B --> C[Length<br/>16 bits]
+        C --> D[Checksum<br/>16 bits]
+        D --> E[Payload<br/>variable]
+    end
 ```
 
 ### Use Cases
