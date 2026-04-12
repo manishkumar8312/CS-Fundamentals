@@ -219,10 +219,10 @@ Both are **pull protocols** – the client retrieves emails from the server.
 
 ```mermaid
 flowchart TD
-    A[Email arrives at server] --> B{Which protocol?}
-    B -->|POP3| C[Client downloads all emails]
-    C --> D[Emails deleted from server (default)]
-    B -->|IMAP| E[Client views headers only]
+    A[Email arrives at server] --> B[Which protocol]
+    B --> C[POP3 Client downloads all emails]
+    C --> D[Emails deleted from server default]
+    B --> E[IMAP Client views headers only]
     E --> F[Emails stay on server]
     F --> G[Changes mirrored across devices]
 ```
