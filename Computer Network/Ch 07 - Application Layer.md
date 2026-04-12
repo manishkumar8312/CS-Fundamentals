@@ -15,10 +15,9 @@ The **Application Layer** (Layer 7 of the OSI model) is the closest to the end u
 sequenceDiagram
     participant Client as Web Client (Browser)
     participant Server as Web Server
-
     Client->>Server: 1. Request (e.g., GET /index.html)
     Server-->>Client: 2. Response (HTML, status 200)
-    Note over Client,Server: Client always initiates; server never contacts client first.
+    Note over Client,Server: Client always initiates and server never contacts client first
 ```
 
 **Example**:  
