@@ -69,14 +69,13 @@ Small text files stored by the browser and sent automatically with every request
 
 ```mermaid
 sequenceDiagram
-    participant Browser
-    participant Server
-
-    Browser->>Server: POST /login (username, password)
-    Server-->>Browser: HTTP 200 OK + Set-Cookie: sessionId=abc123; HttpOnly; Secure
-    Note over Browser: Stores cookie
-    Browser->>Server: GET /dashboard + Cookie: sessionId=abc123
-    Server-->>Browser: Dashboard content (authenticated)
+    participant B as Browser
+    participant S as Server
+    B->>S: POST /login
+    S-->>B: Set-Cookie id=abc
+    Note over B: store cookie
+    B->>S: GET /dashboard with cookie
+    S-->>B: dashboard page
 ```
 
 **Key attributes**:
