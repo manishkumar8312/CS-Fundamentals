@@ -32,15 +32,13 @@ A URL is a specific string that identifies a resource and tells the client *how*
 
 ```mermaid
 flowchart LR
-    subgraph URL
-        A[scheme] --> B["://"]
-        B --> C[user:pass@]
-        C --> D[host]
-        D --> E[:port]
-        E --> F[/path]
-        F --> G[?query]
-        G --> H[#fragment]
-    end
+    A[scheme] --> B["://"]
+    B --> C[userinfo]
+    C --> D[host]
+    D --> E[port]
+    E --> F[path]
+    F --> G[query]
+    G --> H[fragment]
 ```
 
 **Components (with real example)**  
