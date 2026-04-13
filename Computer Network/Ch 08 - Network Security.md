@@ -152,7 +152,7 @@ sequenceDiagram
 
 ```mermaid
 flowchart TD
-    A[Attacker sends fake email: "Your password expired, click here"] --> B[User clicks link]
+    A[Attacker sends fake email: 'Your password expired, click here'] --> B[User clicks link]
     B --> C[Fake login page that looks like real bank]
     C --> D[User enters real username/password]
     D --> E[Attacker collects credentials]
