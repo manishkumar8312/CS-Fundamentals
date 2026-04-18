@@ -87,19 +87,19 @@ Wi-Fi networks use two main modes:
 
 ```mermaid
 graph TD
-    subgraph BSS 1
+    subgraph BSS1 [BSS 1]
         AP1[Access Point 1]
         STA1[Station 1]
         STA2[Station 2]
         STA1 --- AP1
         STA2 --- AP1
     end
-    subgraph BSS 2
+    subgraph BSS2 [BSS 2]
         AP2[Access Point 2]
         STA3[Station 3]
         STA3 --- AP2
     end
-    AP1 ---|Distribution System (Ethernet)| AP2
+    AP1 ---|Distribution System Ethernet| AP2
     AP1 ---|Internet| R[Router]
 ```
 
