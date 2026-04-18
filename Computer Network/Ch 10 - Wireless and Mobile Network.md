@@ -182,7 +182,7 @@ graph LR
     CN[Correspondent Node] -->|Packet to MN's home IP| HA[Home Agent]
     HA -->|Encapsulated tunnel| FA[Foreign Agent]
     FA -->|Decapsulate| MN[Mobile Node]
-    MN -->|Reverse tunnel (optional)| HA
+    MN -->|Reverse tunnel optional| HA
     HA -->|Forward| CN
     style HA fill:#f9c,stroke:#333
     style FA fill:#c9f,stroke:#333
