@@ -113,32 +113,6 @@ To saturate the link, the sender’s window should be at least 625,000 bytes (or
 
 ---
 
-## Repository Structure
-
-```
-/chapter11-networking-numericals
-│
-├── README.md               # This document
-├── solutions/              # Detailed solutions to practice problems
-│   ├── subnetting.md
-│   ├── delay.md
-│   ├── bdp.md
-│   ├── crc.md
-│   └── sliding_window.md
-│
-├── scripts/                # Python calculators for each topic
-│   ├── subnet_calculator.py
-│   ├── delay_calculator.py
-│   ├── bdp_calculator.py
-│   ├── crc_simulator.py
-│   └── sliding_window_sim.py
-│
-└── problems/               # Problem sets (without solutions)
-    ├── subnet_problems.txt
-    ├── delay_problems.txt
-    └── ...
-```
-
 ## Usage
 
 1. Study the formulas and worked examples in each section.
