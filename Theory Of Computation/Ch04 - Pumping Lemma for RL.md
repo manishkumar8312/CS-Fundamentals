@@ -1,183 +1,185 @@
-## Pumping Lemma for Regular Languages
+# Chapter 4: Pumping Lemma for Regular Languages
 
-The **Pumping Lemma for Regular Languages** is a fundamental result in automata theory used to **prove that certain languages are not regular**. It provides a necessary condition that every regular language must satisfy. If a language violates this condition, it cannot be regular.
-
----
-
-### Statement of the Pumping Lemma
-
-If **L** is a regular language, then there exists a positive integer **p** (called the *pumping length*) such that any string
-`w ∈ L` with `|w| ≥ p` can be written as:
-
-[
-w = xyz
-]
-
-satisfying the following conditions:
-
-1. `|y| > 0`
-2. `|xy| ≤ p`
-3. For all `i ≥ 0`, the string `xy^i z ∈ L`
-
-The substring `y` can be repeated (pumped) any number of times, and the resulting string must still belong to the language.
+The Pumping Lemma is a powerful tool used to prove that certain languages are **not regular**. It describes a property that every regular language must satisfy. If a language violates this property, it cannot be regular.
 
 ---
 
-### Intuition Behind the Pumping Lemma
+## 1. Statement of the Pumping Lemma
 
-<p align="center">
-  <img src="https://miro.medium.com/1%2AZoaf77fDGsXSOOmHd08OaQ.png"
-       alt="Pumping Lemma Illustration"
-       width="420"
-       height="260" />
-</p>
+Let \( L \) be a **regular language**. Then there exists an integer \( p \geq 1 \) (called the **pumping length**) such that **every** string \( s \in L \) with \( |s| \ge p \) can be written as \( s = xyz \), satisfying:
 
-<p align="center">
-  <img src="https://www.asethome.org/fa/image002a.jpg"
-       alt="Finite Automaton Loop"
-       width="420"
-       height="260" />
-</p>
+1. \( |y| \ge 1 \)  (the pumped part is non‑empty)
+2. \( |xy| \le p \)  (the first \( p \) symbols contain the pumping part)
+3. For all \( i \ge 0 \), \( xy^i z \in L \)  (the string can be “pumped” any number of times)
 
-The intuition comes from the structure of **finite automata**:
-
-* A finite automaton has a limited number of states
-* While reading a sufficiently long string, the automaton must revisit a state
-* This repetition forms a **loop**
-* The loop corresponds to the substring `y`, which can be repeated without affecting acceptance
-
-This loop behavior guarantees the existence of a pumpable substring.
+In words:  
+> In any sufficiently long string of a regular language, there is a non‑empty substring near the beginning that can be repeated any number of times (including zero) and the resulting strings will still belong to the language.
 
 ---
 
-### Proof Idea of the Pumping Lemma
+## 2. Proof Idea of the Pumping Lemma
 
-The proof relies on the **pigeonhole principle**:
+The proof relies on the fact that a regular language is accepted by a **Deterministic Finite Automaton (DFA)** with a finite number of states.
 
-1. Let a DFA recognizing language **L** have `n` states
-2. Choose the pumping length `p = n`
-3. Any string of length at least `p` must cause the DFA to revisit a state
-4. The repeated path forms a loop (`y`)
-5. Traversing this loop any number of times keeps the string accepted
+- Let the DFA have \( p \) states.
+- Consider a string \( s \) of length \( \ge p \).
+- When the DFA reads \( s \), it visits a sequence of states: \( q_0 \to q_1 \to \cdots \to q_n \) where \( n = |s| \).
+- Since there are only \( p \) states, by the pigeonhole principle, some state must repeat within the first \( p+1 \) steps.
+- Let \( q_i = q_j \) be the first repetition (\( i < j \le p \)).
+- Then the substring \( y \) between \( q_i \) and \( q_j \) can be **pumped** – repeated any number of times – and the DFA will still end in an accepting state (if the original string was accepted).
 
-Thus, every regular language must satisfy the pumping property.
+### Diagram: DFA with a pumping cycle
 
----
+```mermaid
+graph LR
+    subgraph DFA
+        q0((q0)) -->|x| qi((qi))
+        qi -->|y| qj((qj))
+        qj -->|z| qacc((Accept))
+        qi -.->|pump y| qj
+    end
+    style qi fill:#9cf
+    style qj fill:#9cf
+```
 
-### Application of the Pumping Lemma
+**Explanation of the parts**  
+- \( x \) – moves from start \( q_0 \) to the first occurrence of the repeated state \( q_i \).  
+- \( y \) – moves from \( q_i \) to \( q_j \) (the loop, can be repeated).  
+- \( z \) – moves from \( q_j \) to an accept state.  
 
-The pumping lemma is primarily used to **prove that a language is not regular**.
-
-General approach:
-
-1. Assume the language **L** is regular
-2. Apply the pumping lemma
-3. Choose a specific string `w ∈ L` with `|w| ≥ p`
-4. Show that for every valid split `xyz`, pumping violates the language definition
-5. Conclude that **L is not regular**
-
----
-
-### Step-by-Step Examples
-
-#### Example 1:
-
-**Language:**
-[
-L = { a^n b^n \mid n \ge 0 }
-]
-
-**Step 1:** Assume `L` is regular
-**Step 2:** Let pumping length be `p`
-**Step 3:** Choose `w = a^p b^p`
-**Step 4:** Since `|xy| ≤ p`, `y` consists only of `a`s
-**Step 5:** Pump down (`i = 0`):
-
-[
-xy^0z = a^{p-k} b^p
-]
-
-This string does not have equal numbers of `a`s and `b`s.
-**Contradiction arises.**
-
-**Conclusion:**
-[
-L \text{ is not regular}
-]
+Because \( q_i = q_j \), we can go around the loop \( i \) times, giving \( xy^i z \) for any \( i \ge 0 \).
 
 ---
 
-#### Example 2:
+## 3. Application of the Pumping Lemma
 
-**Language:**
-[
-L = { ww \mid w \in {0,1}^* }
-]
+To prove a language \( L \) is **not regular**, we use **proof by contradiction**:
 
-Choose `w = 0^p 0^p`.
-Pumping changes only the first half, breaking the equality between the two halves.
+1. **Assume** \( L \) is regular. Then the pumping lemma holds for some pumping length \( p \).
+2. **Choose** a clever string \( s \in L \) with \( |s| \ge p \) that will lead to a contradiction.
+3. **Consider all possible ways** to split \( s = xyz \) satisfying \( |y| \ge 1 \) and \( |xy| \le p \).
+4. **Show** that for every such split, there exists some \( i \ge 0 \) such that \( xy^i z \notin L \).
+5. **Conclude** that our assumption was false – \( L \) is not regular.
 
-**Conclusion:**
-[
-L \text{ is not regular}
-]
+### Example: Prove \( L = \{ 0^n 1^n \mid n \ge 0 \} \) is not regular
 
----
+- Assume \( L \) is regular with pumping length \( p \).
+- Choose \( s = 0^p 1^p \) (length \( 2p \ge p \)).
+- By the lemma, \( s = xyz \) with \( |xy| \le p \) and \( |y| \ge 1 \).
+- Since \( |xy| \le p \), the part \( xy \) lies entirely within the block of \( 0 \)’s.  
+  So \( y = 0^k \) for some \( k \ge 1 \).
+- Pump \( y \) **up** (choose \( i = 2 \)):  
+  \( xy^2 z = 0^{p+k} 1^p \).  
+  This string has more \( 0 \)’s than \( 1 \)’s, so it is **not** in \( L \).
+- Contradiction. Hence \( L \) is not regular.
 
-### Techniques to Prove Languages Are Non-Regular
-
-<p align="center">
-  <img src="https://cn.edurev.in/ApplicationImages/Temp/1611931_2d7a200e-c186-4637-b5da-4873e6407c64_lg.PNG"
-       alt="Finite Automaton Loop"
-       width="420"
-       height="260" />
-</p>
-
-Common techniques include:
-
-1. **Choosing a strategic string**
-
-   * Use strings that highlight counting or dependency (e.g., equal numbers of symbols)
-
-2. **Restricting the location of `y`**
-
-   * Use the condition `|xy| ≤ p` to force `y` into a specific region
-
-3. **Pumping up or pumping down**
-
-   * Use `i = 0` or `i > 1` to break language constraints
-
-4. **Checking all possible decompositions**
-
-   * Show that no valid `xyz` split can satisfy the lemma
+```mermaid
+flowchart TD
+    A[Assume L regular] --> B[Choose s = 0^p 1^p]
+    B --> C[Pumping lemma gives xyz]
+    C --> D{Where can y be?}
+    D -->|Only 0's because |xy| ≤ p| E[y = 0^k, k≥1]
+    E --> F[Pump i=2 → 0^{p+k}1^p]
+    F --> G[Not in L → contradiction]
+    G --> H[L is not regular]
+```
 
 ---
 
-### Limitations of the Pumping Lemma
+## 4. Techniques to Prove Languages are Non‑Regular
 
-The pumping lemma has several important limitations:
+### 4.1 Standard Pumping Lemma Strategy
 
-* It provides a **necessary**, not sufficient, condition for regularity
-* Some non-regular languages still satisfy the pumping condition
-* Failure to find a contradiction does **not** prove a language is regular
-* It cannot be used to prove that a language *is* regular
+- Choose \( s \) that depends on \( p \).
+- Ensure \( |xy| \le p \) forces \( y \) to lie in a specific part of \( s \).
+- Pump up or down to break the pattern.
 
-Because of these limitations, other methods (such as equivalence relations or distinguishability arguments) are often used alongside the pumping lemma.
+### 4.2 Closure Properties + Pumping Lemma
+
+Sometimes it is easier to combine the pumping lemma with operations that preserve regularity.
+
+**Example**: Prove \( L = \{ w \mid w \text{ has equal number of 0's and 1's} \} \) is not regular.
+
+- Intersect \( L \) with the regular language \( 0^*1^* \).  
+  The result is \( \{ 0^n1^n \} \), which is non‑regular.
+- If \( L \) were regular, the intersection would also be regular (regular languages closed under intersection). Contradiction.
+
+### 4.3 Using Homomorphisms
+
+Apply a string homomorphism to map the language to a known non‑regular language.
+
+### 4.4 Myhill–Nerode Theorem (alternative to pumping)
+
+The Myhill–Nerode theorem gives a necessary and sufficient condition for regularity (infinite number of distinguishable prefixes). It can sometimes prove non‑regularity more easily, but the pumping lemma is more common for introductory courses.
+
+### 4.5 Example: Palindrome Language
+
+Prove \( L = \{ w \in \{0,1\}^* \mid w = w^R \} \) (palindromes) is not regular.
+
+- Choose \( s = 0^p 1 0^p \).
+- With \( |xy| \le p \), \( y \) consists only of \( 0 \)’s from the first block.
+- Pumping changes the number of leading \( 0 \)’s but not the trailing \( 0 \)’s, breaking the palindrome property.
 
 ---
 
-### Significance
+## 5. Limitations of the Pumping Lemma
 
-The pumping lemma:
+The pumping lemma is a **necessary** condition for regularity, but **not sufficient**.  
+Some non‑regular languages **satisfy** the pumping lemma – they can be “pumped” but are still not regular.
 
-* Demonstrates the **limitations of finite memory**
-* Is a standard proof technique in automata theory
-* Appears frequently in university exams
-* Helps distinguish regular and non-regular languages
+### 5.1 Example: A Non‑regular Language that Satisfies the Pumping Lemma
+
+Let \( L = \{ a^i b^j c^k \mid i,j,k \ge 0 \text{ and if } i=1 \text{ then } j=k \} \)
+
+- This language is not regular (can be shown with Myhill–Nerode).
+- Yet it **does** satisfy the pumping lemma (careful choice of pumping length works).
+
+### 5.2 What the Pumping Lemma Cannot Do
+
+- It **cannot prove** that a language **is** regular.
+- It may fail for languages that require more sophisticated arguments (e.g., context‑free pumping lemma needed for \( \{ a^n b^n c^n \} \)).
+- Some non‑regular languages require **Ogden’s lemma** (a stronger version for context‑free languages) or the Myhill–Nerode theorem.
+
+### 5.3 When the Pumping Lemma Fails to Prove Non‑regularity
+
+Consider \( L = \{ a^n b^m \mid n \neq m \} \).  
+The pumping lemma **can** prove it is not regular (choose \( s = a^p b^{p+p!} \) or similar).  
+But if a language satisfies the pumping lemma, you must use other methods.
+
+### Diagram: Limitations Overview
+
+```mermaid
+flowchart LR
+    subgraph All languages
+        R[Regular languages]
+        N[Non‑regular languages]
+        subgraph Pumping property
+            P[Languages satisfying pumping lemma]
+        end
+    end
+    R --> P
+    N --> P
+    P -.->|Not all regular? Actually R subset P| R
+    style R fill:#9f9
+    style N fill:#f99
+    style P fill:#ff9
+```
+
+**Key takeaway**  
+- Every regular language satisfies the pumping lemma (R ⊆ P).  
+- Some non‑regular languages also satisfy it (P ⊈ R).  
+- Therefore, satisfying the pumping lemma does **not** guarantee regularity.
 
 ---
 
-### Summary
+## Summary Table
 
-The Pumping Lemma for Regular Languages is a powerful theoretical tool for proving non-regularity. It is based on the finite-state nature of automata and reveals why certain patterns cannot be recognized without additional memory. While effective, it must be applied carefully due to its limitations.
+| Aspect                 | Description                                                                 |
+|------------------------|-----------------------------------------------------------------------------|
+| **Statement**          | Every long enough string can be split into xyz, where y can be pumped.      |
+| **Proof idea**         | DFA has finite states → a state repeats within first p symbols → loop.      |
+| **Application**        | Assume L regular, find contradiction by pumping a carefully chosen string. |
+| **Common techniques**  | Choose s dependent on p, force y into a specific region, pump up/down.      |
+| **Limitations**        | Not sufficient (some non‑regular languages satisfy it); cannot prove regularity. |
 
+The pumping lemma is a fundamental tool in the theory of computation, but it must be applied carefully, and other methods (closure properties, Myhill–Nerode) should be used when the pumping lemma is inconclusive.
