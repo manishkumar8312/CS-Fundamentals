@@ -170,13 +170,3 @@ These are network devices operating at different layers of the OSI model.
 - Router: Forwards between different IP subnets (e.g., LAN to Internet).
 
 **Key takeaway**: Use switches for internal LAN efficiency, routers for inter-network connectivity; hubs are deprecated.
-
-## References
-
-I have revised the references section to include direct, hyperlinked URLs for each resource, making it easier for readers to access the original source material directly.
-
----
-
-
-
-For further hands-on study, use `tcpdump`, `Wireshark`, `dig`, `nslookup`, and emulate networks with tools like `mininet` or Cisco Packet Tracer.
