@@ -1,181 +1,163 @@
-# 📘 Theory of Computation (TOC) Syllabus
-
-A structured and exam-oriented syllabus covering the **fundamental theoretical concepts of computation**, suitable for **B.Tech CSE** and **theoretical computer science interviews**.
-
----
+# 📘 THEORY OF COMPUTATION – Syllabus
 
 ## Chapter 1. Introduction to Theory of Computation
 
-### Topics
-
-* Introduction to Theory of Computation
-* Motivation and applications of TOC
-* Alphabets, strings, and languages
-* Operations on strings
-* Operations on languages
-* Kleene star and positive closure
-* Homomorphism and inverse homomorphism
+- What is Theory of Computation? (Automata, Computability, Complexity)
+- Motivation and applications: compilers, software verification, artificial intelligence, cryptography
+- Alphabets, strings, and languages – basic definitions
+- Operations on strings: concatenation, reversal, substring, length
+- Operations on languages: union, intersection, concatenation, complement, Kleene star, positive closure
+- Homomorphism and inverse homomorphism
 
 ---
 
 ## Chapter 2. Finite Automata
 
-### Topics
-
-* Deterministic Finite Automata (DFA)
-* Formal definition of DFA
-* Transition functions and state diagrams
-* Language acceptance by DFA
-* Non-Deterministic Finite Automata (NFA)
-* ε-NFA and ε-closure
-* Equivalence of DFA, NFA, and ε-NFA
-* Conversion of NFA to DFA
-* Minimization of DFA
-* Design of finite automata for given languages
+- Deterministic Finite Automata (DFA)
+  - Formal definition (5‑tuple)
+  - Transition functions and state diagrams
+  - Language acceptance by DFA
+- Non‑Deterministic Finite Automata (NFA)
+  - Definition and why non‑determinism is useful
+  - ε‑NFA and ε‑closure
+- Equivalence of DFA, NFA, and ε‑NFA (proof outline)
+- Conversion of NFA to DFA (subset construction)
+- DFA Minimization – Table‑filling algorithm (Hopcroft’s algorithm) & Myhill–Nerode theorem
+- Design of finite automata for given languages
 
 ---
 
 ## Chapter 3. Regular Languages and Regular Expressions
 
-### Topics
-
-* Regular languages and their properties
-* Regular expressions and syntax
-* Conversion of regular expressions to finite automata
-* Conversion of finite automata to regular expressions
-* Closure properties of regular languages
-* Decision properties of regular languages
+- Regular languages and their properties
+- Regular expressions: syntax and semantics (ε, ∅, a, R1|R2, R1·R2, R*)
+- Conversion of regular expressions to finite automata (Thompson’s construction)
+- Conversion of finite automata to regular expressions (state elimination, Arden’s theorem)
+- Closure properties of regular languages (union, intersection, complement, concatenation, Kleene star, reversal, homomorphism)
+- Decision properties: emptiness, finiteness, membership, equivalence
 
 ---
 
 ## Chapter 4. Pumping Lemma for Regular Languages
 
-### Topics
-
-* Statement of pumping lemma
-* Proof idea of pumping lemma
-* Application of pumping lemma
-* Techniques to prove languages are non-regular
-* Limitations of pumping lemma
+- Statement of the pumping lemma
+- Proof idea (pigeonhole principle on DFA states)
+- Application of pumping lemma – proving a language is **not regular**
+- Techniques for non‑regularity proofs (pumping, closure properties, Myhill–Nerode)
+- Limitations of pumping lemma
 
 ---
 
-## Chapter 5. Context-Free Grammars (CFG)
+## Chapter 5. Context‑Free Grammars (CFG)
 
-### Topics
-
-* Context-free grammars and their components
-* Derivations and sentential forms
-* Leftmost and rightmost derivations
-* Parse trees
-* Ambiguity in context-free grammars
-* Inherently ambiguous languages
+- Context‑free grammars – components (V, Σ, R, S)
+- Derivations and sentential forms
+- Leftmost and rightmost derivations
+- Parse trees
+- Ambiguity in context‑free grammars (removing ambiguity where possible)
+- Inherently ambiguous languages
 
 ---
 
 ## Chapter 6. Simplification and Normal Forms of CFG
 
-### Topics
-
-* Removal of null productions
-* Removal of unit productions
-* Removal of useless symbols
-* Chomsky Normal Form (CNF)
-* Greibach Normal Form (GNF)
-* Conversion of CFG into CNF and GNF
+- Removal of ε‑productions (nullable symbols)
+- Removal of unit productions
+- Removal of useless symbols (non‑generating, non‑reachable)
+- Chomsky Normal Form (CNF) – definition and conversion algorithm
+- Greibach Normal Form (GNF) – definition and conversion (conceptual)
+- Conversion of any CFG to CNF (step‑by‑step)
 
 ---
 
 ## Chapter 7. Pushdown Automata (PDA)
 
-### Topics
-
-* Definition and components of Pushdown Automata
-* Stack operations in PDA
-* Acceptance by empty stack
-* Acceptance by final state
-* Equivalence of PDA and CFG
-* Construction of PDA for given languages
+- Definition and components of PDA (7‑tuple)
+- Stack operations and instantaneous descriptions (ID)
+- Acceptance by **empty stack** vs **final state** – equivalence
+- Equivalence of PDA and CFG:
+  - CFG → PDA (single‑state construction)
+  - PDA → CFG (from empty‑stack acceptance)
+- Construction of PDA for given languages
 
 ---
 
-## Chapter 8. Pumping Lemma for Context-Free Languages
+## Chapter 8. Pumping Lemma for Context‑Free Languages
 
-### Topics
-
-* Statement of pumping lemma for CFL
-* Applications of CFL pumping lemma
-* Proving languages are non-context-free
-* Limitations of CFL pumping lemma
+- Statement of pumping lemma for CFL (based on parse tree height)
+- Applications – proving languages are **not context‑free**
+- Limitations of CFL pumping lemma (Ogden’s lemma mentioned)
 
 ---
 
 ## Chapter 9. Turing Machines
 
-### Topics
-
-* Definition and components of Turing Machine
-* Instantaneous descriptions
-* Language acceptance by Turing Machine
-* Design of Turing Machines for simple languages
-* Variants of Turing Machines
-
-  * Multi-tape Turing Machine
-  * Non-Deterministic Turing Machine
-* Equivalence of different Turing Machine models
+- Definition and components of a Turing Machine (7‑tuple: Q, Σ, Γ, δ, q₀, q_accept, q_reject)
+- Instantaneous descriptions (ID) and how a TM computes
+- Language acceptance by Turing Machine (halting in accept state)
+- Design of Turing Machines for simple languages
+- Variants of Turing Machines:
+  - Multi‑tape Turing Machine (equivalent to single tape)
+  - Non‑Deterministic Turing Machine (equivalent)
+  - Multi‑head, two‑dimensional tapes (brief)
+- Church–Turing thesis
 
 ---
 
 ## Chapter 10. Decidability and Undecidability
 
-### Topics
-
-* Recursive and recursively enumerable languages
-* Decidable languages
-* Undecidable languages
-* Halting problem
-* Reductions and reduction techniques
-* Proofs of undecidability
+- Recursive (decidable) vs Recursively enumerable (r.e.) languages
+- Decidable languages – membership can be decided by a TM that always halts
+- Undecidable languages – no TM decides membership
+- Halting problem – statement and proof of undecidability (diagonalisation)
+- Reductions and reduction techniques (many‑one / mapping reductions)
+- Rice’s Theorem – any non‑trivial property of r.e. languages is undecidable
+- Proofs of undecidability for emptiness, regularity, and Post Correspondence Problem (PCP)
 
 ---
 
 ## Chapter 11. Chomsky Hierarchy
 
-### Topics
-
-* Type-0: Recursively Enumerable Languages
-* Type-1: Context-Sensitive Languages
-* Type-2: Context-Free Languages
-* Type-3: Regular Languages
-* Relationships among different language classes
+- Type‑0: Recursively Enumerable Languages (Turing machines)
+- Type‑1: Context‑Sensitive Languages (Linear Bounded Automata – LBA)
+  - Definition of LBA (Turing machine with bounded tape)
+  - Example: `{aⁿbⁿcⁿ | n≥0}` is context‑sensitive
+- Type‑2: Context‑Free Languages (Pushdown automata)
+- Type‑3: Regular Languages (Finite automata)
+- Relationships among language classes (proper inclusions: Regular ⊂ CFL ⊂ CSL ⊂ Recursive ⊂ RE)
+- Closure and decision properties across the hierarchy
 
 ---
 
 ## Chapter 12. Introduction to Computational Complexity
 
-### Topics
-
-* Time complexity
-* Space complexity
-* Asymptotic notations
-* Complexity classes
-
-  * P
-  * NP
-* NP-Hard and NP-Complete problems (introductory level)
+- Time complexity – worst‑case number of steps
+- Space complexity – worst‑case number of tape cells used
+- Asymptotic notations (Big‑O, Big‑Ω, Big‑Θ) applied to TM resources
+- Complexity classes:
+  - P (polynomial time)
+  - NP (nondeterministic polynomial time)
+  - NP‑Hard and NP‑Complete (introductory level)
+  - Brief mention of PSPACE, L, NL
+- Polynomial‑time reductions (≤_p)
+- Cook–Levin theorem (SAT is NP‑complete) – statement
+- Examples of NP‑complete problems: 3‑SAT, Clique, Vertex Cover, Subset Sum
 
 ---
 
 ## Summary
 
-This syllabus covers the **entire official scope of Theory of Computation** required for:
+This syllabus covers the entire official scope of Theory of Computation required for:
 
-* **University examinations**
-* **Core computer science interviews**
+- University examinations (GATE, semester exams, GRE CS)
+- Core computer science interviews (automata, language classification, decidability)
+- Research foundation in computability and complexity
 
-It emphasizes **formal models, language theory, decidability, and computational limits**.
+It includes all essential topics: finite automata, regular languages, pumping lemmas, context‑free grammars, pushdown automata, Turing machines, decidability, Rice’s theorem, Chomsky hierarchy, and an introduction to computational complexity (P, NP, NP‑completeness).
 
 ---
+
 ## ⭐ Support
 
-If this repository adds value to your learning, consider giving it a ⭐ to show your support.
+If this syllabus helps you structure your learning or your GitHub repository, please **star** it to show your support.  
+Contributions and corrections are welcome.
