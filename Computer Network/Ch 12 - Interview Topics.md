@@ -177,40 +177,6 @@ I have revised the references section to include direct, hyperlinked URLs for ea
 
 ---
 
-## References
 
-### 1. TCP vs UDP
-*   **RFC 793 (Original TCP Specification)**: A plain text version is available [here](https://packetstormsecurity.com/files/30270/rfc793.txt.html).
-*   **RFC 9293 (Current TCP Standard, obsoletes RFC 793)**: Access the updated specification on the IETF website [here](https://www.rfc-editor.org/info/rfc9293).
-*   **RFC 768 (UDP Specification)**: Read the complete text [here](https://www.tuhs.org/Usenet/comp.sources.unix/1985-January/000439.html).
-*   **TCP/IP Illustrated, Volume 1 (Book)**: The 2nd edition can be purchased from the publisher [here](https://www.informit.com/store/tcp-ip-illustrated-volume-1-the-protocols-9780132808187).
-
-### 2. OSI vs TCP/IP
-*   **OSI Reference Model Paper (Zimmermann, 1980)**: Find it on IEEE Xplore [here](https://ieeexplore.ieee.org/document/1095638). An entry is also on Semantic Scholar [here](https://www.semanticscholar.org/paper/OSI-Reference-Model-The-ISO-Model-of-Architecture-Zimmermann/fe0a5962074aa92c59fddad527ba0a5283962de7).
-*   **RFC 1122 (Requirements for Internet Hosts)**: View the document [here](https://www.ietf.org/ietf-ftp/rfc/rfc1122.html).
-
-### 3. HTTP vs HTTPS
-*   **RFC 9110 (HTTP Semantics)**: Read the official specification [here](https://datatracker.ietf.org/doc/html/rfc9110). An alternative link is [here](https://httpwg.org/specs/rfc9110.html).
-*   **RFC 8446 (TLS 1.3)**: Access the full specification [here](https://www.rfc-editor.org/info/rfc8446).
-*   **Let's Encrypt Documentation**: Learn how it works [here](https://letsencrypt.org/how-it-works/).
-
-### 4. DNS Working
-*   **RFC 1034 (DNS Concepts)**: Read the document [here](https://www.ietf.org/rfc/beta/errata/rfc1034.html).
-*   **RFC 1035 (DNS Implementation)**: A helpful blog post discussing implementation can be found [here](https://blog.apnic.net/2024/06/12/lessons-learned-when-building-my-dns-resolver/).
-*   **DNS and BIND (Book)**: Access the O'Reilly catalog page for the 4th edition [here](http://www.oreilly.com/catalog/dns4/). The copyright page is [here](http://users.softlab.ntua.gr/~sivann/books/OReilly%20Bookshelf/tcpip/dns/copyrght.htm).
-
-### 5. 3-Way Handshake & 4-Way Termination
-*   **RFC 793 (Original TCP Specification)**: See the link in section 1.
-*   **RFC 9293 (Current TCP Standard)**: See the link in section 1.
-
-### 6. NAT Working
-*   **RFC 2663 (NAT Terminology)**: Read the document [here](https://www.rfc-editor.org/rfc/rfc2663).
-*   **RFC 3022 (Traditional NAT)**: Access the specification [here](https://datatracker.ietf.org/doc/rfc3022/).
-*   **RFC 5389 (STUN)**: Find the document [here](https://datatracker.ietf.org/doc/rfc5389/).
-*   **RFC 5766 (TURN)**: Read the official information [here](https://www.rfc-editor.org/info/rfc5766).
-*   **RFC 8445 (ICE)**: Access the protocol document [here](https://www.rfc-editor.org/info/rfc8445).
-
-### 7. Hub, Switch, Router
-*   **Computer Networks (Book)**: The publisher's page is [here](https://www.pearson.com/en-us/subject-catalog/p/computer-networks/P200000003157).
 
 For further hands-on study, use `tcpdump`, `Wireshark`, `dig`, `nslookup`, and emulate networks with tools like `mininet` or Cisco Packet Tracer.
