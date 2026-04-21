@@ -1,3 +1,4 @@
+
 # Chapter 4: Pumping Lemma for Regular Languages
 
 The Pumping Lemma is a powerful tool used to prove that certain languages are **not regular**. It describes a property that every regular language must satisfy. If a language violates this property, it cannot be regular.
@@ -12,7 +13,6 @@ Let \( L \) be a **regular language**. Then there exists an integer \( p \geq 1 
 2. \( |xy| \le p \)  (the first \( p \) symbols contain the pumping part)
 3. For all \( i \ge 0 \), \( xy^i z \in L \)  (the string can be “pumped” any number of times)
 
-In words:  
 > In any sufficiently long string of a regular language, there is a non‑empty substring near the beginning that can be repeated any number of times (including zero) and the resulting strings will still belong to the language.
 
 ---
@@ -28,7 +28,7 @@ The proof relies on the fact that a regular language is accepted by a **Determin
 - Let \( q_i = q_j \) be the first repetition (\( i < j \le p \)).
 - Then the substring \( y \) between \( q_i \) and \( q_j \) can be **pumped** – repeated any number of times – and the DFA will still end in an accepting state (if the original string was accepted).
 
-### Diagram: DFA with a pumping cycle
+### DFA with a pumping cycle
 
 ```mermaid
 graph LR
@@ -42,7 +42,6 @@ graph LR
     style qj fill:#9cf
 ```
 
-**Explanation of the parts**  
 - \( x \) – moves from start \( q_0 \) to the first occurrence of the repeated state \( q_i \).  
 - \( y \) – moves from \( q_i \) to \( q_j \) (the loop, can be repeated).  
 - \( z \) – moves from \( q_j \) to an accept state.  
@@ -182,4 +181,7 @@ flowchart LR
 | **Common techniques**  | Choose s dependent on p, force y into a specific region, pump up/down.      |
 | **Limitations**        | Not sufficient (some non‑regular languages satisfy it); cannot prove regularity. |
 
-The pumping lemma is a fundamental tool in the theory of computation, but it must be applied carefully, and other methods (closure properties, Myhill–Nerode) should be used when the pumping lemma is inconclusive.
+---
+
+*The pumping lemma is a fundamental tool in the theory of computation, but it must be applied carefully. Use closure properties or Myhill–Nerode when the pumping lemma is inconclusive.*
+
