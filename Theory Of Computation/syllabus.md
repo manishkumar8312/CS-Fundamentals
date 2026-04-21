@@ -149,8 +149,8 @@
 
 This syllabus covers the entire official scope of Theory of Computation required for:
 
-- University examinations (GATE, semester exams, GRE CS)
-- Core computer science interviews (automata, language classification, decidability)
+- University examinations
+- Core computer science interviews
 - Research foundation in computability and complexity
 
 It includes all essential topics: finite automata, regular languages, pumping lemmas, context‑free grammars, pushdown automata, Turing machines, decidability, Rice’s theorem, Chomsky hierarchy, and an introduction to computational complexity (P, NP, NP‑completeness).
