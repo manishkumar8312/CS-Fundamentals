@@ -16,7 +16,7 @@ A DFA is a 5-tuple `M = (Q, Σ, δ, q0, F)` where:
 - `Σ` - a finite **alphabet** of input symbols
 - `δ: Q x Σ -> Q` - the **transition function** (deterministic)
 - `q0 in Q` - the **start state**
-- `F subseteq Q` - the set of **accepting (final) states**
+- `F ⊆ Q` - the set of **accepting (final) states**
 
 ### 2.1.2 Transition Functions and State Diagrams
 
@@ -167,11 +167,11 @@ This NFA accepts the same language without epsilon-transitions.
 The **subset construction** (also called powerset construction) transforms an NFA `N = (Q_N, Σ, δ_N, q0, F_N)` into a DFA `D = (Q_D, Σ, δ_D, qD0, F_D)` where:
 
 - Each state in `Q_D` is a **set of states** of `N`
-- `Q_D subseteq 2^(Q_N)` (only reachable subsets)
+- `Q_D ⊆ 2^(Q_N)` (only reachable subsets)
 - Start state: `qD0 = {q0}` (or epsilon-closure for epsilon-NFA)
-- For a state `S subseteq Q_N` and symbol `a in Σ`:
+- For a state `S ⊆ Q_N` and symbol `a in Σ`:
     `δ_D(S, a) = U over p in S of δ_N(p, a)`
-- `F_D = { S subseteq Q_N | S intersection F_N != emptyset }`
+- `F_D = { S ⊆ Q_N | S intersection F_N != emptyset }`
 
 **Algorithm (only reachable subsets):**
 ```
@@ -354,6 +354,7 @@ Key takeaways:
 - Subset construction converts NFA/epsilon-NFA to DFA (exponential blow-up in worst case).
 - DFA minimisation yields a unique (up to isomorphism) minimal DFA.
 - Myhill-Nerode theorem gives the theoretical basis for minimisation.
+
 
 
 
