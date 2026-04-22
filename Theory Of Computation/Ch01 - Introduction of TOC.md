@@ -191,19 +191,19 @@ flowchart LR
     subgraph Union
         direction LR
         U1((L₁)) -- ∪ --> U2((L₂))
-        U3[Result: L₁ ∪ L₂]
+        U3["Result: L₁ ∪ L₂"]
     end
     
     subgraph Intersection
         direction LR
         I1((L₁)) -- ∩ --> I2((L₂))
-        I3[Result: L₁ ∩ L₂]
+        I3["Result: L₁ ∩ L₂"]
     end
     
     subgraph Concatenation
         direction LR
         C1((L₁)) -- · --> C2((L₂))
-        C3[Result: { xy : x∈L₁, y∈L₂ }]
+        C3["Result: concatenation L₁·L₂ = { xy | x∈L₁, y∈L₂ }"]
     end
 ```
 
