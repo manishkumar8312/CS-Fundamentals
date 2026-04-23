@@ -1,143 +1,239 @@
-## Regular Languages and Regular Expressions
+# Chapter 3: Regular Languages and Regular Expressions
 
-Regular languages are a fundamental concept in **Formal Language Theory** and **Automata Theory**. They represent the simplest class of languages in the Chomsky hierarchy and are extensively used in areas such as **compiler design, lexical analysis, text processing, and pattern matching**.
-
-A language is called *regular* if it can be described by a **regular expression** or accepted by a **finite automaton**.
+This chapter covers the fundamental concepts of regular languages, their representation using regular expressions, conversions between regular expressions and finite automata, closure properties, and decision algorithms.
 
 ---
 
-### Regular Languages and Their Properties
+## 1. Regular Languages and Their Properties
 
-A **regular language** is a set of strings that can be recognized by a **finite automaton**, either deterministic (DFA) or nondeterministic (NFA).
+A **regular language** is a language that can be recognized by a finite automaton (DFA or NFA), or equivalently, described by a regular expression. Regular languages are closed under various operations, meaning applying these operations to regular languages yields another regular language.
 
-Key properties of regular languages:
-
-* Recognized using machines with **finite memory**
-* Cannot express languages that require unbounded counting
-* Every regular language can be represented using a regular expression
-
-Examples of regular languages:
-
-* Strings over `{0,1}` ending with `01`
-* Strings containing an even number of a’s
-* Strings that match a fixed syntactic pattern
-
-Example of a non-regular language:
-
-* `{ aⁿbⁿ | n ≥ 0 }`, which requires counting and cannot be recognized by finite automata
+### Key Properties:
+- **Closure under**: union, intersection, complement, concatenation, Kleene star, reversal, homomorphism, and more.
+- **Decidability**: emptiness, finiteness, membership, equivalence are decidable.
 
 ---
 
-### Regular Expressions and Syntax
+## 2. Regular Expressions: Syntax and Semantics
 
-A **regular expression** is a formal notation used to describe regular languages using algebraic rules.
+A regular expression (regex) is an algebraic notation for describing a regular language. It uses constants and operators.
 
-Basic components:
+### Syntax (Formal Definition):
+Let Σ be an alphabet. A regular expression R over Σ is defined recursively:
 
-* **Alphabet symbols:** `a`, `b`, `0`, `1`
-* **Union:** `r₁ | r₂`
-* **Concatenation:** `r₁r₂`
-* **Kleene star:** `r*`
-* **Parentheses:** `(r)`
+- **ε** (empty string) is a regular expression.
+- **∅** (empty language) is a regular expression.
+- **a** for each a ∈ Σ is a regular expression.
+- If R₁ and R₂ are regular expressions, then:
+    - **(R₁ | R₂)** – alternation (union)
+    - **(R₁ · R₂)** – concatenation
+    - **(R₁ \*)** – Kleene star (zero or more repetitions)
+- Parentheses may be dropped with precedence: \* > · > |
 
-Examples:
+### Semantics (Language Denoted):
+Each regex R denotes a language L(R) ⊆ Σ\*:
 
-* `(0|1)*` represents all binary strings
-* `a*b*` represents any number of a’s followed by any number of b’s
-* `(ab)*` represents repeated occurrences of the string `ab`
+| Expression | Language |
+|------------|----------|
+| ε          | { ε } |
+| ∅          | { } (empty set) |
+| a (∈ Σ)    | { a } |
+| R₁ \| R₂   | L(R₁) ∪ L(R₂) |
+| R₁·R₂      | { uv \| u ∈ L(R₁), v ∈ L(R₂) } |
+| R\*        | { u₁u₂…uₖ \| k ≥ 0, each uᵢ ∈ L(R) } |
 
-Regular expressions provide a concise and precise way to specify patterns.
-
----
-
-### Conversion of Regular Expressions to Finite Automata
-
-Every regular expression can be converted into a **finite automaton**, establishing the equivalence between regular expressions and automata.
-<div style="text-align: center;">
-  <img src="https://userpages.umbc.edu/~squire/images/re2.gif" alt="Logical and Physical Address" width="700" height="auto" />
-
-Common method:
-
-* **Thompson’s Construction**
-
-  * Converts a regular expression into an NFA
-  * Uses ε-transitions
-  * Produces an automaton proportional in size to the expression
-
-The resulting NFA can later be converted into a DFA using subset construction.
+### Examples:
+- `a|b` → {a, b}
+- `(a|b)*` → all strings over {a,b}
+- `a·b*` → strings starting with 'a' followed by zero or more 'b's (e.g., a, ab, abb)
+- `(0|1)*·0` → binary strings ending with 0
 
 ---
 
-### Conversion of Finite Automata to Regular Expressions
+## 3. Conversion of Regular Expression to Finite Automaton (Thompson’s Construction)
 
-A finite automaton can be converted back into a regular expression through systematic procedures.
+Thompson’s construction builds an **ε-NFA** (NFA with ε-transitions) for any regular expression. Each regex component is transformed into a small ε-NFA, then combined using ε-transitions.
 
-<div style="text-align: center;">
-  <img src="https://i.sstatic.net/EVTD3.png" alt="Logical and Physical Address" width="700" height="auto" />
+### Base Cases:
+- **ε**:  
+  ```mermaid
+  stateDiagram-v2
+      direction LR
+      start --> q0
+      q0 --> q1 : ε
+      q1 --> accept
+  ```
+- **a** (single symbol):  
+  ```mermaid
+  stateDiagram-v2
+      direction LR
+      start --> q0
+      q0 --> q1 : a
+      q1 --> accept
+  ```
+- **∅** (no accepting path): a single state with no transitions.
 
-<div style="text-align: center;">
-  <img src="https://rpruim.github.io/m252/S19/from-class/images/DFA-regex-example.png" alt="Logical and Physical Address" width="700" height="auto" />
+### Inductive Steps (for R₁ | R₂, R₁·R₂, R₁\*):
+Given NFAs for R₁ and R₂ with single start and accept states:
 
+1. **Union (R₁ | R₂)** – new start and accept states with ε-transitions to/from the component NFAs.
+2. **Concatenation (R₁·R₂)** – connect accept state of R₁ to start state of R₂ via ε.
+3. **Kleene Star (R₁\*)** – add ε-transitions from accept state back to start and from new start to new accept.
 
-Common method:
+#### Example: Build ε-NFA for `(a|b)*c`
 
-* **State Elimination Method**
+**Step 1:** NFA for `a|b` (union):
+```mermaid
+stateDiagram-v2
+    direction LR
+    s --> s1
+    s1 --> s2 : ε
+    s1 --> s3 : ε
+    s2 --> s4 : a
+    s3 --> s5 : b
+    s4 --> f
+    s5 --> f
+    f --> accept
+```
 
-  * Intermediate states are removed one by one
-  * Transitions are replaced with equivalent regular expressions
-  * The final expression represents the language of the automaton
+**Step 2:** Kleene star `(a|b)*` (add loop ε from f back to s).
 
-This process is mainly used for theoretical analysis and proofs.
+**Step 3:** Concatenate with `c` (just a transition on c from accept of `(a|b)*` to a new accept state).
+
+**Final ε-NFA** (simplified view):
+```mermaid
+stateDiagram-v2
+    direction LR
+    start --> 1
+    1 --> 2 : ε
+    1 --> 3 : ε
+    2 --> 4 : a
+    3 --> 5 : b
+    4 --> 6 : ε
+    5 --> 6 : ε
+    6 --> 1 : ε
+    6 --> 7 : ε
+    7 --> 8 : c
+    8 --> accept
+```
+
+Thompson’s construction ensures the number of states is O(|regex|) and each step adds at most 2 states.
 
 ---
 
-### Closure Properties of Regular Languages
+## 4. Conversion of Finite Automaton to Regular Expression
 
-Regular languages are **closed under several operations**, meaning the result of applying these operations to regular languages is also regular.
+Two standard methods: **state elimination** and **Arden’s theorem**.
 
-Closure operations include:
+### 4.1 State Elimination
+Gradually remove states (except start and accept) while adding labels on edges that represent regular expressions.
+- For each eliminated state q, update paths between its neighbors p and r: new label = `R_pr | (R_pq · R_qq* · R_qr)`
 
-* Union
-* Intersection
-* Complement
-* Difference
-* Concatenation
-* Kleene star
-* Reversal
+**Example:** Convert this DFA to regex (language: strings ending with 'b'):
+```mermaid
+stateDiagram-v2
+    direction LR
+    [*] --> A
+    A --> A : a
+    A --> B : b
+    B --> A : a
+    B --> B : b
+    B --> [*] : accept
+```
+**Eliminate B** (keeping A as start and accept):  
+From A to A via B: `A -> B (b) -> A (a)` → `b a` + loop on B (b) → `b b* a` = `b+ a`.  
+From A to A originally: `a`. New self-loop on A: `a | b+ a`.  
+From A to accept (former B): path `A -> B (b)` with loop on B (b*) → `b b*` = `b+`.  
+Thus regex: `(a | b+ a)* b+` which simplifies to `(a | b a)* b+`.
 
-These properties allow construction of complex languages from simpler ones.
+### 4.2 Arden’s Theorem
+For equations of the form `X = A X | B`, where A, B are regex and ε ∉ L(A), the unique solution is `X = A* B`. Used to solve system of linear equations from a DFA.
 
----
-
-### Decision Properties of Regular Languages
-
-Decision properties are problems that have **yes or no answers**.
-
-For regular languages, the following are decidable:
-
-* **Membership:** Whether a string belongs to a language
-* **Emptiness:** Whether the language is empty
-* **Finiteness:** Whether the language is finite
-* **Equivalence:** Whether two automata accept the same language
-* **Subset:** Whether one language is contained within another
-
-Decidability is guaranteed due to the finite nature of automata.
-
----
-
-### Significance
-
-Regular languages and regular expressions provide the theoretical foundation for:
-
-* Lexical analysis
-* Pattern specification
-* Formal verification of systems
-* Understanding the limits of finite-state models
+**Example for same DFA:**  
+Let A = language from start to A (accepting). B = language from start to B (non-accepting). Equations:
+- A = A·a | B·a | ε   (ε because A is start)
+- B = A·b | B·b
+From second: B = (A·b) | (B·b) → B = A·b · b* = A b b* = A b+  
+Substitute into first: A = A a | (A b+) a | ε = A (a | b+ a) | ε. By Arden: A = (a | b+ a)*. Since accepting state is B? Actually, in original DFA, the only accept state is B. So language L = B = A b+ = (a | b+ a)* b+.
 
 ---
 
-### Summary
+## 5. Closure Properties of Regular Languages
 
-Regular languages form a well-defined and computationally efficient class of languages. Their equivalence with regular expressions and finite automata, combined with strong closure and decision properties, makes them a cornerstone of automata theory and formal language studies.
+Regular languages are closed under many operations. For each, we either construct a new automaton or use known equivalences.
 
+| Operation | Construction / Proof |
+|-----------|----------------------|
+| **Union** | Given DFAs M₁, M₂, build product DFA with states (q₁,q₂). Accept if either original accepts. |
+| **Intersection** | Same product, but accept if both accept. |
+| **Complement** | For a DFA, swap accepting/non-accepting states (requires complete DFA). |
+| **Concatenation** | Connect accepting states of M₁ to start of M₂ via ε (NFA) or use regex. |
+| **Kleene star** | Add ε-loop from accept to start in NFA. |
+| **Reversal** | Reverse all edges, swap start and accept (NFA → DFA). |
+| **Homomorphism** | Apply string replacement to each symbol and run automaton. |
 
+### Example: Union via Product Construction
+Let L₁ = strings ending with 'a', L₂ = strings with even number of 'b's. Their union DFA:
+```mermaid
+stateDiagram-v2
+    direction LR
+    [*] --> q0q0
+    q0q0 --> q1q0 : a
+    q0q0 --> q0q1 : b
+    q1q0 --> q0q0 : a
+    q1q0 --> q1q1 : b
+    q0q1 --> q1q1 : a
+    q0q1 --> q0q0 : b
+    q1q1 --> q0q1 : a
+    q1q1 --> q1q0 : b
+    accept q1q0
+    accept q0q1
+    accept q1q1
+```
+Here state `xy` means: x = last char is 'a'? (q0=no, q1=yes), y = parity of b's (q0=even, q1=odd). Accept if x=1 (ends with a) OR y=0 (even b's).
+
+---
+
+## 6. Decision Properties
+
+All decision properties for regular languages are decidable (can be solved algorithmically). Given representations (DFA, NFA, regex, ε-NFA).
+
+### 6.1 Emptiness (L = ∅?)
+- **Algorithm**: From start state, perform BFS/DFS for any accepting state. If reachable → non-empty.
+- **Example**: DFA with no path to accept → empty.
+
+### 6.2 Finiteness (L is finite or infinite?)
+- **Algorithm**:
+    1. Remove all states unreachable from start.
+    2. Remove all states that cannot reach an accept.
+    3. If the remaining graph has a cycle, language is infinite; else finite.
+- **Example**: DFA with a loop on a → infinite (contains a*).
+
+### 6.3 Membership (w ∈ L?)
+- **Algorithm**: Simulate the automaton (DFA) on w. If end in accept → yes. For NFA, convert to DFA or simulate all paths.
+- **Time**: O(|w|) for DFA.
+
+### 6.4 Equivalence (L₁ = L₂?)
+- **Algorithm**: Construct symmetric difference: (L₁ ∩ complement(L₂)) ∪ (complement(L₁) ∩ L₂). Check if empty.
+- Alternatively, minimize both DFAs and compare canonical forms.
+- **Example**: `(a|b)*` and `(a*b*)*` are equivalent.
+
+### Decision Procedures Summary Table
+
+| Property | Input | Complexity |
+|----------|-------|-------------|
+| Emptiness | DFA | O(n²) (reachability) |
+| Finiteness | DFA | O(n²) (cycle detection) |
+| Membership | DFA, word w | O(|w|) |
+| Equivalence | DFA | O(n log n) (minimization) |
+
+---
+
+## Conclusion
+
+Regular languages form the simplest class in the Chomsky hierarchy. Their equivalence with finite automata and regular expressions provides powerful tools for pattern matching, lexical analysis, and formal verification. The closure and decision properties allow systematic construction of language processors and correctness proofs.
+
+**Further reading**:
+- Convert ε-NFA to DFA (subset construction)
+- Pumping lemma for non-regular languages
+- Algebraic laws for regular expressions
