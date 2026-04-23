@@ -175,10 +175,10 @@ $G = (V,\Sigma,R,E)$
     2. $T \to T*F \mid F$  
     3. $F \to (E) \mid id$
 
-**Leftmost derivation of $id+id*id$:**  
-$$
-E \Rightarrow E+T \Rightarrow T+T \Rightarrow F+T \Rightarrow id+T \Rightarrow id+T*F \Rightarrow id+F*F \Rightarrow id+id*F \Rightarrow id+id*id
-$$
+**Leftmost derivation of `id+id*id`:**  
+```text
+E => E+T => T+T => F+T => id+T => id+T*F => id+F*F => id+id*F => id+id*id
+```
 
 **Parse tree**:
 ```mermaid
