@@ -63,15 +63,13 @@ $$
 A PDA can accept a string in two equivalent ways:
 
 #### A. Acceptance by **Final State** ($F$)
-$$
-L(M) = \{ w \mid (q_0, w, Z_0) \vdash^* (q, \varepsilon, \gamma) \text{ for some } q \in F, \gamma \in \Gamma^* \}
-$$
+L(M) = { w | (q0, w, Z0) |-*(q, epsilon, gamma) for some q in F, gamma in Gamma* }
+
 Stack content at acceptance is irrelevant.
 
 #### B. Acceptance by **Empty Stack** ($E$)
-$$
-N(M) = \{ w \mid (q_0, w, Z_0) \vdash^* (q, \varepsilon, \varepsilon) \text{ for some } q \in Q \}
-$$
+N(M) = { w | (q0, w, Z0) |-*(q, epsilon, epsilon) for some q in Q }
+
 The stack must be completely empty; final states are not used.
 
 #### Equivalence of the two modes
