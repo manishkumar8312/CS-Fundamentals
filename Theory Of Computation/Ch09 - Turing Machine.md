@@ -11,10 +11,7 @@ A deterministic Turing Machine is defined by:
 - A finite set of states $Q$
 - An input alphabet $\Sigma$ (does not include blank)
 - A tape alphabet $\Gamma$ ($\Sigma \subseteq \Gamma$, and blank belongs to $\Gamma$)
-- A transition function
-  $$
-  \delta: Q \times \Gamma \to Q \times \Gamma \times \{L, R\}
-  $$
+- A transition function $\delta: Q \times \Gamma \to Q \times \Gamma \times \{L, R\}$
 - A start state $q_0 \in Q$
 - An accept state $q_{accept} \in Q$
 - A reject state $q_{reject} \in Q$, where $q_{accept} \ne q_{reject}$
