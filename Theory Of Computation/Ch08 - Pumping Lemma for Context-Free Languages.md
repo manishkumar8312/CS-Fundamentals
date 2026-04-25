@@ -1,216 +1,160 @@
-# Pumping Lemma for Context-Free Languages (CFL)
-
-The Pumping Lemma for Context-Free Languages is a fundamental result in Theory of Computation. It provides a necessary property that all context-free languages must satisfy and is widely used to prove that certain languages are **not context-free**.
+Here is the revised **Chapter 8** with all diagrams converted to **Mermaid** format. You can render them in any Markdown viewer that supports Mermaid (GitHub, Obsidian, etc.).
 
 ---
 
-## 1. Statement of the Pumping Lemma for CFL
+## Chapter 8. Pumping Lemma for Context‑Free Languages
 
-<p align="center">
-    <img src="https://miro.medium.com/0%2A8HAC4Ulww5ThCh3f.png" alt="Pumping Lemma Statement Diagram" style="width:100%; max-width:900px; height:auto;">
-</p>
+### 1. Statement of the Pumping Lemma (based on parse tree height)
 
-Let `L` be a context-free language. Then there exists a constant `p >= 1` (called the **pumping length**) such that for every string `s in L` with `|s| >= p`, the string can be decomposed as:
+**Theorem (Pumping Lemma for CFLs).**  
+Let \(L\) be a context‑free language. Then there exists a constant \(p > 0\) (the *pumping length*) such that any string \(s \in L\) with \(|s| \ge p\) can be written as  
 
-`s = uvxyz`
+\[
+s = uvxyz
+\]
 
-satisfying the following conditions:
+with the following properties:
 
-1. `|vxy| <= p`
-2. `|vy| > 0`
-3. For all integers `i >= 0`, `u(v^i)x(y^i)z in L`
+1. \(|vxy| \le p\) (the middle part is bounded in length),  
+2. \(|vy| \ge 1\) (at least one of \(v\) or \(y\) is non‑empty),  
+3. \(uv^ixy^iz \in L\) for all \(i \ge 0\) (pumping \(v\) and \(y\) keeps the string in \(L\)).
 
----
+#### Intuition from Parse Trees
 
-## 2. Intuition Behind the Lemma
+Assume the grammar is in **Chomsky Normal Form** (CNF). If a string is long enough, a parse tree must have a path where a nonterminal repeats. The subtree rooted at the lower occurrence can be cut and pasted to generate longer strings.
 
-* Context-free languages are generated using **parse trees**.
-* For sufficiently long strings, the parse tree must contain **repeated non-terminals** along some path.
-* This repetition introduces a recursive structure that allows certain parts of the string to be “pumped” (repeated or removed).
-* The substrings `v` and `y` correspond to portions of the derivation that can be expanded multiple times.
+The following Mermaid diagram shows a parse tree with a repeated nonterminal \(A\). The string is split into five parts:  
+\(u\) (left of the upper \(A\)), \(v\) (from the lower \(A\) to the first part of its yield), \(x\) (the yield of the lower \(A\) between \(v\) and \(y\)), \(y\) (the rest of the lower \(A\)’s yield), and \(z\) (right of the upper \(A\)).
 
----
+```mermaid
+graph TD
+    S["S"] --> u["u"]
+    S --> A1["A"]
+    S --> z["z"]
+    A1 --> v1["v"]
+    A1 --> A2["A"]
+    A1 --> y1["y"]
+    A2 --> v2["v"]
+    A2 --> x["x"]
+    A2 --> y2["y"]
+    
+    style S fill:#f9f,stroke:#333,stroke-width:2px
+    style A1 fill:#bbf,stroke:#333,stroke-width:2px
+    style A2 fill:#bbf,stroke:#333,stroke-width:2px
+```
 
-## 3. Applications of the CFL Pumping Lemma
+By repeating the subtree rooted at the lower \(A\) we obtain \(uv^ixy^iz\):
 
-<p align="center">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Pumping_Lemma_for_regular_languages_diagram.png" alt="Pumping Process Illustration" style="width:100%; max-width:900px; height:auto;">
-</p>
-
-### 3.1 Proving Languages are Not Context-Free
-
-The primary use of the pumping lemma is to show that a given language does not satisfy the required properties of context-free languages.
-
-### 3.2 Analyzing Language Structure
-
-It helps in understanding structural limitations of context-free grammars and pushdown automata.
-
-### 3.3 Academic and Competitive Examinations
-
-This concept is frequently tested in examinations such as GATE and other theoretical computer science assessments.
-
----
-
-## 4. Methodology to Prove a Language is Not Context-Free
-
-To apply the pumping lemma effectively, follow a structured proof strategy:
-
-### Step 1: Assume the Language is Context-Free
-
-Assume that the given language `L` is context-free. Therefore, the pumping lemma must hold.
-
-### Step 2: Choose a Suitable String
-
-Select a string `s in L` such that:
-
-* `|s| >= p`
-* The structure of `s` makes it sensitive to changes when pumped
-
-### Step 3: Consider All Possible Decompositions
-
-Write the string as:
-`s = uvxyz`
-
-Ensure that:
-
-* `|vxy| <= p`
-* `|vy| > 0`
-
-### Step 4: Analyze All Possible Cases
-
-The substring `vxy` can lie in different regions of the string. Each possibility must be examined.
-
-### Step 5: Pump the String
-
-Test the string with different values of `i`, typically:
-
-* `i = 0` (removal case)
-* `i = 2` (duplication case)
-
-### Step 6: Derive a Contradiction
-
-If for any case `u(v^i)x(y^i)z not in L`, then the assumption that `L` is context-free is false.
+```mermaid
+graph TD
+    S["S"] --> u["u"]
+    S --> A1["A"]
+    S --> z["z"]
+    A1 --> v1["v"]
+    A1 --> A2["A"]
+    A1 --> y1["y"]
+    A2 --> v2["v"]
+    A2 --> A3["A (pumped)"]
+    A2 --> y2["y"]
+    A3 --> v3["v"]
+    A3 --> x["x"]
+    A3 --> y3["y"]
+    
+    style S fill:#f9f,stroke:#333,stroke-width:2px
+    style A1 fill:#bbf,stroke:#333,stroke-width:2px
+    style A2 fill:#bbf,stroke:#333,stroke-width:2px
+    style A3 fill:#ddf,stroke:#333,stroke-width:2px
+```
 
 ---
 
-## 5. Example: Proving a Language is Not Context-Free
+### 2. Applications – Proving Languages are **Not** Context‑Free
 
-### Problem
+To show a language \(L\) is **not** context‑free, we assume it is, derive a contradiction using the pumping lemma.
 
-Prove that the language:
-`L = { a^n b^n c^n | n >= 0 }`
-is not context-free.
+#### Example 1: \(L_1 = \{a^n b^n c^n \mid n \ge 0\}\)
 
----
+**Proof:**  
+Assume \(L_1\) is CFL, let \(p\) be the pumping length. Choose \(s = a^p b^p c^p \in L_1\) with \(|s| = 3p \ge p\).  
+By the lemma \(s = uvxyz\), \(|vxy| \le p\), \(|vy| \ge 1\). Since \(|vxy| \le p\), it cannot contain all three letters \(a,b,c\) simultaneously. Cases:
 
-### Proof
+- **Case 1:** \(vxy\) contains no \(c\). Then pumping increases only \(a\)’s and/or \(b\)’s, breaking the equality.
+- **Case 2:** \(vxy\) contains no \(a\). Then pumping increases \(b\)’s and/or \(c\)’s, breaking equality.
+- **Case 3:** \(vxy\) contains no \(b\). Then pumping increases \(a\)’s and \(c\)’s, breaking equality.
 
-Assume that `L` is context-free.
+All cases lead to contradiction → \(L_1\) is not context‑free.
 
-Let `p` be the pumping length.
+#### Example 2: \(L_2 = \{ww \mid w \in \{a,b\}^*\}\) (the copy language)
 
-Choose the string:
-`s = a^p b^p c^p`
+Choose \(s = a^p b^p a^p b^p\). Because \(|vxy| \le p\), the substring \(vxy\) lies entirely within one half or straddles the middle only slightly, forcing an imbalance when pumped. Formal case analysis yields a contradiction.
 
-Clearly, `s in L` and `|s| >= p`.
+#### Example 3: A language that **is** context‑free (for contrast)
 
-Now, decompose:
-`s = uvxyz`
-such that:
-
-* `|vxy| <= p`
-* `|vy| > 0`
+\(L = \{a^n b^m c^n d^m \mid n,m \ge 0\}\) is context‑free. Grammar:  
+\(S \to aSc \mid T,\quad T \to bTd \mid \varepsilon\). This shows the pumping lemma does **not** prove non‑CFL for all languages.
 
 ---
 
-### Case Analysis
+### 3. Limitations of the CFL Pumping Lemma (Ogden’s Lemma)
 
-Since `|vxy| <= p`, the substring `vxy` can lie in:
+The pumping lemma is **necessary** but **not sufficient**. Some non‑CFLs may satisfy it.
 
-1. Only `a`'s
-2. Only `b`'s
-3. Only `c`'s
-4. Between `a` and `b`
-5. Between `b` and `c`
+#### Ogden’s Lemma – A Stronger Version
 
----
+Ogden’s lemma allows us to **mark** a set of positions in the string. The pumped substrings \(v\) and \(y\) must contain at least one marked symbol.
 
-### Case 1: `vxy` in `a`'s
+**Statement (simplified):**  
+For any CFL \(L\) there exists a constant \(p\) such that for any string \(s \in L\) with at least \(p\) marked positions, we can write \(s = uvxyz\) with \(|vxy| \le p\), \(|vy| \ge 1\), and \(v\) and \(y\) together contain at least one marked symbol. Moreover, \(uv^ixy^iz \in L\) for all \(i \ge 0\).
 
-Pumping with `i = 2` increases the number of `a`'s, but `b`'s and `c`'s remain unchanged.
-Thus, the counts are no longer equal, so the string is not in `L`.
+#### Why it helps – Diagram of marking
 
----
+The diagram below shows a string \(a^n b^n c^n\) with all \(a\)’s marked (red). Ogden’s lemma forces \(vxy\) to include at least one marked symbol → pumping changes the count of \(a\)’s. This blocks the adversary from choosing \(vxy\) only among \(b\)’s and \(c\)’s.
 
-### Case 2: `vxy` in `b`'s
+```mermaid
+flowchart LR
+    subgraph "String s = a a a ... b b b ... c c c"
+        direction LR
+        A1["a*"] --> A2["a*"] --> A3["..."] --> B1["b"] --> B2["b"] --> B3["..."] --> C1["c"] --> C2["c"] --> C3["..."]
+    end
+    subgraph "Marked positions (red)"
+        M1["🔴 a"] --- M2["🔴 a"] --- M3["..."]
+    end
+    style A1 fill:#ffcccc,stroke:#f00
+    style A2 fill:#ffcccc,stroke:#f00
+    style M1 fill:#ffcccc,stroke:#f00
+    style M2 fill:#ffcccc,stroke:#f00
+```
 
-Pumping changes only the number of `b`'s.
-This again breaks the equality `a^n b^n c^n`.
+#### Example that requires Ogden’s lemma
 
----
+A classic language that **resists** the standard pumping lemma but falls to Ogden’s lemma is:
 
-### Case 3: `vxy` in `c`'s
+\[
+L = \{a^n b^n c^m \mid n,m \ge 0\} \cup \{a^n b^m c^m \mid n,m \ge 0\}
+\]
 
-Pumping affects only `c`'s, violating the required structure.
+Wait – this union is actually context‑free! So it’s not a counterexample. A genuine non‑CFL that satisfies the standard pumping lemma but fails Ogden’s lemma is more intricate. One known example is:
 
----
+\[
+L = \{a^n b^n c^n d^n \mid n \ge 0\}
+\]
 
-### Case 4: Between `a` and `b`
+but even that can be handled by the standard lemma by noting \(|vxy| \le p\) cannot cover four distinct segments. The true limitation appears in languages with **overlapping** constraints, e.g.,  
+\(L = \{a^i b^j c^k \mid i = j \text{ or } j = k \text{ but not both}\}\) – this language is **not** CFL but satisfies the standard pumping lemma. Ogden’s lemma (by marking the middle symbols) can prove its non‑CFL nature.
 
-Pumping introduces imbalance between `a`'s and `b`'s.
+#### Conclusion on Limitations
 
----
+| Property | Standard Pumping Lemma | Ogden’s Lemma |
+|----------|------------------------|----------------|
+| Necessary condition for CFL | ✓ (weaker) | ✓ (stronger) |
+| Sufficient condition | ✗ | ✗ (still not sufficient) |
+| Can prove \(a^n b^n c^n\) non‑CFL | ✓ | ✓ |
+| Can prove certain interleaved non‑CFLs | ✗ | ✓ |
 
-### Case 5: Between `b` and `c`
-
-Pumping introduces imbalance between `b`'s and `c`'s.
-
----
-
-### Conclusion
-
-In all possible cases, pumping results in a string not belonging to `L`.
-This contradicts the pumping lemma.
-
-Therefore, the language is **not context-free**.
-
----
-
-## 6. Limitations of the Pumping Lemma for CFL
-
-<p align="center">
-    <img src="https://iq.opengenus.org/content/images/2022/02/pump.png" alt="Pumping Lemma Limitation Visual" style="width:100%; max-width:900px; height:auto;">
-</p>
-
-<p align="center">
-    <img src="https://i.sstatic.net/46Py1.jpg" alt="CFL Pumping Lemma Example Diagram" style="width:100%; max-width:900px; height:auto;">
-</p>
-
-### 6.1 Necessary but Not Sufficient Condition
-
-* The pumping lemma provides a **necessary condition**, not a sufficient one.
-* Even if a language satisfies the lemma, it is not guaranteed to be context-free.
-
-### 6.2 Not Suitable for Proving Context-Freeness
-
-* The lemma cannot be used to prove that a language is context-free.
-* Other methods such as constructing a CFG or PDA are required.
-
-### 6.3 Complex Case Analysis
-
-* Proofs often require analyzing multiple cases, which can be tedious and error-prone.
-
-### 6.4 Not Always Easy to Apply
-
-* Choosing the correct string `s` and handling all decompositions can be challenging.
+Even Ogden’s lemma does **not** characterise CFLs – there are non‑CFLs that satisfy it. This is expected because context‑freeness is undecidable.
 
 ---
 
-## 7. Summary
+**Key takeaway:** Use the standard pumping lemma for typical examples. When it fails due to the bound \(|vxy| \le p\) being too weak, apply Ogden’s lemma by strategically marking symbols to force the pump to affect the critical part.
 
-* The Pumping Lemma for CFL is a powerful tool for proving non-context-free languages.
-* It relies on the structural properties of parse trees.
-* The key idea is to show that no valid decomposition can satisfy the lemma under pumping.
-* Despite its usefulness, it has important limitations and must be applied carefully.
-
----
+The Mermaid diagrams above illustrate the parse‑tree structure and the marking concept. You can embed them directly into your notes.
