@@ -117,13 +117,16 @@ Strategy:
 ```mermaid
 stateDiagram-v2
     [*] --> q0
-    q0 --> q1: a -> X, R
-    q0 --> q_reject: b or B
-    q1 --> q1: a -> a, R ; Y -> Y, R
-    q1 --> q2: b -> Y, L
-    q2 --> q2: a -> a, L ; Y -> Y, L
-    q2 --> q0: X -> X, R
-    q0 --> q_accept: B -> B, R
+    q0 --> q1: a → X, R
+    q0 --> q_reject: b
+    q0 --> q_reject: B
+    q1 --> q1: a → a, R
+    q1 --> q1: Y → Y, R
+    q1 --> q2: b → Y, L
+    q2 --> q2: a → a, L
+    q2 --> q2: Y → Y, L
+    q2 --> q0: X → X, R
+    q0 --> q_accept: B → B, R
 ```
 
 ### Example 2
