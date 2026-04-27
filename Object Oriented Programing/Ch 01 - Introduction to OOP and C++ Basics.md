@@ -377,8 +377,3 @@ flowchart LR
 
 This chapter covered the transition from procedural to object-oriented thinking, the four pillars of OOP (encapsulation, abstraction, inheritance, polymorphism), and reviewed essential C++ syntax needed to write classes. Subsequent chapters will build on this foundation to implement fully object-oriented designs in C++.
 
-## References
-
-- Stroustrup, B. (2013). *The C++ Programming Language*. Addison-Wesley.
-- ISO/IEC 14882:2020 (C++20 Standard).
-- Lippman, S. B., Lajoie, J., & Moo, B. E. (2012). *C++ Primer*. Addison-Wesley.
