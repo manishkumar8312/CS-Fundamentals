@@ -366,9 +366,9 @@ log("Error", 2, false);                   // all arguments provided
 
 ```mermaid
 flowchart LR
-    Caller -->|"log("msg")"| F1[log(message, level=0, timestamp=true)]
-    Caller -->|"log("msg",1)"| F2[log(message, level=1, timestamp=true)]
-    Caller -->|"log("msg",1,false)"| F3[log(message, level=1, timestamp=false)]
+    Caller -->|log(msg)| F1[log(message, level=0, timestamp=true)]
+    Caller -->|log(msg,1)| F2[log(message, level=1, timestamp=true)]
+    Caller -->|log(msg,1,false)| F3[log(message, level=1, timestamp=false)]
 ```
 
 ---
