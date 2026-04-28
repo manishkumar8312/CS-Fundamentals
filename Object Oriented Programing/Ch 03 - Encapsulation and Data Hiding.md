@@ -282,4 +282,5 @@ public:
 | Friend | Break encapsulation for specific use cases | Use only for operators or tightly coupled classes; document |
 | Mutable | Allow modification in const methods | Use for caches, logs, mutexes; never for logical state |
 
+
 Encapsulation combined with const correctness creates robust, maintainable code by preventing accidental misuse and clearly communicating intent through the type system.
