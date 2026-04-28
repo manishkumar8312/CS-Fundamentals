@@ -281,15 +281,15 @@ flowchart LR
     subgraph ShallowCopy
         A1[Original object\nptr → heap block A]
         A2[Copy object\nptr → same heap block A]
-        A1 -->|both point to same memory| A3[(Heap: "Hello")]
+        A1 -->|both point to same memory| A3[(Heap: Hello)]
         A2 --> A3
     end
     
     subgraph DeepCopy
         B1[Original object\nptr → heap block X]
         B2[Copy object\nptr → heap block Y]
-        B1 --> B3[(Heap: "Hello")]
-        B2 --> B4[(Heap: "Hello" distinct copy)]
+        B1 --> B3[(Heap: Hello)]
+        B2 --> B4[(Heap: Hello distinct copy)]
     end
 ```
 
