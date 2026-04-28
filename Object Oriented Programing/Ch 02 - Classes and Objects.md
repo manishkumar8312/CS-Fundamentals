@@ -117,11 +117,11 @@ c.setValue(5).increment().increment();
 ```mermaid
 flowchart LR
     subgraph Object
-        O[Account object<br/>balance=1000<br/>owner="John"]
+        O["Account object\nbalance=1000\nowner=John"]
     end
     
     subgraph MemberFunction
-        MF[void deposit(double amt)]
+        MF["void deposit(double amt)"]
     end
     
     MF -->|implicit this pointer| O
