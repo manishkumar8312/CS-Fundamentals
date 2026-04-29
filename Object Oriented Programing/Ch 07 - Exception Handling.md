@@ -168,42 +168,42 @@ The C++ standard library provides a hierarchy of exception classes derived from 
 
 ```mermaid
 classDiagram
-    class std::exception {
+    class StdException {
         +what() const char*
     }
-    class std::logic_error {
-        +what()
+    class LogicError {
+        +what() const char*
     }
-    class std::invalid_argument
-    class std::domain_error
-    class std::length_error
-    class std::out_of_range
-    class std::runtime_error {
-        +what()
+    class InvalidArgument
+    class DomainError
+    class LengthError
+    class OutOfRange
+    class RuntimeError {
+        +what() const char*
     }
-    class std::range_error
-    class std::overflow_error
-    class std::underflow_error
-    class std::bad_alloc
-    class std::bad_cast
-    class std::bad_typeid
-    class std::bad_weak_ptr
-    
-    std::exception <|-- std::logic_error
-    std::exception <|-- std::runtime_error
-    std::exception <|-- std::bad_alloc
-    std::exception <|-- std::bad_cast
-    std::exception <|-- std::bad_typeid
-    std::exception <|-- std::bad_weak_ptr
-    
-    std::logic_error <|-- std::invalid_argument
-    std::logic_error <|-- std::domain_error
-    std::logic_error <|-- std::length_error
-    std::logic_error <|-- std::out_of_range
-    
-    std::runtime_error <|-- std::range_error
-    std::runtime_error <|-- std::overflow_error
-    std::runtime_error <|-- std::underflow_error
+    class RangeError
+    class OverflowError
+    class UnderflowError
+    class BadAlloc
+    class BadCast
+    class BadTypeid
+    class BadWeakPtr
+
+    StdException <|-- LogicError
+    StdException <|-- RuntimeError
+    StdException <|-- BadAlloc
+    StdException <|-- BadCast
+    StdException <|-- BadTypeid
+    StdException <|-- BadWeakPtr
+
+    LogicError <|-- InvalidArgument
+    LogicError <|-- DomainError
+    LogicError <|-- LengthError
+    LogicError <|-- OutOfRange
+
+    RuntimeError <|-- RangeError
+    RuntimeError <|-- OverflowError
+    RuntimeError <|-- UnderflowError
 ```
 
 ### Common Standard Exceptions
