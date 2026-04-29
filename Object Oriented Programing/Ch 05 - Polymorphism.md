@@ -38,7 +38,7 @@ int main() {
 
 ### Operator Overloading
 
-Operators can be redefined for user‑defined types. This topic is covered in detail in Chapter 8.
+Operators can be redefined for user‑defined types. This topic is covered in detail in Chapter 6.
 
 ## Run‑Time Polymorphism (Dynamic)
 
