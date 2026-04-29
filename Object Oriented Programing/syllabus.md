@@ -92,7 +92,7 @@
 ### Compile‑Time Polymorphism (Static)
 
 * Function overloading
-* Operator overloading (see Chapter 8)
+* Operator overloading (see Chapter 6)
 
 ### Run‑Time Polymorphism (Dynamic)
 
