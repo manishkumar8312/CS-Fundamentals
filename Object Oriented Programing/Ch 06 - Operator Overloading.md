@@ -2,6 +2,7 @@
 
 Operator overloading allows user‑defined types (classes and structures) to use C++ operators in a natural way. When applied appropriately, it makes custom types behave like built‑in types, improving code readability and maintainability.
 
+
 ## Rules and Limitations of Operator Overloading
 
 ### Which Operators Can Be Overloaded?
