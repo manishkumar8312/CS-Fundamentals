@@ -303,10 +303,10 @@ try {
 
 ```mermaid
 flowchart TD
-    A[Base* ptr = new Derived] --> B{typeid(*ptr) == typeid(Derived)?}
-    B -->|Yes| C[Use dynamic_cast to Derived*]
-    B -->|No| D[Handle alternative type]
-    C --> E[Access derived-only members]
+    A["Base* ptr = new Derived"] --> B{"typeid(*ptr) == typeid(Derived)"}
+    B -->|Yes| C["Use dynamic_cast to Derived*"]
+    B -->|No| D["Handle alternative type"]
+    C --> E["Access derived-only members"]
 ```
 
 ## Summary Checklist
