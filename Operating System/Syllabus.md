@@ -1,224 +1,218 @@
-# 🖥️ Operating System
+# OPERATING SYSTEMS
 
+## Chapter 1: Introduction to Operating Systems
 
-# Chapter 1: Introduction to Operating Systems
-
-### Topics
-
-* Definition and objectives of an Operating System
-* Functions of an Operating System
-* Types of Operating Systems
-
-  * Batch OS
-  * Time-Sharing OS
-  * Distributed OS
-  * Real-Time OS
-* Operating System Structures
-
-  * Monolithic Architecture
-  * Layered Architecture
-  * Microkernel Architecture
-* System Calls
-* Kernel Mode vs User Mode
-* Interrupts and Traps
-* Booting Process
+* What is an Operating System?
+* Roles of an OS: resource manager, virtual machine, interface
+* Computer system architecture: CPU, memory, I/O devices
+* OS structure: monolithic, layered, microkernel, hybrid
+* User mode vs kernel mode
+* System calls and API
+* OS services and utilities
+* Booting process
 
 ---
 
-# Chapter 2: Process Management
+## Chapter 2: Process Management
 
-### Topics
-
-* Process concept
-* Process vs Program
-* Process states and state transitions
+* Process concept: program vs process
+* Process states: new, ready, running, waiting, terminated
 * Process Control Block (PCB)
-* Context Switching
 * Process scheduling queues
-* Process creation and termination
-* Fork() and Exec() concepts
-* Zombie and Orphan processes
-* Inter-Process Communication (IPC)
-
-  * Shared Memory
-  * Message Passing
-
----
-
-# Chapter 3: Thread Management
-
-### Topics
-
-* Thread concept
-* Single-threaded vs Multi-threaded processes
-* User-level threads
-* Kernel-level threads
-* Multithreading models
-* Thread libraries (Pthreads)
-* Thread vs Process comparison
-* Multicore programming basics
+* Context switching
+* Process creation and termination (fork, exec, wait, exit)
+* Process hierarchies
+* Process vs thread
+* User-level threads vs kernel-level threads
+* Multithreading models: many-to-one, one-to-one, many-to-many
 
 ---
 
-# Chapter 4: CPU Scheduling
+## Chapter 3: CPU Scheduling
 
-### Topics
+* Scheduling criteria: CPU utilization, throughput, turnaround time, waiting time, response time
+* Preemptive vs non-preemptive scheduling
+* Scheduling algorithms:
 
-* Scheduling objectives and criteria
-* Preemptive vs Non-preemptive scheduling
-* Scheduling metrics
+  * First-Come, First-Served (FCFS)
+  * Shortest Job First (SJF) – non-preemptive and preemptive (SRTF)
+  * Round Robin (RR)
+  * Priority scheduling (with aging)
+  * Multilevel queue scheduling
+  * Multilevel feedback queue
 
-  * Turnaround Time
-  * Waiting Time
-  * Response Time
-  * Throughput
-  * CPU Utilization
-* CPU Scheduling Algorithms
-
-  * FCFS
-  * SJF
-  * SRTF
-  * Priority Scheduling
-  * Round Robin
-* Starvation and Aging
-* Gantt chart–based numerical problems
+* Thread scheduling
+* Real-time scheduling (rate-monotonic, earliest deadline first)
 
 ---
 
-# Chapter 5: Process Synchronization
+## Chapter 4: Process Synchronization
 
-### Topics
+* Critical section problem
+* Solution requirements: mutual exclusion, progress, bounded waiting
+* Software solutions: Peterson’s algorithm
+* Hardware support: test-and-set, compare-and-swap
+* Mutex locks and spinlocks
+* Semaphores (binary and counting)
+* Classical synchronization problems:
 
-* Critical Section Problem
-* Race Condition
-* Mutual Exclusion
-* Peterson’s Algorithm
-* Test and Set instruction
-* Spinlocks
-* Synchronization mechanisms
+  * Bounded buffer (producer-consumer)
+  * Readers-writers
+  * Dining philosophers
+  * Sleeping barber
 
-  * Mutex Locks
-  * Semaphores
-  * Monitors
-* Classical Synchronization Problems
-
-  * Producer–Consumer
-  * Readers–Writers
-  * Dining Philosophers
+* Monitors and condition variables
+* Synchronization in POSIX threads (mutex, condition variables)
 
 ---
 
-# Chapter 6: Deadlocks
+## Chapter 5: Deadlocks
 
-### Topics
+* Deadlock characterization: mutual exclusion, hold and wait, no preemption, circular wait
+* Resource allocation graph
+* Methods for handling deadlocks:
 
-* System model
-* Deadlock characterization (Coffman conditions)
-* Resource Allocation Graph (RAG)
-* Safe State concept
-* Deadlock prevention
-* Deadlock avoidance
-
-  * Banker’s Algorithm
-* Deadlock detection
-* Deadlock recovery
+  * Deadlock prevention (breaking the four conditions)
+  * Deadlock avoidance (Banker’s algorithm)
+  * Deadlock detection (with recovery)
+  * Deadlock ignorance (Ostrich algorithm)
 
 ---
 
-# Chapter 7: Memory Management (Most Important Section)
+## Chapter 6: Memory Management
 
-### Topics
+* Memory hierarchy
+* Address binding: compile time, load time, execution time
+* Logical vs physical address space
+* Memory allocation:
 
-* Memory management requirements
-* Internal vs External fragmentation
-* Contiguous memory allocation
-* Memory allocation strategies
+  * Contiguous allocation (fixed and dynamic partitions)
+  * External and internal fragmentation
+  * Compaction
 
-  * First Fit
-  * Best Fit
-  * Worst Fit
-* Paging
-* Segmentation
-* Virtual Memory
-* Demand Paging
-* Copy-on-Write
-* TLB (Translation Lookaside Buffer)
-* Page replacement algorithms
+* Paging:
 
-  * FIFO
-  * LRU
-  * Optimal
-* Belady’s Anomaly
-* Working Set Model
-* Thrashing
+  * Page table (PTE: frame number, dirty, valid, reference bits)
+  * Address translation
+  * Multi-level page tables
+  * Inverted page tables
+  * Translation Lookaside Buffer (TLB)
+
+* Segmentation:
+
+  * Segment table
+  * Segmentation with paging (Intel x86)
 
 ---
 
-# Chapter 8: File System
+## Chapter 7: Virtual Memory
 
-### Topics
+* Demand paging
+* Page fault handling
+* Copy-on-write
+* Page replacement algorithms:
 
-* File concepts and attributes
-* File access methods
-* Directory structures
-* File allocation methods
+  * FIFO (Belady’s anomaly)
+  * Optimal (MIN)
+  * LRU (Least Recently Used)
+  * Clock (Second-Chance)
+  * LFU, MFU
 
-  * Contiguous Allocation
-  * Linked Allocation
-  * Indexed Allocation
-* Free space management
-* Inode concept
-* FAT vs NTFS (basic idea)
-* Journaling file systems
-* File protection and security
+* Thrashing and working set model
+* Page size selection
+* TLB reach and coverage
+* Memory-mapped files
 
 ---
 
-# Chapter 9: I/O Management
+## Chapter 8: File Systems
 
-### Topics
+* File concept: attributes, operations, types
+* Directory structure: single-level, two-level, tree-structured, acyclic graph, general graph
+* File system mounting
+* File allocation methods:
 
-* I/O hardware
-* I/O software
-* Interrupt-driven I/O
+  * Contiguous allocation
+  * Linked allocation (FAT)
+  * Indexed allocation (i-node)
+
+* Free space management:
+
+  * Bit vector
+  * Linked list
+  * Grouping
+  * Counting
+
+* Disk scheduling:
+
+  * FCFS, SSTF, SCAN, C-SCAN, LOOK, C-LOOK
+
+* File system layout (boot block, superblock, inode blocks, data blocks)
+* Journaling and log-structured file systems
+* File system examples: ext4, NTFS, FAT32
+
+---
+
+## Chapter 9: Input/Output Systems
+
+* I/O hardware: ports, buses, controllers
+* Polling vs interrupts
 * Direct Memory Access (DMA)
-* Buffering and Caching
-* Disk scheduling
-* Disk scheduling algorithms
-
-  * FCFS
-  * SSTF
-  * SCAN
-  * C-SCAN
-  * LOOK
+* I/O software layers: interrupt handlers, device drivers, device-independent I/O, user-space I/O
+* Buffering, caching, spooling
+* Block and character devices
+* Disk structure (tracks, cylinders, sectors)
+* RAID levels (0, 1, 5, 6, 10)
 
 ---
 
-# Chapter 10: Protection and Security
+## Chapter 10: Security and Protection
 
-### Topics
-
-* Goals of protection
-* Domain of protection
-* Access Matrix model
-* Authentication and Authorization
-* CIA Triad
-
-  * Confidentiality
-  * Integrity
-  * Availability
-* Security threats and vulnerabilities
-* Malware types
-
-  * Virus
-  * Worm
-  * Trojan
-* Basics of Cryptography
-
-  * Symmetric Encryption
-  * Asymmetric Encryption
+* Security goals: confidentiality, integrity, availability
+* Authentication: passwords, biometrics, two-factor
+* Access control: DAC, MAC, RBAC
+* Protection mechanisms: capabilities, access matrix
+* Principle of least privilege
+* Malicious software: viruses, worms, trojans, rootkits
+* Buffer overflow attacks and defenses
+* Encryption basics for OS security (full-disk encryption)
 
 ---
-## ⭐ Support
 
-If this repository adds value to your learning, consider giving it a ⭐ to show your support.
+## Chapter 11: Virtualization and Cloud Computing
+
+* Virtual machine concepts: hypervisors (Type 1, Type 2)
+* Virtualization vs emulation
+* Para-virtualization and hardware-assisted virtualization
+* Containers vs virtual machines (Docker, LXC)
+* Cloud computing models: IaaS, PaaS, SaaS
+* Challenges: isolation, performance, security
+
+---
+
+## Chapter 12: Distributed Operating Systems (Overview)
+
+* Distributed system models (client-server, peer-to-peer)
+* Remote Procedure Call (RPC) and message passing
+* Network transparency and naming
+* Distributed synchronization (Lamport clocks, vector clocks)
+* Distributed mutual exclusion (centralized, distributed, token-based)
+* Distributed file systems (NFS, AFS)
+* Consensus (Paxos, Raft - conceptual)
+
+---
+
+
+## Chapter 13: Advanced Topics
+
+* Real-time operating systems (RTOS): VxWorks, FreeRTOS
+* Embedded operating systems
+* Mobile OS features (power management, sensors)
+* System performance profiling (perf, DTrace)
+* Fault tolerance and check-pointing
+
+---
+
+## Support
+
+If this syllabus helps you master Operating Systems, consider giving the repository a star. Contributions, corrections, and additional project ideas are always welcome.
