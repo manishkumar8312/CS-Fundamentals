@@ -1,194 +1,304 @@
-# **1. Introduction to Operating Systems**
+# Chapter 1: Introduction to Operating Systems
 
-## **Definition of an Operating System**
-
-An **Operating System (OS)** is system software that acts as an **interface between the user and computer hardware**. It manages hardware resources and provides essential services for the execution of application programs.
-
-In essence, the operating system is responsible for controlling, coordinating, and optimizing the use of hardware and software resources in a computer system.
+An operating system (OS) is the most fundamental software that runs on a computer. It manages hardware resources and provides a foundation for application programs. This chapter explains the core concepts, architecture, and services of modern operating systems, with real‑life examples to ground the ideas.
 
 ---
 
-## **Objectives of an Operating System**
+## What is an Operating System?
 
-The primary objectives of an operating system are:
+An operating system is a software layer that sits between the user (or application programs) and the computer hardware. Its main job is to abstract the messy details of hardware and provide a clean, convenient, and efficient environment for programs to execute.
 
-1. **Convenience**
-   To make the computer system easy to use for users.
+**Think of it as a hotel manager**:  
+The guests (applications) ask for rooms, food, cleaning, etc. The manager (OS) decides who gets which room, when the kitchen operates, and ensures that guests don’t disturb each other. The actual physical rooms, elevators, and kitchen (hardware) are managed by the staff without guests needing to know the plumbing or electrical wiring.
 
-2. **Efficiency**
-   To utilize hardware resources such as CPU, memory, and I/O devices in an optimal manner.
-
-3. **Resource Management**
-   To manage and allocate system resources fairly and efficiently among competing processes.
-
-4. **Security and Protection**
-   To protect data and system resources from unauthorized access and misuse.
-
-5. **Reliability and Stability**
-   To ensure correct execution of programs and maintain system stability.
+**Examples of operating systems** you encounter daily:
+- **Windows** (desktops, laptops)
+- **Linux** (servers, Android phones, embedded devices)
+- **macOS** (Apple desktops/laptops)
+- **iOS** (iPhones, iPads)
+- **Android** (phones, tablets, smart TVs)
 
 ---
 
-## **Functions of an Operating System**
+## Roles of an Operating System
 
-### **1. Process Management**
+An OS plays three major roles.
 
-* Creation and termination of processes
-* CPU scheduling and context switching
-* Process synchronization and communication
-* Deadlock detection and prevention
+### 1. Resource Manager
 
-### **2. Memory Management**
+Hardware resources (CPU, memory, disk, network) are limited. The OS allocates them fairly and efficiently among competing programs.
 
-* Allocation and deallocation of main memory
-* Management of virtual memory
-* Implementation of paging and segmentation techniques
+- **Real‑life example**: In a library with 10 study rooms, the librarian (OS) assigns rooms to students (programs) for fixed time slots. When a student finishes, the room becomes available again. If a student tries to keep the room indefinitely, the librarian may intervene.
 
-### **3. File System Management**
+### 2. Virtual Machine
 
-* Creation, deletion, and organization of files
-* Directory management
-* File access control and protection
+The OS creates an abstraction of the hardware that is simpler to program. For instance, you see files and folders instead of raw disk sectors; you see a window with a cursor instead of pixel buffers and interrupts.
 
-### **4. Device (I/O) Management**
+- **Real‑life example**: An automatic car transmission. The driver (application) only uses a gear selector (D, R, P). The transmission system (OS) hides the complexity of clutch, gears, and hydraulics.
 
-* Management of input and output devices
-* Use of device drivers
-* Buffering, caching, and spooling
+### 3. Interface (between user and hardware)
 
-### **5. Secondary Storage Management**
+The OS provides a user interface – command‑line (CLI) or graphical (GUI) – through which you can run programs, manage files, and configure settings.
 
-* Disk space allocation
-* Disk scheduling
-* Free space management
+- **Real‑life example**: The dashboard of a car. You don’t directly touch the engine or brakes; you use the steering wheel, pedals, and gauges. The dashboard (interface) lets you control the car (hardware) safely.
 
-### **6. Security and Protection**
+The following diagram shows the structural layers:
 
-* User authentication
-* Access control mechanisms
-* Data protection and system security
+```mermaid
+flowchart TD
+    User["User / Application"] --> OS["Operating System"]
+    OS --> Hardware["Hardware\n(CPU, RAM, Disk, I/O devices)"]
+    
+    subgraph OS_Roles["OS Roles"]
+        RM["Resource Manager"]
+        VM["Virtual Machine"]
+        UI["User Interface"]
+    end
+```
 
 ---
 
-## **Types of Operating Systems**
+## Computer System Architecture
 
-### **1. Batch Operating Systems**
+A computer system consists of four main hardware components. They communicate over a system bus.
 
-* Jobs are collected and executed in batches without user interaction.
-* The CPU executes one job at a time.
-* Suitable for large, repetitive tasks.
+### CPU (Central Processing Unit)
 
-**Advantages:**
+- Executes instructions (arithmetic, logic, control).
+- Contains several cores (each can run a separate program/thread).
+- Has a small, fast cache memory.
 
-* High throughput
+### Memory (RAM – Random Access Memory)
 
-**Disadvantages:**
+- Stores data and instructions that the CPU actively uses.
+- Volatile (loses content on power off).
+- Divided into bytes, each with a unique address.
 
-* Long turnaround time
-* No user interaction
+### I/O Devices
 
----
+- Input: keyboard, mouse, microphone, scanner.
+- Output: monitor, printer, speakers.
+- Storage: hard disk, SSD, USB drive (also treated as I/O).
+- Network: Ethernet, Wi‑Fi (specialised I/O).
 
-### **2. Time-Sharing Operating Systems**
+### System Bus
 
-* Multiple users share the CPU simultaneously.
-* Each user is given a small time slice of the CPU.
-* Provides fast response time.
+- The communication highway that connects CPU, memory, and I/O controllers.
+- Includes address bus, data bus, and control bus.
 
-**Advantages:**
+**Real‑life analogy**: A restaurant kitchen (CPU) prepares dishes using ingredients from a refrigerator (memory). Waiters (I/O) bring orders from customers and take finished food out. The kitchen pass (bus) is where orders and dishes are handed.
 
-* Efficient CPU utilization
-* Supports multiple users
-
-**Disadvantages:**
-
-* Complex scheduling
-* Higher overhead
-
----
-
-### **3. Distributed Operating Systems**
-
-* A collection of independent computers appears as a single system.
-* Resources are shared across multiple machines.
-
-**Advantages:**
-
-* High reliability
-* Resource sharing
-
-**Disadvantages:**
-
-* Complex design
-* Network dependency
+```mermaid
+flowchart LR
+    CPU["CPU"] <--> Bus["System Bus"]
+    RAM["RAM"] <--> Bus
+    IO["I/O Devices"] <--> Bus
+```
 
 ---
 
-### **4. Real-Time Operating Systems (RTOS)**
+## OS Structure: Monolithic, Layered, Microkernel, Hybrid
 
-* Designed to respond within strict time constraints.
-* Commonly used in embedded systems.
+Operating systems are built in different architectural styles, each with trade‑offs between performance, security, and maintainability.
 
-**Types:**
+### Monolithic Kernel
 
-* **Hard Real-Time OS:** Missing a deadline may cause system failure.
-* **Soft Real-Time OS:** Occasional deadline misses are tolerable.
+All OS services run in a single kernel address space (kernel mode). This is fast because there is little overhead for communication, but a bug in any part can crash the whole system.
 
-**Applications:**
+- **Examples**: Linux, older UNIX, MS‑DOS.
+- **Real‑life**: A small shop where the owner does everything – cooks, cleans, handles money. Efficient but exhausting; one mistake spoils everything.
 
-* Medical systems
-* Industrial automation
-* Robotics
+### Layered Kernel
 
----
+The OS is divided into layers, each built on top of the layer below. Lower layers provide services to upper layers. This improves modularity but can be slow due to layer‑crossing overhead.
 
-## **Operating System Structures**
+- **Example**: THE system (Dijkstra, 1968).
+- **Real‑life**: A company with strict hierarchy – manager (top) → department heads → team leads → workers. Communication must pass through each level.
 
-### **1. Monolithic Structure**
+### Microkernel
 
-* Entire OS is implemented as a single large program.
-* All services run in kernel mode.
+Only essential services (IPC, memory management, basic scheduling) run in kernel mode. Drivers, file systems, and networking run as user‑mode processes. This is more secure and stable, but slower due to context switches.
 
-**Advantages:**
+- **Examples**: QNX, L4, MINIX (the inspiration for Linux’s early design).
+- **Real‑life**: A large organisation where each department (security, catering, IT) is independent. If catering fails, the company still runs.
 
-* High performance
+### Hybrid Kernel
 
-**Disadvantages:**
+A compromise – most services live in kernel for speed, but some run in user space. Combines the performance of monolithic kernels with some modularity of microkernels.
 
-* Difficult to maintain and debug
+- **Examples**: Windows NT (and later Windows versions), macOS XNU.
+- **Real‑life**: A big supermarket chain: centralised purchasing (kernel) but local store managers (user processes) can order extra stock.
 
----
-
-### **2. Layered Structure**
-
-* OS is divided into layers.
-* Each layer interacts only with adjacent layers.
-
-**Advantages:**
-
-* Easy debugging and maintenance
-* Better modularity
-
-**Disadvantages:**
-
-* Reduced performance due to layer overhead
-
----
-
-### **3. Microkernel Architecture**
-
-* Only essential services run in kernel mode.
-* Other services run in user mode.
-
-**Advantages:**
-
-* High reliability and security
-* Easy to extend
-
-**Disadvantages:**
-
-* Performance overhead due to message passing
+```mermaid
+flowchart TD
+    subgraph Monolithic
+        App1 --> KernelM["Monolithic Kernel\n(all services)"]
+        App2 --> KernelM
+        KernelM --> Hardware
+    end
+    subgraph Microkernel
+        App3 --> UserProc["User Process\n(File Server)"]
+        App4 --> UserProc2["User Process\n(Driver)"]
+        UserProc --> MicroK["Microkernel\n(IPC, scheduling)"]
+        UserProc2 --> MicroK
+        MicroK --> Hardware
+    end
+```
 
 ---
 
+## User Mode vs Kernel Mode
 
+CPUs have at least two privilege levels to protect the OS from buggy or malicious programs.
+
+- **Kernel mode** (also called supervisor mode, ring 0):
+  - Can execute **privileged instructions** (e.g., halt CPU, change memory mapping, access I/O devices directly).
+  - Has access to the entire physical memory.
+  - The OS kernel runs here.
+
+- **User mode** (ring 3 on x86):
+  - Cannot execute privileged instructions.
+  - Access to memory is restricted to the process’s own address space.
+  - Applications run here.
+
+**How does the CPU know which mode it’s in?**  
+A **mode bit** in the CPU status register indicates kernel (0) or user (1).
+
+**Switching from user mode to kernel mode**:
+- **System call** (e.g., read a file) – the program executes a special instruction (`syscall`, `int 0x80`).
+- **Interrupt** (e.g., timer, keyboard press).
+- **Exception** (e.g., division by zero, page fault).
+
+When a switch happens, the CPU saves the current state and jumps to a predefined kernel handler. After handling, it returns to user mode.
+
+**Real‑life analogy**:  
+- **User mode**: Allowed to walk in the shopping mall (public areas). You can’t enter the cash vault or the electrical room.  
+- **Kernel mode**: Security staff can go anywhere, open any door, and shut down the ventilation.  
+- **System call**: You ask a security guard to open a locked door for you.
+
+```mermaid
+flowchart LR
+    UserProgram["User Program\n(user mode)"] -- "system call / interrupt" --> Kernel["OS Kernel\n(kernel mode)"]
+    Kernel -- "return from trap" --> UserProgram
+```
+
+---
+
+## System Calls and API
+
+A **system call** is a request from a user program to the OS for a privileged service (e.g., open a file, create a process, allocate memory). System calls are the only way a user program can access kernel functionality.
+
+**Common system calls** (Linux/UNIX):
+
+| Category | Examples |
+|----------|----------|
+| Process control | `fork()`, `exec()`, `wait()`, `exit()` |
+| File management | `open()`, `read()`, `write()`, `close()` |
+| Device management | `ioctl()`, `read()`, `write()` |
+| Information maintenance | `getpid()`, `time()` |
+| Communication | `socket()`, `send()`, `recv()` |
+
+**API (Application Programming Interface)** – a set of functions provided by a library (like the C standard library) that often wraps system calls. An API may call one or more system calls, or do work without any system call.
+
+- **Example**: `printf()` in C calls `write()` system call, but also does formatting.
+- **Why use an API?** Portability – the same API can be implemented on different OSes with different system calls.
+
+**Sequence of a system call (e.g., reading from a file)**:
+
+```mermaid
+sequenceDiagram
+    participant UserProgram
+    participant C library (libc)
+    participant OS Kernel
+    participant Hardware
+    
+    UserProgram->>C library: read(fd, buf, count)
+    C library->>OS Kernel: syscall instruction
+    OS Kernel->>Hardware: read from disk
+    Hardware-->>OS Kernel: data
+    OS Kernel-->>C library: return
+    C library-->>UserProgram: return number of bytes
+```
+
+**Real‑life example**:  
+You (application) want to withdraw money from a bank. You fill a withdrawal slip (API call). The teller (system call handler) checks your balance (kernel), goes to the vault (hardware), and gives you cash. You never enter the vault yourself.
+
+---
+
+## OS Services and Utilities
+
+Operating systems provide a set of core **services** that make life easier for users and programmers.
+
+| Service | Description | Example |
+|---------|-------------|---------|
+| Program execution | Load a program into memory and run it | Double‑click an `.exe` or run `./a.out` |
+| I/O operations | Read/write files, devices | `printf`, `scanf`, disk access |
+| File system manipulation | Create, delete, rename files/directories | `mkdir`, `rm`, file explorer |
+| Communication | Data exchange between processes (on same machine or network) | Pipes, sockets, shared memory |
+| Error detection | Handle hardware errors, memory faults, division by zero | Segmentation fault handler |
+| Resource allocation | Assign CPU time, memory, devices | Scheduler, memory manager |
+| Accounting | Keep track of resource usage per user | `top`, `ps`, system logs |
+| Protection | Prevent unauthorised access | File permissions, memory protection |
+
+**Utilities** are user‑level programs that come with the OS (e.g., `ls`, `cp`, `grep`, Task Manager). They use system calls to perform their work.
+
+**Real‑life**: A hotel provides services: luggage storage (resource allocation), wake‑up calls (communication), laundry (I/O). Utilities are like the concierge desk – they rely on the hotel’s internal systems.
+
+---
+
+## Booting Process
+
+Booting (short for “bootstrap”) is the sequence of operations that loads the operating system into memory and starts it when you turn on the computer.
+
+### Step‑by‑step boot flow
+
+```mermaid
+flowchart TD
+    PowerOn["Power on"] --> BIOS["BIOS/UEFI (firmware)"]
+    BIOS --> POST["Power‑On Self Test (hardware check)"]
+    POST --> Bootloader["Load bootloader from disk (e.g., GRUB)"]
+    Bootloader --> Kernel["Load kernel into memory"]
+    Kernel --> Init["Run init process (systemd, launchd, init)"]
+    Init --> UserSpace["User space services and login prompt"]
+```
+
+### Detailed explanation
+
+1. **Power‑on** – The CPU starts in real mode (limited memory access) and jumps to a fixed memory address where the BIOS firmware resides.
+
+2. **BIOS or UEFI** – Basic Input/Output System (older) or Unified Extensible Firmware Interface (modern) initialises the hardware: sets up clocks, initialises memory controller, detects disks.
+
+3. **POST (Power‑On Self Test)** – Checks that critical hardware (CPU, RAM, disk controllers) works. If a fatal error occurs, it beeps or shows a message.
+
+4. **Bootloader loading** – BIOS/UEFI reads the first sector of the boot disk (Master Boot Record, or EFI System Partition) and loads a small program called the bootloader (e.g., GRUB, Windows Boot Manager). The bootloader then loads a larger bootloader (stage 2) from the disk.
+
+5. **Kernel loading** – The bootloader reads the OS kernel (e.g., `vmlinuz` on Linux) into memory, possibly with an initial RAM disk (initrd) containing drivers needed to mount the real file system.
+
+6. **Kernel initialisation** – The kernel starts, sets up CPU modes (switches to protected/long mode), initialises memory management, interrupt handlers, device drivers, and mounts the root file system (`/` on Linux).
+
+7. **Init process** – The kernel starts the first user‑mode process, traditionally `/sbin/init` (now often `systemd`, `launchd`, or `init`). This process brings up all other system services (networking, logging, graphical interface).
+
+8. **Login** – Finally, the system presents a login prompt (text or graphical). After successful login, you get a shell or desktop environment.
+
+**Real‑life analogy**:  
+- **BIOS** = The conductor of an orchestra who checks that all instruments are present and tuned.  
+- **Bootloader** = The script that tells the orchestra which piece to play and where the sheet music is.  
+- **Kernel** = The core orchestra – strings, brass, percussion – that actually makes music.  
+- **Init** = The person who turns on the lights, opens the doors (user services).  
+
+---
+
+## Summary
+
+| Concept | Key takeaway |
+|---------|--------------|
+| OS definition | Software that manages hardware, provides virtual machine, gives interface |
+| Roles | Resource manager, virtual machine, interface |
+| Computer architecture | CPU, RAM, I/O devices connected via bus |
+| OS structures | Monolithic (fast, fragile), microkernel (stable, slower), hybrid (balanced) |
+| User vs kernel mode | Privilege separation; system calls switch modes |
+| System call | Request for kernel service; API abstracts it |
+| OS services | Program execution, I/O, file system, communication, accounting, protection |
+| Booting | Power‑on → BIOS/UEFI → bootloader → kernel → init → login |
+
+Understanding these fundamentals is crucial before diving into process management, scheduling, and memory management – the topics of the next chapters.
