@@ -28,19 +28,13 @@ An OS plays three major roles.
 
 Hardware resources (CPU, memory, disk, network) are limited. The OS allocates them fairly and efficiently among competing programs.
 
-- **Real‑life example**: In a library with 10 study rooms, the librarian (OS) assigns rooms to students (programs) for fixed time slots. When a student finishes, the room becomes available again. If a student tries to keep the room indefinitely, the librarian may intervene.
-
 ### 2. Virtual Machine
 
 The OS creates an abstraction of the hardware that is simpler to program. For instance, you see files and folders instead of raw disk sectors; you see a window with a cursor instead of pixel buffers and interrupts.
 
-- **Real‑life example**: An automatic car transmission. The driver (application) only uses a gear selector (D, R, P). The transmission system (OS) hides the complexity of clutch, gears, and hydraulics.
-
 ### 3. Interface (between user and hardware)
 
 The OS provides a user interface – command‑line (CLI) or graphical (GUI) – through which you can run programs, manage files, and configure settings.
-
-- **Real‑life example**: The dashboard of a car. You don’t directly touch the engine or brakes; you use the steering wheel, pedals, and gauges. The dashboard (interface) lets you control the car (hardware) safely.
 
 The following diagram shows the structural layers:
 
@@ -113,7 +107,6 @@ All OS services run in a single kernel address space (kernel mode). This is fast
 The OS is divided into layers, each built on top of the layer below. Lower layers provide services to upper layers. This improves modularity but can be slow due to layer‑crossing overhead.
 
 - **Example**: THE system (Dijkstra, 1968).
-- **Real‑life**: A company with strict hierarchy – manager (top) → department heads → team leads → workers. Communication must pass through each level.
 
 ### Microkernel
 
@@ -127,7 +120,6 @@ Only essential services (IPC, memory management, basic scheduling) run in kernel
 A compromise – most services live in kernel for speed, but some run in user space. Combines the performance of monolithic kernels with some modularity of microkernels.
 
 - **Examples**: Windows NT (and later Windows versions), macOS XNU.
-- **Real‑life**: A big supermarket chain: centralised purchasing (kernel) but local store managers (user processes) can order extra stock.
 
 ```mermaid
 flowchart TD
@@ -279,12 +271,6 @@ flowchart TD
 7. **Init process** – The kernel starts the first user‑mode process, traditionally `/sbin/init` (now often `systemd`, `launchd`, or `init`). This process brings up all other system services (networking, logging, graphical interface).
 
 8. **Login** – Finally, the system presents a login prompt (text or graphical). After successful login, you get a shell or desktop environment.
-
-**Real‑life analogy**:  
-- **BIOS** = The conductor of an orchestra who checks that all instruments are present and tuned.  
-- **Bootloader** = The script that tells the orchestra which piece to play and where the sheet music is.  
-- **Kernel** = The core orchestra – strings, brass, percussion – that actually makes music.  
-- **Init** = The person who turns on the lights, opens the doors (user services).  
 
 ---
 
