@@ -28,17 +28,13 @@ As a process executes, it changes state. The OS tracks these states to manage CP
 | **Waiting** | Process is blocked, waiting for some event (I/O completion, signal). |
 | **Terminated** | Process has finished execution (e.g., `exit()` called). |
 
-```mermaid
-stateDiagram-v2
-    [*] --> New
-    New --> Ready : Admitted
-    Ready --> Running : Scheduler dispatch
-    Running --> Ready : Interrupt / timeslice expired
-    Running --> Waiting : I/O or event wait
-    Waiting --> Ready : I/O or event completion
-    Running --> Terminated : Exit
-    Terminated --> [*]
-```
+<p align="center">
+  <img 
+    src="https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/images/Chapter3/3_02_ProcessState.jpg"
+    alt="Process State Diagram"
+    width="600"
+  />
+</p>
 
 **Real‑life analogy**: A customer in a restaurant:
 - **New** – Enters the door, not yet seated.
