@@ -215,7 +215,7 @@ The OS (or disk driver) orders read/write requests to minimise seek time and imp
 
 ```mermaid
 flowchart LR
-    Requests[Request queue: 98, 183, 37, 122, 14, 124, 65, 67] -> Algorithm[Choose algorithm]
+    Requests[Request queue: 98, 183, 37, 122, 14, 124, 65, 67] --> Algorithm[Choose algorithm]
     Algorithm --> FCFS[FCFS: order arrival]
     Algorithm --> SSTF[Nearest next]
     Algorithm --> SCAN[Elevator]
