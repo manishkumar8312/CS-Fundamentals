@@ -1,128 +1,236 @@
-# Protection & Security
+# Chapter 10: Security and Protection
 
-Protection and Security are fundamental components of an Operating System that ensure system resources are accessed in a controlled, authorized, and safe manner. Protection focuses on internal access control mechanisms, while security addresses defense against both internal and external threats.
-
----
-
-## 1. Goals of Protection
-
-The primary goal of protection is to regulate access to system resources and prevent misuse.
-
-### Key Objectives
-
-* Prevent unauthorized access to system resources
-* Ensure data integrity and consistency
-* Enable controlled sharing of resources
-* Protect processes from mutual interference
-* Enforce the principle of least privilege
-
-Protection mechanisms ensure correct usage of resources even when users are trusted.
+Security and protection are fundamental to any operating system. This chapter covers the goals of security, authentication methods, access control models, protection mechanisms, common attacks, and encryption techniques that safeguard data and resources.
 
 ---
 
-## 2. Domain of Protection
+## Security Goals: Confidentiality, Integrity, Availability
 
-A domain of protection specifies the access rights available to a user or process.
+The **CIA triad** defines the core objectives of information security.
 
-### Definition
+| Goal | Meaning | Example failure |
+|------|---------|----------------|
+| **Confidentiality** | Preventing unauthorised access to information. | Hacker steals password file. |
+| **Integrity** | Ensuring data is not tampered with or modified without permission. | Malware alters system binaries. |
+| **Availability** | Ensuring systems and data are accessible when needed. | Denial‑of‑service (DoS) attack makes website unreachable. |
 
-A domain is defined as a set of *(object, rights)* pairs:
-
-* **Object**: File, memory segment, device, or CPU
-* **Rights**: Read, write, execute, delete
-
-### Types of Domains
-
-* User domain
-* Kernel domain
-* Process domain
-
-### Domain Switching
-
-* **Static switching**: Domain remains fixed throughout execution
-* **Dynamic switching**: Domain changes during execution, such as during system calls
+**Real‑life analogy**: A bank vault:
+- **Confidentiality**: Only authorised staff can see inside.
+- **Integrity**: Money stored cannot be altered (counterfeiting prevented).
+- **Availability**: The vault is accessible during business hours.
 
 ---
 
-## 3. Access Matrix
+## Authentication
 
-The access matrix is a conceptual model used to represent the access rights of domains over objects.
+**Authentication** verifies the identity of a user or process. Common factors:
 
-### Structure
+### 1. Something you know (passwords, PINs)
 
-* Rows represent domains
-* Columns represent objects
-* Matrix entries specify access rights
+Most common, but vulnerable to guessing, theft, phishing.
 
-### Implementations
+- **Password storage**: Modern OSes store **hashed** passwords (not plaintext) using algorithms like bcrypt, SHA‑256 with salt.
+- **Salt**: Random value added to each password before hashing to prevent rainbow table attacks.
 
-* Access Control Lists (ACLs)
-* Capability Lists
+### 2. Something you have (smart card, security token, phone)
 
-The access matrix is a logical model and is implemented in optimized forms in real systems.
+Adds a second factor; usually combined with password (two‑factor authentication – 2FA).
 
----
+- **Hardware tokens**: YubiKey, RSA SecurID.
+- **Software tokens**: TOTP (Google Authenticator) – time‑based one‑time password.
 
-## 4. Authentication and Authorization
+### 3. Something you are (biometrics)
 
-### Authentication
+Fingerprint, iris scan, face recognition, voice.
 
-Authentication verifies the identity of a user or process.
+- **Pros**: Hard to forge, convenient.
+- **Cons**: Not changeable if compromised; false positives/negatives.
 
-#### Common Methods
+### Multi‑factor Authentication (MFA)
 
-* Password-based authentication
-* Biometric authentication
-* Two-factor authentication
-* Smart cards
+Combines two or more factors. For example, password (knowledge) + SMS code (possession). Greatly increases security.
 
----
-
-### Authorization
-
-Authorization determines the actions a user or process is permitted to perform.
-
-* Controls access to files, memory, and devices
-* Enforced through permissions and role-based policies
-
-Authentication precedes authorization in all secure systems.
+**Real‑life analogy**: Entering a secure building:
+- Password = keycode at the door.
+- Security token = keycard.
+- Biometric = fingerprint scanner.
+- MFA = keycard + PIN.
 
 ---
 
-## 5. Security Threats and Vulnerabilities
+## Access Control
 
-### Common Security Threats
+Once authenticated, the OS must decide what resources a user can access and what operations are allowed. Three classic models.
 
-* Malware such as viruses, worms, and trojans
-* Denial of Service (DoS) attacks
-* Phishing and social engineering attacks
-* Man-in-the-middle attacks
-* Privilege escalation attacks
+### DAC (Discretionary Access Control)
+
+The **owner** of a resource decides who can access it. Common in general‑purpose OSes (Unix permissions, Windows ACLs).
+
+- **Unix permissions**: Read, write, execute for owner, group, others.
+- **Problem**: Users may accidentally grant excessive permissions.
+
+**Real‑life**: You own a house; you give keys to friends as you wish.
+
+### MAC (Mandatory Access Control)
+
+The **system** (OS) enforces a global policy that users cannot override. Used in high‑security environments (military, SELinux, AppArmor).
+
+- **Labels**: Each resource and user has a security label (e.g., “Top Secret”, “Secret”, “Unclassified”).
+- **Rules**: A user can access a resource only if their clearance dominates the resource’s label.
+
+**Real‑life**: Military document classification – a “Secret” clearance holder cannot read “Top Secret” documents, regardless of their wishes.
+
+### RBAC (Role‑Based Access Control)
+
+Permissions are assigned to **roles**, and users are assigned to roles. Roles reflect job functions (e.g., “Doctor”, “Nurse”, “Accountant”).
+
+- **Advantage**: Simplify administration – change role permissions, not per user.
+- **Examples**: Database systems, enterprise applications, Windows groups.
+
+**Real‑life**: Hospital – doctors have prescription rights; nurses have patient care rights; receptionists can only schedule appointments. Users are assigned to roles.
 
 ---
 
-### Vulnerabilities
+## Protection Mechanisms: Capabilities and Access Matrix
 
-* Weak authentication mechanisms
-* Software bugs and design flaws
-* Improper access control
-* Unpatched systems
-* Misconfigured permissions
+The OS needs internal structures to enforce access control.
+
+### Access Matrix
+
+A conceptual table where rows represent **subjects** (users, processes) and columns represent **objects** (files, devices). Each cell contains the allowed **operations** (read, write, execute, delete).
+
+| Subject | File A | File B | Printer |
+|---------|--------|--------|---------|
+| Alice   | r,w    | r      | (none)  |
+| Bob     | r      | r,w    | print   |
+
+- **Implementation**:
+  - **Access Control Lists (ACLs)**: Attach a list to each object (column of matrix). Windows NTFS, POSIX ACLs.
+  - **Capabilities**: Attach a list to each subject (row of matrix). Each capability is an unforgeable token granting access to a specific object with specific rights.
+
+### Capability
+
+A capability is a ticket that gives a process permission to perform certain operations on an object. Often implemented as a protected, kernel‑managed reference.
+
+- **Advantage**: Easy to delegate; fine‑grained.
+- **Disadvantage**: Need to revoke capabilities (can be complex).
+- **Examples**: Early research OS (Hydra, KeyKOS), some microkernels (seL4).
+
+**Real‑life analogy**: 
+- **ACL**: A bouncer’s list at a club – each club has its own list of allowed guests.
+- **Capability**: A wristband – you show it to enter; different colours give different access.
 
 ---
 
-## 6. Difference Between Protection and Security
+## Principle of Least Privilege
 
-| Protection                   | Security                                      |
-| ---------------------------- | --------------------------------------------- |
-| Internal access control      | Defense against external and internal attacks |
-| Focuses on authorized users  | Focuses on malicious entities                 |
-| Operating system mechanism   | System-wide policy and enforcement            |
-| Prevents misuse of resources | Prevents breaches and attacks                 |
+The **principle of least privilege** states that a process (or user) should be granted only the minimum privileges necessary to perform its task, and only for the minimum time needed.
+
+- **Benefit**: Limits damage from bugs or attacks.
+- **Examples**:
+  - Unix `setuid` programs drop privileges after initial setup.
+  - Web browsers run tabs in sandboxes with limited file access.
+  - Linux capabilities: break root privileges into small pieces (`CAP_NET_ADMIN`, `CAP_SYS_ADMIN`).
+
+**Real‑life**: A hotel valet – they can park your car but cannot open your room safe.
 
 ---
 
-## Conclusion
+## Malicious Software (Malware)
 
-Protection and Security together form the foundation of a reliable and secure operating system. Protection mechanisms such as domains and access matrices regulate access to system resources, while security mechanisms defend against threats and vulnerabilities. Their combined use ensures system integrity, confidentiality, and availability.
+Malware is software designed to harm or infiltrate a system.
 
+| Type | Description | Propagation | Payload |
+|------|-------------|-------------|---------|
+| **Virus** | Attaches to legitimate programs; requires user action (running infected program). | File infection | Corruption, theft, backdoor. |
+| **Worm** | Self‑replicates across networks without user action. | Network exploits, emails | Resource exhaustion, backdoor. |
+| **Trojan** | Disguised as legitimate software; does not self‑replicate. | Social engineering | Data theft, ransomware. |
+| **Rootkit** | Hides its presence (files, processes, network connections) from OS. | Often installed after initial compromise | Stealth, persistent backdoor. |
+| **Ransomware** | Encrypts user files and demands payment. | Trojan, worm, exploit | File encryption. |
+| **Spyware** | Collects user information secretly. | Bundled with freeware | Keylogging, browsing data. |
+
+**Real‑life analogy**:
+- **Virus**: A contagious disease spread by touch.
+- **Worm**: A airborne pathogen that spreads itself through ventilation systems.
+- **Trojan**: A delivery box labeled “gift” that contains a bomb.
+- **Rootkit**: A spy who can delete security camera footage so you never know they were there.
+
+---
+
+## Buffer Overflow Attacks and Defenses
+
+A **buffer overflow** occurs when a program writes data beyond the allocated buffer bounds, overwriting adjacent memory. Attackers exploit this to inject malicious code or change execution flow.
+
+### Classic stack overflow
+
+```c
+void vulnerable(char *str) {
+    char buffer[64];
+    strcpy(buffer, str);   // no bounds check
+}
+```
+
+If `str` is longer than 64 bytes, it overwrites the return address on the stack. An attacker crafts input that places attacker code (shellcode) and sets the return address to point to it.
+
+### Defenses
+
+| Defense | Description | Effectiveness |
+|---------|-------------|---------------|
+| **Non‑executable stack** (NX bit) | Mark stack memory as non‑executable. Prevents shellcode execution. | Bypassed by return‑to‑libc or ROP. |
+| **Address Space Layout Randomization (ASLR)** | Randomise base addresses of stack, heap, libraries. Attacker cannot know return address location. | Effective; brute‑force possible on 32‑bit. |
+| **Stack canaries** | Place a secret value (canary) before return address. If overflow overwrites it, program aborts. | Very effective; used by GCC (`-fstack-protector`). |
+| **Bounds checking** | Compile‑time or runtime checks (e.g., Rust, Safe C extensions). | Most thorough, but performance cost. |
+| **Control Flow Integrity (CFI)** | Restrict program jumps to a precomputed set of valid targets. | Emerging standard (e.g., Intel CET). |
+
+**Real‑life analogy**: A hotel keycard system. Buffers are like mail slots – if you shove in a long package, it might push the room door open. Defenses are like making the slot too narrow (little canary) or randomising which door the key opens (ASLR).
+
+---
+
+## Encryption Basics for OS Security
+
+Encryption transforms data to prevent unauthorised reading. Modern OSes use encryption to protect data at rest (disk) and in transit (network).
+
+### Symmetric Encryption
+
+Same key encrypts and decrypts.
+
+- **Algorithms**: AES (Advanced Encryption Standard), ChaCha20.
+- **Use**: Full‑disk encryption (FDE), file encryption, network session encryption (TLS).
+
+### Asymmetric Encryption (Public Key)
+
+Two keys: public key (encrypts), private key (decrypts). Infeasible to derive private from public.
+
+- **Algorithms**: RSA, ECC (Elliptic Curve Cryptography).
+- **Use**: Key exchange, digital signatures, authentication.
+
+### Full‑Disk Encryption (FDE)
+
+Encrypts the entire storage device (except boot block). The OS decrypts on‑the‑fly using a key derived from a passphrase, TPM (Trusted Platform Module), or USB token.
+
+- **Examples**: Windows BitLocker, macOS FileVault, Linux LUKS (dm‑crypt).
+- **Threat model**: Protects against physical theft of device; does not protect against a compromised running system.
+
+**How LUKS works** (simplified):
+1. User enters passphrase.
+2. Passphrase decrypts a master key stored in LUKS header.
+3. Master key decrypts disk blocks on‑the‑fly.
+
+**Real‑life analogy**: A safe (encrypted disk) with a combination lock (passphrase). Even if a thief steals the safe, they cannot read documents inside without the combination.
+
+---
+
+## Summary
+
+| Concept | Key takeaway |
+|---------|--------------|
+| Security goals | Confidentiality, integrity, availability (CIA triad). |
+| Authentication | Something you know (password), have (token), are (biometric); MFA combines factors. |
+| Access control | DAC (owner decides), MAC (system decides), RBAC (roles). |
+| Protection mechanisms | Access matrix; implemented as ACLs (per object) or capabilities (per subject). |
+| Least privilege | Grant minimal rights for minimal time to limit damage. |
+| Malware types | Viruses (attach), worms (self‑spread), trojans (disguised), rootkits (hide), ransomware (encrypt). |
+| Buffer overflow defenses | NX bit, ASLR, stack canaries, bounds checking, CFI. |
+| Encryption for OS | Full‑disk encryption (BitLocker, FileVault, LUKS) protects against physical theft. |
+
+Security is not a product but a continuous process. Understanding these OS‑level mechanisms is the first step toward building and maintaining trustworthy systems.
