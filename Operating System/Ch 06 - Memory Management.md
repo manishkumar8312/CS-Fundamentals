@@ -182,9 +182,11 @@ flowchart TD
     VA --> Off[Offset]
     PD -->|lookup in page directory| PDE[Page directory entry]
     PDE -->|points to| PTBase[Page table base]
-    PTBase + PT --> PTE[Page table entry]
-    PTE -->|frame number| Frame
-    Frame + Off --> PA[Physical address]
+    PTBase -->|add page table index| PTE[Page table entry]
+    PT -->|index into page table| PTE
+    PTE -->|frame number| Frame[Frame number]
+    Frame -->|add offset| PA[Physical address]
+    Off -->|offset| PA
 ```
 
 **Advantage**: Sparse address spaces waste very little memory – only directory and the page tables that are actually used.
