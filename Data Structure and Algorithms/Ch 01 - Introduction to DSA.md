@@ -23,12 +23,12 @@ The synergy between data structures and algorithms is fundamental: the choice of
 
 ## 3. Algorithm Efficiency: Time and Space Complexity
 
-Complexity analysis quantifies the resources an algorithm consumes as a function of its input size \( n \).
+Complexity analysis quantifies the resources an algorithm consumes as a function of its input size $n$.
 
 - **Time complexity**: The amount of computational time (number of elementary operations) an algorithm takes to run.
 - **Space complexity**: The amount of additional memory (excluding input storage) an algorithm allocates during execution.
 
-Both are expressed using asymptotic notation, which describes the limiting behaviour as \( n \) grows arbitrarily large.
+Both are expressed using asymptotic notation, which describes the limiting behaviour as $n$ grows arbitrarily large.
 
 ### Why analyse complexity?
 - Compare algorithms independently of hardware or programming language.
@@ -41,21 +41,21 @@ Asymptotic notations describe the growth rate of functions. They ignore constant
 
 ### Big‑O (O) – Upper Bound
 Defines an asymptotic upper bound: the worst‑case scenario (or an upper limit on growth).  
-\( f(n) = O(g(n)) \) if there exist positive constants \( c \) and \( n_0 \) such that \( 0 \le f(n) \le c \cdot g(n) \) for all \( n \ge n_0 \).
+$f(n) = O(g(n))$ if there exist positive constants $c$ and $n_0$ such that $0 \le f(n) \le c \cdot g(n)$ for all $n \ge n_0$.
 
 ### Big‑Omega (Ω) – Lower Bound
 Defines an asymptotic lower bound: the best‑case scenario or a lower limit on growth.  
-\( f(n) = \Omega(g(n)) \) if there exist positive constants \( c \) and \( n_0 \) such that \( 0 \le c \cdot g(n) \le f(n) \) for all \( n \ge n_0 \).
+$f(n) = \Omega(g(n))$ if there exist positive constants $c$ and $n_0$ such that $0 \le c \cdot g(n) \le f(n)$ for all $n \ge n_0$.
 
 ### Big‑Theta (Θ) – Tight Bound
-Defines both upper and lower bounds, meaning the function grows at the same rate as \( g(n) \).  
-\( f(n) = \Theta(g(n)) \) if there exist positive constants \( c_1, c_2, n_0 \) such that \( c_1 g(n) \le f(n) \le c_2 g(n) \) for all \( n \ge n_0 \).
+Defines both upper and lower bounds, meaning the function grows at the same rate as $g(n)$.  
+$f(n) = \Theta(g(n))$ if there exist positive constants $c_1, c_2, n_0$ such that $c_1 g(n) \le f(n) \le c_2 g(n)$ for all $n \ge n_0$.
 
 #### Relationships
-- If \( f(n) = \Theta(g(n)) \), then \( f(n) = O(g(n)) \) and \( f(n) = \Omega(g(n)) \).
-- \( O \) is used most often in practice to describe worst‑case complexity.
+- If $f(n) = \Theta(g(n))$, then $f(n) = O(g(n))$ and $f(n) = \Omega(g(n))$.
+- $O$ is used most often in practice to describe worst‑case complexity.
 
-The diagram below illustrates the relationship between these notations for a hypothetical time complexity function \( f(n) \).
+The diagram below illustrates the relationship between these notations for a hypothetical time complexity function $f(n)$.
 
 ```mermaid
 graph LR
@@ -70,19 +70,19 @@ graph LR
 
 The table below summarises the most frequently encountered complexity classes, typical algorithms that exhibit them, and practical implications.
 
-| Class      | Name            | Example Algorithm                    | Scales to \( n \) |
+| Class      | Name            | Example Algorithm                    | Scales to $n$ |
 |------------|----------------|--------------------------------------|-------------------|
-| \( O(1) \) | Constant        | Array access by index, push/pop on stack | Huge            |
-| \( O(\log n) \) | Logarithmic | Binary search, balanced BST search    | Very large        |
-| \( O(n) \) | Linear          | Linear search, array sum              | Millions          |
-| \( O(n \log n) \) | Linearithmic | Merge sort, heap sort                 | Millions          |
-| \( O(n^2) \) | Quadratic       | Bubble sort, naive matrix multiplication | Thousands      |
-| \( O(2^n) \) | Exponential     | Recursive Fibonacci (naive), subset generation | 20–30       |
-| \( O(n!) \) | Factorial       | Naive travelling salesman (permutations) | 10–12           |
+| $O(1)$ | Constant        | Array access by index, push/pop on stack | Huge            |
+| $O(\log n)$ | Logarithmic | Binary search, balanced BST search    | Very large        |
+| $O(n)$ | Linear          | Linear search, array sum              | Millions          |
+| $O(n \log n)$ | Linearithmic | Merge sort, heap sort                 | Millions          |
+| $O(n^2)$ | Quadratic       | Bubble sort, naive matrix multiplication | Thousands      |
+| $O(2^n)$ | Exponential     | Recursive Fibonacci (naive), subset generation | 20–30       |
+| $O(n!)$ | Factorial       | Naive travelling salesman (permutations) | 10–12           |
 
 ### Detailed Descriptions with C++ Examples
 
-#### \( O(1) \) – Constant Time
+#### $O(1)$ – Constant Time
 The algorithm executes a fixed number of operations regardless of input size.
 
 **Example**: Access an element in an array by index.
@@ -93,7 +93,7 @@ int getFirstElement(int arr[], int n) {
 }
 ```
 
-#### \( O(\log n) \) – Logarithmic Time
+#### $O(\log n)$ – Logarithmic Time
 The input size is halved (or reduced by a constant factor) at each step. Very efficient.
 
 **Example**: Binary search on a sorted array.
@@ -112,7 +112,7 @@ int binarySearch(int arr[], int left, int right, int target) {
 }
 ```
 
-#### \( O(n) \) – Linear Time
+#### $O(n)$ – Linear Time
 The algorithm performs a single pass over the input.
 
 **Example**: Sum all elements of an array.
@@ -126,7 +126,7 @@ int arraySum(int arr[], int n) {
 }
 ```
 
-#### \( O(n \log n) \) – Linearithmic Time
+#### $O(n \log n)$ – Linearithmic Time
 Often achieved by divide‑and‑conquer algorithms that split the problem into smaller parts and then combine them.
 
 **Example**: Merge sort.
@@ -159,7 +159,7 @@ void mergeSort(vector<int>& arr, int left, int right) {
 }
 ```
 
-#### \( O(n^2) \) – Quadratic Time
+#### $O(n^2)$ – Quadratic Time
 Double nested iterations over the input. Becomes slow quickly.
 
 **Example**: Bubble sort.
@@ -177,7 +177,7 @@ void bubbleSort(int arr[], int n) {
 }
 ```
 
-#### \( O(2^n) \) – Exponential Time
+#### $O(2^n)$ – Exponential Time
 Often arises in recursive algorithms that solve overlapping sub‑problems without memoization.
 
 **Example**: Naive recursive Fibonacci.
@@ -188,8 +188,8 @@ int fib(int n) {
 }
 ```
 
-#### \( O(n!) \) – Factorial Time
-Algorithms that generate all permutations of a set. Only feasible for very small \( n \).
+#### $O(n!)$ – Factorial Time
+Algorithms that generate all permutations of a set. Only feasible for very small $n$.
 
 **Example**: Naive generation of all permutations (printing each).
 ```cpp
@@ -224,21 +224,21 @@ xychart-beta
     line "O(2ⁿ)" [1, 1000, 10000, 100000, 500000, 1000000]
 ```
 
-*Note: For readability, the diagram uses a logarithmic conversion on the vertical axis. Actual \( O(2^n) \) at \( n=100 \) is astronomically large.*
+*Note: For readability, the diagram uses a logarithmic conversion on the vertical axis. Actual $O(2^n)$ at $n=100$ is astronomically large.*
 
 ## 6. Practical Guidelines for Complexity Analysis
 
 1. **Always consider worst‑case** unless the problem explicitly asks for average or best‑case analysis.
-2. **Drop constants and lower‑order terms**: \( 3n^2 + 5n + 2 \) simplifies to \( O(n^2) \).
-3. **Analyse loops carefully**: A loop that runs \( n \) times contributes a factor of \( n \); nested loops multiply.
-4. **Recursive algorithms** often follow recurrence relations (e.g., \( T(n) = 2T(n/2) + n \) yields \( O(n \log n) \)).
-5. **Space complexity** includes call stack memory for recursion (e.g., naive recursion for Fibonacci uses \( O(n) \) stack space).
+2. **Drop constants and lower‑order terms**: $3n^2 + 5n + 2$ simplifies to $O(n^2)$.
+3. **Analyse loops carefully**: A loop that runs $n$ times contributes a factor of $n$; nested loops multiply.
+4. **Recursive algorithms** often follow recurrence relations (e.g., $T(n) = 2T(n/2) + n$ yields $O(n \log n)$).
+5. **Space complexity** includes call stack memory for recursion (e.g., naive recursion for Fibonacci uses $O(n)$ stack space).
 
 ## 7. Summary
 
 - Data structures organise data; algorithms manipulate it. Together they form the foundation of efficient software.
 - DSA knowledge is critical for building scalable systems and passing technical interviews.
 - Complexity analysis uses asymptotic notations (Big‑O, Big‑Omega, Big‑Theta) to describe resource usage.
-- Recognising common complexity classes (\( O(1), O(\log n), O(n), O(n \log n), O(n^2), O(2^n), O(n!) \)) helps choose the right algorithm for the input size constraints.
+- Recognising common complexity classes ($O(1), O(\log n), O(n), O(n \log n), O(n^2), O(2^n), O(n!)$) helps choose the right algorithm for the input size constraints.
 
 The next chapter will cover fundamental data structures: arrays, linked lists, stacks, and queues, along with their time complexity trade‑offs.
