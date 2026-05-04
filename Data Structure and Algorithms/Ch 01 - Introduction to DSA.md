@@ -212,16 +212,16 @@ void printPermutations(vector<int>& arr) {
 The following Mermaid diagram plots the number of operations against input size for major complexity classes. Note the logarithmic scale on the y‑axis to accommodate large ranges.
 
 ```mermaid
-quadrantChart
-    title Asymptotic Growth Rates (log scale)
-    x-axis "Input size (n)" 1 to 100
-    y-axis "Operations (log scale)" 1 to 1000000
-    "O(1)": [50, 1]
-    "O(log n)": [50, 5]
-    "O(n)": [50, 50]
-    "O(n log n)": [50, 100]
-    "O(n²)": [50, 2500]
-    "O(2ⁿ)": [50, 1e6]
+xychart-beta
+    title "Asymptotic Growth Rates (n up to 100, operations capped for O(2^n))"
+    x-axis "Input size (n)" [1, 20, 40, 60, 80, 100]
+    y-axis "Operations" 1 --> 1000000
+    line "O(1)" [1, 1, 1, 1, 1, 1]
+    line "O(log n)" [1, 4, 5, 6, 7, 7]
+    line "O(n)" [1, 20, 40, 60, 80, 100]
+    line "O(n log n)" [1, 86, 213, 354, 505, 664]
+    line "O(n²)" [1, 400, 1600, 3600, 6400, 10000]
+    line "O(2ⁿ)" [1, 1000, 10000, 100000, 500000, 1000000]
 ```
 
 *Note: For readability, the diagram uses a logarithmic conversion on the vertical axis. Actual \( O(2^n) \) at \( n=100 \) is astronomically large.*
