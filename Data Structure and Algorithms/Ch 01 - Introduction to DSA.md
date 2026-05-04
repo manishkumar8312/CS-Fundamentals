@@ -1,4 +1,4 @@
-# Chapter 1: Introduction to Data Structures and Algorithms (C++ Edition)
+# Chapter 1: Introduction to Data Structures and Algorithms
 
 ## 1. What are Data Structures and Algorithms?
 
