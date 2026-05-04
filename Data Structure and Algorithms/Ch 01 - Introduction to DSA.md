@@ -59,10 +59,10 @@ The diagram below illustrates the relationship between these notations for a hyp
 
 ```mermaid
 graph LR
-    A[Growth of f(n)] --> B{Asymptotic bounds}
-    B --> C[Big-O: f(n) ≤ c * g(n)]
-    B --> D[Big-Omega: f(n) ≥ c * g(n)]
-    B --> E[Big-Theta: c1*g(n) ≤ f(n) ≤ c2*g(n)]
+    A["Growth of f(n)"] --> B{"Asymptotic bounds"}
+    B --> C["Big-O: f(n) <= c * g(n)"]
+    B --> D["Big-Omega: f(n) >= c * g(n)"]
+    B --> E["Big-Theta: c1*g(n) <= f(n) <= c2*g(n)"]
     style E fill:#e1f5e1,stroke:#2e7d32
 ```
 
