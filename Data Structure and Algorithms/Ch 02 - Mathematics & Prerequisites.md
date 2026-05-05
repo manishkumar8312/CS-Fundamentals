@@ -1,6 +1,6 @@
 # Chapter 2: Mathematics & Prerequisites
 
-This chapter covers essential foundations for data structures and algorithms: recursion, backtracking, discrete mathematics, and bit manipulation. Each section explains **what**, **why**, and **when to use** to help you apply these concepts in problem-solving.
+This chapter covers essential foundations for data structures and algorithms: recursion, backtracking, discrete mathematics, and bit manipulation. Each section explains **what** and **when to use** to help you apply these concepts in problem-solving.
 
 ## 1. Recursion Basics
 
