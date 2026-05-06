@@ -219,11 +219,11 @@ int removeDuplicates(vector<int>& nums) {
 
 ```mermaid
 graph TD
-    A[Start: left=0, right=n-1] --> B{left < right?}
-    B -- Yes --> C[Compare arr[left] and arr[right]]
-    C -- Match --> D[left++; right--]
-    C -- Mismatch --> E[Not palindrome]
-    B -- No --> F[Palindrome]
+    A["Start: left=0, right=n-1"] --> B{"left < right?"}
+    B -- Yes --> C["Compare arr[left] and arr[right]"]
+    C -- Match --> D["left++; right--"]
+    C -- Mismatch --> E["Not palindrome"]
+    B -- No --> F["Palindrome"]
 ```
 
 ## 4. Strings
