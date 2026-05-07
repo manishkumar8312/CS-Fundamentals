@@ -8,10 +8,12 @@
 ![OS](https://img.shields.io/badge/Focus-Operating%20Systems-important?style=flat-square)
 ![DBMS](https://img.shields.io/badge/Focus-DBMS-success?style=flat-square)
 ![CN](https://img.shields.io/badge/Focus-Computer%20Networks-yellow?style=flat-square)
+![OOP](https://img.shields.io/badge/Focus-OOP-orange?style=flat-square)
+![TOC](https://img.shields.io/badge/Focus-Theory%20of%20Computation-purple?style=flat-square)
 
-This repository contains a well-organized collection of core **Computer Science fundamentals**, intended to build strong conceptual understanding for **technical interviews, competitive programming, academic exams, and software development**.
+This repository contains a structured and comprehensive collection of core **Computer Science fundamentals**, designed to build strong conceptual understanding for **technical interviews, academic exams, placement preparation, and software development**.
 
-It serves as a consolidated reference for essential CS subjects commonly expected from **Computer Science and Engineering** students and professionals.
+It serves as a consolidated reference for essential CS subjects commonly expected from **Computer Science and Engineering students, software developers, and interview candidates**.
 
 ---
 
@@ -19,90 +21,132 @@ It serves as a consolidated reference for essential CS subjects commonly expecte
 
 ### Data Structures and Algorithms
 
+* Mathematics and Complexity Analysis
 * Arrays and Strings
 * Linked Lists
 * Stacks and Queues
-* Trees and Binary Trees
-* Graphs (BFS, DFS, Cycle Detection)
-* Searching and Sorting Algorithms
 * Recursion and Backtracking
-* Time and Space Complexity
+* Searching and Sorting Algorithms
+* Hashing
+* Trees and Binary Trees
+* Graph Algorithms (BFS, DFS, Shortest Paths, MST)
+* Problem Solving Techniques
 
 ---
 
 ### Operating Systems
 
-* Processes and Threads
+* Process and Thread Management
 * CPU Scheduling Algorithms
+* Process Synchronization
 * Deadlocks
 * Memory Management
 * Paging and Segmentation
 * Virtual Memory
 * File Systems
+* I/O Systems
+* Protection and Security
+* Distributed Systems and Virtualization
 
 ---
 
 ### Computer Networks
 
 * OSI and TCP/IP Models
-* Network Devices
+* Physical, Data Link, and Network Layers
+* Routing Algorithms
 * IP Addressing and Subnetting
 * TCP vs UDP
-* DNS, HTTP, HTTPS
 * Flow and Congestion Control
+* DNS, HTTP, HTTPS
+* Network Security
+* Wireless and Mobile Networks
 
 ---
 
 ### Database Management Systems
 
-* Entity Relationship Model
+* Database Fundamentals
 * Relational Model
-* SQL and Normalization
-* Indexing
-* Transactions
-* ACID Properties
-* Concurrency Control and Deadlocks
+* Relational Algebra
+* SQL Queries
+* ER Model
+* Functional Dependencies
+* Normalization
+* Transactions and ACID Properties
+* Concurrency Control
+* Recovery Systems
+* Indexing and Hashing
+* File Organization and Storage Management
 
 ---
 
 ### Object-Oriented Programming
 
 * Classes and Objects
+* Encapsulation and Abstraction
 * Inheritance
 * Polymorphism
-* Encapsulation
-* Abstraction
-* SOLID Principles
+* Operator Overloading
+* Exception Handling
+* Templates and Generic Programming
+* STL (Standard Template Library)
+* Design Patterns
+* Modern C++ Features and Best Practices
 
 ---
 
-### Computer Organization and Architecture
+### Theory of Computation
 
-* Number Systems
-* Instruction Cycle
-* Cache Memory
-* Pipelining
-* Addressing Modes
-* Input and Output Organization
+* Finite Automata
+* Regular Languages and Regular Expressions
+* Context-Free Grammars
+* Pushdown Automata
+* Turing Machines
+* Decidability and Undecidability
+* Chomsky Hierarchy
+* Computational Complexity
+
+---
+
+## Repository Structure
+
+```text
+Computer Network/
+DBMS/
+Data Structure and Algorithms/
+Object Oriented Programming/
+Operating System/
+Theory Of Computation/
+````
+
+Each subject is divided into chapter-wise notes with:
+
+* Concept explanations
+* Algorithms and implementations
+* Complexity analysis
+* Interview-focused discussions
+* Practice-oriented examples
 
 ---
 
 ## Purpose of This Repository
 
 * Strengthen core computer science concepts
-* Prepare for technical interviews and assessments
-* Support competitive programming practice
+* Prepare for technical interviews and coding assessments
 * Provide concise and reliable revision material
 * Assist with academic coursework and examinations
+* Build strong problem-solving foundations
 
 ---
 
-## Technologies and Languages
+## How to Use
 
-* C++
-* Java
-* Python
-* Pseudocode and Conceptual Notes
+1. Clone the repository
+2. Navigate through subject-wise directories
+3. Study concepts chapter by chapter
+4. Practice implementations and problems
+5. Revise consistently for interviews and exams
 
 ---
 
@@ -111,27 +155,28 @@ It serves as a consolidated reference for essential CS subjects commonly expecte
 Contributions are welcome and encouraged.
 
 * Fork the repository
-* Create a new feature branch
+* Create a feature branch
 * Add or improve content with proper structure
+* Maintain consistency in formatting and explanations
 * Submit a pull request with a clear description
-
----
-
-## How to Use
-
-1. Clone the repository
-2. Navigate through topic-wise directories
-3. Study concepts along with implementations
-4. Practice consistently and revise regularly
 
 ---
 
 ## Note
 
-This repository emphasizes **fundamental understanding and correctness** rather than framework-specific implementations.
+This repository emphasizes:
 
+* Strong conceptual understanding
+* Interview-oriented preparation
+* Readable and structured explanations
+* Practical problem-solving approaches
+* Consistency and clarity over unnecessary complexity
 
+---
 
 ## ⭐ Support
 
-If this repository adds value to your learning, consider giving it a ⭐ to show your support.
+If this repository adds value to your learning, consider giving it a ⭐ to support the project.
+
+
+
