@@ -6,7 +6,7 @@ Dynamic Programming is a method for solving complex problems by breaking them in
 
 ### 1.1 Key Concepts
 
-- **Overlapping Subproblems**: The problem can be broken into subproblems that are reused multiple times. Example: Fibonacci – F(n) = F(n-1) + F(n-2) recomputes the same values.
+- **Overlapping Subproblems**: The problem can be broken into subproblems that are reused multiple times. Example: Fibonacci: F(n) = F(n-1) + F(n-2) recomputes the same values.
 - **Optimal Substructure**: An optimal solution can be constructed from optimal solutions of its subproblems. Example: Shortest path from A to C passing through B – the path A→B and B→C must be optimal.
 - **Memoization (Top‑Down)**: Recursive approach with caching. Solve the problem recursively and store results before returning.
 - **Tabulation (Bottom‑Up)**: Iterative approach. Build a table from the smallest subproblem upwards.
