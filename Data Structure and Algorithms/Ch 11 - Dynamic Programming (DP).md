@@ -1,6 +1,6 @@
 # Chapter 11: Dynamic Programming (DP)
 
-Dynamic Programming is a method for solving complex problems by breaking them into smaller overlapping subproblems and storing the results of each subproblem to avoid redundant computation. This chapter covers DP fundamentals, classic DP problems, subsequence and substring problems, knapsack, DP on strings, trees, bitmask DP, and Kadane’s algorithm as a DP view.
+Dynamic Programming is a method for solving complex problems by breaking them into smaller overlapping subproblems and storing the results of each subproblem to avoid redundant computation. This chapter covers DP fundamentals, common mistakes, pattern recognition, when NOT to use DP, classic DP problems, subsequence and substring problems, knapsack, DP on strings, trees, bitmask DP, and Kadane’s algorithm as a DP view.
 
 ## 1. DP Fundamentals
 
@@ -57,9 +57,157 @@ long long fibOpt(int n) {
 }
 ```
 
-## 2. Classic DP Problems
+## 2. Common DP Mistakes
 
-### 2.1 Climbing Stairs
+Even with a correct recurrence, DP solutions often fail due to implementation pitfalls. Recognising these mistakes improves debugging and interview performance.
+
+| Mistake | Description | Example | Correct Approach |
+|---------|-------------|---------|-------------------|
+| **Incorrect initialisation** | Base cases or DP table initial values are wrong. | In LCS, initialising `dp[0][j] = 1` instead of 0. | `dp[0][j] = 0` (empty prefix has no common subsequence). |
+| **Out‑of‑order iteration** | In tabulation, traversing inner loop in wrong direction for 1D knapsack. | `for (int w = 0; w <= W; ++w)` for 0/1 knapsack – reuses same item multiple times. | Iterate `w` from `W` down to `weight[i]`. |
+| **Off‑by‑one indices** | Using `dp[i]` when `i` should represent length or index incorrectly. | `dp[n]` accessed when `dp` size is `n`. | Use `dp[n+1]` when state is array length. |
+| **Missing handling of impossible states** | Using `INT_MAX` without checking overflow. | `dp[i] = min(dp[i-1], dp[i-2]) + cost` without guarding `INT_MAX`. | Use `INT_MAX/2` for additions, check if `dp[i-1] != INT_MAX/2`. |
+| **Using recursive memoization without clearing cache** | Global memo array reused across multiple test cases without resetting. | `memo` retains values from previous call. | Reset or use local memo per call. |
+| **Forgetting to store computed result** | Recursive function returns value but does not memoise before returning. | `return fib(n-1) + fib(n-2)` without storing in `memo[n]`. | Store before returning. |
+| **Using the wrong DP dimension** | Too few dimensions lose necessary state (e.g., knapsack with two constraints needs 2D). | `dp[W]` for knapsack with both weight and volume constraints. | Use `dp[W][V]`. |
+| **Premature pruning of subproblems** | Skipping some states due to incorrect dominance assumption. | In subset sum, assuming larger sum is always better. | Evaluate all reachable states. |
+
+### Example: Off‑by‑One Error in Climbing Stairs
+
+**Incorrect**:
+```cpp
+int climbStairs(int n) {
+    vector<int> dp(n, 0);
+    dp[0] = 1;
+    dp[1] = 2; // dp[1] accessed when n==1 -> out of bounds
+    for (int i = 2; i < n; ++i) dp[i] = dp[i-1] + dp[i-2];
+    return dp[n-1];
+}
+```
+
+**Correct**:
+```cpp
+int climbStairs(int n) {
+    if (n <= 2) return n;
+    vector<int> dp(n+1);
+    dp[1] = 1; dp[2] = 2;
+    for (int i = 3; i <= n; ++i) dp[i] = dp[i-1] + dp[i-2];
+    return dp[n];
+}
+```
+
+## 3. DP Pattern Recognition
+
+Identifying that a problem can be solved with DP is often the hardest step. The following patterns and questions help recognise DP problems during interviews or coding contests.
+
+### 3.1 Key Questions to Ask
+
+- **Can the problem be broken into smaller subproblems?** Does solving for input size `n` depend on solutions for smaller inputs (e.g., `n-1`, `n/2`)?
+- **Are there overlapping subproblems?** Would a naive recursive solution recompute the same inputs many times?
+- **Does the problem ask for optimisation?** (maximum, minimum, longest, shortest, number of ways, true/false).
+- **Does the problem involve sequences, grids, or subsets?** Common DP domains.
+- **Is the problem a variant of classic DP?** (LCS, knapsack, edit distance, coin change, etc.)
+
+### 3.2 Quick Pattern Cheat Sheet
+
+| Problem Characteristics | Likely DP Category | State Definition Example |
+|-------------------------|--------------------|---------------------------|
+| Sequence of decisions (take/skip, buy/sell) | 1D DP | `dp[i]` = best answer for first i elements |
+| Grid path (right/down moves) | 2D grid DP | `dp[i][j]` = answer for cell (i,j) |
+| Two strings comparison | String DP (LCS, edit distance) | `dp[i][j]` = answer for prefixes s1[0..i-1], s2[0..j-1] |
+| Subset sum / knapsack | 0/1 Knapsack | `dp[w]` = max value for capacity w |
+| Counting ways (without order) | Combination DP | `dp[x]` = number of ways to achieve amount x |
+| Minimising partitions | Partition DP (palindrome, matrix chain) | `dp[i]` = min cost for prefix up to i |
+| Tree with parent‑child dependencies | Tree DP | `dp[u][0/1]` = answer for subtree (node selected or not) |
+| Small constraints (n ≤ 20) | Bitmask DP | `dp[mask][i]` = answer for visited set `mask` ending at i |
+| Probability / expectation | Probabilistic DP | `dp[i]` = expected value from state i |
+
+### 3.3 Example Recognition Walkthrough
+
+**Problem**: Given an array of integers, find the length of the longest increasing subsequence.
+
+- **Question**: Can we solve for prefix `i` using smaller prefixes? Yes: LIS ending at `i` depends on all previous `j < i` with `nums[j] < nums[i]`.
+- **Overlapping subproblems?** Different `i` may consider the same `j` multiple times – yes.
+- **Optimisation?** Yes, longest.
+- **Classic pattern?** LIS – known DP with O(n²) or patience sorting.
+
+**Result**: Use DP.
+
+### 3.4 Transition from Brute‑Force to DP
+
+1. Write a recursive backtracking solution that explores all possibilities.
+2. Identify parameters that change during recursion.
+3. Use those parameters as state dimensions.
+4. Memoise results on those parameters.
+5. (Optional) Convert to iterative tabulation.
+
+## 4. When NOT to Use DP
+
+DP is powerful, but it is not always the best or necessary tool. Recognising when other techniques are simpler or more efficient saves time and complexity.
+
+### 4.1 Greedy Works Better
+
+If a problem exhibits the **greedy choice property** (making the locally optimal choice leads to a global optimum), greedy is often simpler and faster (O(n) or O(n log n) vs DP’s potential O(n²) or higher).
+
+**Examples**:
+- **Coin change** (canonical coin systems like US coins): Greedy works. DP only needed for arbitrary denominations.
+- **Activity selection** (maximise number of non‑overlapping intervals): Greedy by earliest finish time.
+- **Minimum number of jumps to end** (when each jump length is limited): Greedy works in O(n).
+- **Fractional knapsack**: Greedy by value/weight ratio. 0/1 knapsack requires DP.
+
+**How to recognise**: Greedy works when selecting an item does not restrict future choices in a way that requires considering all subsets. Often the problem specifies “choose as many as possible” or “maximise” with no dependency on previously chosen items’ exact sum.
+
+### 4.2 Sliding Window Is Sufficient
+
+If the problem asks for a **contiguous subarray or substring** optimisation (length, sum, maximum) and the constraint involves a monotonic condition (e.g., at most K distinct characters, sum ≤ K), sliding window gives O(n) time and O(1) space – much better than DP.
+
+**Examples**:
+- **Longest substring with at most K distinct characters**: Sliding window.
+- **Minimum size subarray sum**: Sliding window.
+- **Maximum sum subarray of fixed size k**: Sliding window (or prefix sums).
+- **Fruit into baskets** (max two types): Sliding window.
+
+**How to recognise**: “Contiguous”, “subarray”, “substring” with a constraint that can be maintained by expanding/shrinking a window. DP would over‑complicate (e.g., O(n²) unnecessary).
+
+### 4.3 Binary Search Optimization Is Possible
+
+For problems that ask for **minimum of maximum** or **maximum of minimum** (or similar monotonic predicates), binary search on the answer combined with a feasibility check (often O(n) or O(n log n)) can be simpler than DP.
+
+**Examples**:
+- **Split array largest sum**: Minimise the largest sum of m subarrays. Binary search + greedy check.
+- **Koko eating bananas**: Find minimum speed to eat all bananas within H hours. Binary search + simulation.
+- **Capacity to ship packages within D days**: Binary search + greedy.
+- **Median of two sorted arrays**: Binary search on smaller array.
+
+**How to recognise**: The answer is a single value, and you can test in O(n) whether a candidate answer is feasible. The function `isFeasible(x)` is monotonic (false for small x, true for larger x). DP would likely be overkill or too slow.
+
+### 4.4 Mathematical or Combinatorial Formula Exists
+
+Some problems have a closed‑form solution (O(1)) or simple combinatorial formula, making DP unnecessary.
+
+**Examples**:
+- **Number of ways to reach the top of n steps** (with 1 or 2 steps) → Fibonacci (can be DP or Binet’s formula).
+- **Unique paths in grid** – closed form using factorials: C(m+n-2, m-1).
+- **Nth Catalan number** – formula exists, but DP is still common for understanding.
+
+**How to recognise**: Problem asks for a pure count or specific value that matches a known sequence.
+
+### 4.5 Important Caveat
+
+DP may still be **correct** in all these cases, but it often leads to higher time/space complexity and more code. The table below summarises the decision:
+
+| Technique | When to Use | Typical Complexity | DP Alternative Complexity |
+|-----------|-------------|--------------------|---------------------------|
+| Greedy | Problem has greedy choice property | O(n) or O(n log n) | O(n²) or higher |
+| Sliding Window | Contiguous subarray with monotonic condition | O(n) | O(n²) (e.g., longest palindromic substring DP) |
+| Binary Search on Answer | Minimise max / maximise min with monotonic feasibility | O(n log M) | Often O(n²) or exponential |
+| Math Formula | Direct closed‑form exists | O(1) | O(n) or O(n²) |
+
+**General rule**: If you suspect a greedy or sliding window solution, test it on small examples. If it holds, skip DP. If you are asked for “all possible” results, DP (or backtracking) is likely needed.
+
+## 5. Classic DP Problems
+
+### 5.1 Climbing Stairs
 
 **Problem**: Count ways to reach the top of n steps by taking 1 or 2 steps at a time.
 
@@ -78,7 +226,7 @@ int climbStairs(int n) {
 }
 ```
 
-### 2.2 House Robber (1D DP)
+### 5.2 House Robber (1D DP)
 
 **Problem**: Maximise sum of non‑adjacent elements.
 
@@ -99,7 +247,7 @@ int rob(vector<int>& nums) {
 }
 ```
 
-### 2.3 Minimum Path Sum (Grid)
+### 5.3 Minimum Path Sum (Grid)
 
 **Problem**: Find path from top‑left to bottom‑right minimising sum (only right/down moves).
 
@@ -119,7 +267,7 @@ int minPathSum(vector<vector<int>>& grid) {
 }
 ```
 
-### 2.4 Unique Paths (Grid)
+### 5.4 Unique Paths (Grid)
 
 **Problem**: Number of distinct paths from top‑left to bottom‑right (right/down moves).
 
@@ -135,9 +283,9 @@ int uniquePaths(int m, int n) {
 }
 ```
 
-## 3. Subsequence and Substring Problems
+## 6. Subsequence and Substring Problems
 
-### 3.1 Longest Common Subsequence (LCS)
+### 6.1 Longest Common Subsequence (LCS)
 
 **Problem**: Maximum length of common subsequence (not necessarily contiguous).
 
@@ -162,11 +310,11 @@ int longestCommonSubsequence(string s1, string s2) {
 }
 ```
 
-### 3.2 Longest Common Substring
+### 6.2 Longest Common Substring
 
 **DP**: `dp[i][j] = dp[i-1][j-1] + 1` if match, else 0. Track maximum.
 
-### 3.3 Longest Increasing Subsequence (LIS)
+### 6.3 Longest Increasing Subsequence (LIS)
 
 **Problem**: Length of longest increasing subsequence.
 
@@ -201,7 +349,7 @@ int lengthOfLIS(vector<int>& nums) {
 }
 ```
 
-### 3.4 Edit Distance (Levenshtein Distance)
+### 6.4 Edit Distance (Levenshtein Distance)
 
 **Problem**: Minimum number of insertions, deletions, substitutions to convert string A to B.
 
@@ -228,9 +376,9 @@ int minDistance(string word1, string word2) {
 }
 ```
 
-## 4. Subset and Knapsack Problems
+## 7. Subset and Knapsack Problems
 
-### 4.1 0/1 Knapsack
+### 7.1 0/1 Knapsack
 
 **Problem**: Maximise value with capacity W, each item taken at most once.
 
@@ -247,7 +395,7 @@ int knapsack01(vector<int>& weights, vector<int>& values, int W) {
 }
 ```
 
-### 4.2 Subset Sum
+### 7.2 Subset Sum
 
 **Problem**: Determine if a subset sums to a given target.
 
@@ -262,7 +410,7 @@ bool subsetSum(vector<int>& nums, int target) {
 }
 ```
 
-### 4.3 Partition Equal Subset Sum
+### 7.3 Partition Equal Subset Sum
 
 **Problem**: Can array be partitioned into two subsets with equal sum?
 
@@ -276,9 +424,9 @@ bool canPartition(vector<int>& nums) {
 }
 ```
 
-## 5. DP on Strings
+## 8. DP on Strings
 
-### 5.1 Palindrome Partitioning (Minimum Cuts)
+### 8.1 Palindrome Partitioning (Minimum Cuts)
 
 **Problem**: Minimum cuts to partition a string into palindromes.
 
@@ -307,7 +455,7 @@ int minCut(string s) {
 }
 ```
 
-### 5.2 Wildcard Matching
+### 8.2 Wildcard Matching
 
 **Problem**: Match pattern containing `?` (single char) and `*` (any sequence) with a string.
 
@@ -329,11 +477,11 @@ bool isMatch(string s, string p) {
 }
 ```
 
-### 5.3 Regular Expression Matching
+### 8.3 Regular Expression Matching
 
 Similar but with `*` meaning zero or more of the preceding character.
 
-## 6. DP on Trees
+## 9. DP on Trees
 
 ### Maximum Independent Set in Tree (no two adjacent selected)
 
@@ -358,7 +506,7 @@ void dfs(int u, int parent, vector<vector<int>>& adj, vector<int>& val, vector<v
 // answer = max(dp[root][0], dp[root][1])
 ```
 
-## 7. DP with Bitmask – Travelling Salesman Problem (TSP)
+## 10. DP with Bitmask – Travelling Salesman Problem (TSP)
 
 **Problem**: Shortest path visiting all cities exactly once and returning to start.
 
@@ -389,7 +537,7 @@ int tsp(vector<vector<int>>& dist) {
 **Time**: O(2^n * n²). **Space**: O(2^n * n).  
 **Real‑life analogy**: Delivery route planning – which order to visit customers to minimise travel.
 
-## 8. Kadane’s Algorithm (DP view)
+## 11. Kadane’s Algorithm (DP view)
 
 Kadane’s algorithm is a 1D DP for maximum subarray sum.
 
@@ -406,7 +554,7 @@ int maxSubarraySum(vector<int>& nums) {
 }
 ```
 
-## 9. Summary Table
+## 12. Summary Table
 
 | Problem Category | Classic Problem | Recurrence / Approach | Time Complexity |
 |------------------|----------------|------------------------|------------------|
