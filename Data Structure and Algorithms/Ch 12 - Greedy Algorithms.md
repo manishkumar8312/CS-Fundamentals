@@ -1,6 +1,6 @@
 # Chapter 12: Greedy Algorithms
 
-Greedy algorithms build a solution step by step by always choosing the locally optimal choice (the one that looks best at the moment) without revisiting previous decisions. This chapter covers the greedy choice property, classic problems (activity selection, fractional knapsack, job sequencing, Huffman coding, coin change, minimum platforms), and comparisons with dynamic programming.
+Greedy algorithms build a solution step by step by always choosing the locally optimal choice (the one that looks best at the moment) without revisiting previous decisions. This chapter covers the greedy choice property, pattern recognition, classic problems (activity selection, fractional knapsack, job sequencing, Huffman coding, coin change, minimum platforms), and comparisons with dynamic programming.
 
 ## 1. Greedy Choice Property
 
@@ -19,7 +19,48 @@ Greedy algorithms build a solution step by step by always choosing the locally o
 
 **Real‑life analogy**: Getting change with the fewest coins using standard denominations (quarters, dimes, nickels, pennies) – always pick the largest coin that fits. This greedy works for US coins but fails for arbitrary denominations (e.g., coins 1, 3, 4 – target 6: greedy picks 4+1+1=3 coins, but optimal is 3+3=2 coins).
 
-## 2. Activity Selection
+## 2. Pattern Recognition: How to Identify Greedy Problems
+
+Recognising that a problem can be solved greedily is often the most challenging part. Use the following heuristics:
+
+### 2.1 Key Indicators
+
+| Indicator | Description | Example |
+|-----------|-------------|---------|
+| **Sorting + choosing best local option** | The solution often starts with sorting the input (by start time, finish time, weight, ratio, etc.) and then making a single pass with a simple selection rule. | Activity selection (sort by finish time), job sequencing (sort by profit). |
+| **Maximisation or minimisation optimisation** | The problem asks for the maximum or minimum value, but unlike DP, subproblems do not overlap heavily. | Minimum number of platforms, maximum profit with fractional items. |
+| **No need to revisit decisions** | Once you make a choice, you never need to change it later. The greedy choice does not affect the feasibility of remaining choices in a way that requires backtracking. | Huffman coding (merge smallest frequencies, never unmerge). |
+| **Interval or resource allocation** | Problems involving scheduling, intervals, or resource allocation often admit greedy solutions. | Activity selection, minimum platforms, job sequencing. |
+| **Invariant or exchange argument works** | You can prove that if an optimal solution differs from the greedy choice, you can swap elements to obtain a solution no worse than the greedy one. | Fractional knapsack (exchange items with better ratio). |
+
+### 2.2 Questions to Ask Yourself
+
+- **Can I sort the input and then make a single pass?** Many greedy algorithms become obvious after sorting.
+- **Does the problem ask for “maximum number” or “minimum cost” without requiring extensive state?** If the answer depends only on a few variables (e.g., last finish time, remaining capacity), greedy might work.
+- **Does the local choice affect only the immediate remaining subproblem, not the entire future?** Example: In activity selection, picking the earliest‑finishing activity leaves the subproblem of scheduling remaining activities after that finish time – it does not change the structure of later choices.
+- **Would a small counter‑example break a naive greedy?** Test on a few custom cases. If greedy fails even on a simple case, you likely need DP.
+
+### 2.3 Common Greedy Archetypes
+
+| Archetype | Typical Greedy Rule | Example Problems |
+|-----------|---------------------|------------------|
+| **Earliest finish time** | Always choose the interval/activity that finishes first. | Activity selection, minimum rooms for lectures. |
+| **Highest value per unit** | Take items with best value/weight ratio first. | Fractional knapsack. |
+| **Largest profit / earliest deadline** | Schedule most profitable jobs as late as possible. | Job sequencing with deadlines. |
+| **Lowest frequency first** | Merge the two smallest frequencies. | Huffman coding. |
+| **Smallest start time + sweep line** | Sort all events, sweep from left to right, maintain active count. | Minimum number of platforms (train arrivals/departures). |
+| **Largest coin that fits** | Pick largest denomination not exceeding remaining amount. | Coin change (canonical systems only). |
+
+### 2.4 When Greedy is Suspect (Use DP Instead)
+
+- **Subproblems overlap heavily** (e.g., shortest path with negative edges, edit distance).
+- **The problem involves “all subsets” or “order matters”** (e.g., 0/1 knapsack, TSP).
+- **Local choice can affect feasibility of multiple future choices** in a non‑trivial way.
+- **The greedy choice fails on a small counter‑example** – test before implementing.
+
+**Rule of thumb**: If you are not 100% sure, try a DP solution first, then see if you can optimise to a greedy approach by proving the exchange property.
+
+## 3. Activity Selection
 
 **Problem**: Given n activities with start and finish times, select the maximum number of non‑overlapping activities.
 
@@ -52,7 +93,7 @@ int activitySelection(vector<Activity>& activities) {
 
 **Real‑life analogy**: Scheduling the most meetings in a conference room – always choose the meeting that ends earliest, freeing the room for subsequent meetings.
 
-## 3. Fractional Knapsack
+## 4. Fractional Knapsack
 
 **Problem**: Given items with weight and value, and a knapsack capacity, maximise total value by taking fractions of items (you can break items arbitrarily).
 
@@ -86,7 +127,7 @@ double fractionalKnapsack(vector<Item>& items, int capacity) {
 
 **Real‑life analogy**: You have a bag of limited size and want to carry the most valuable mixture of grains (e.g., gold dust, silver dust, copper dust). You take the most expensive dust first, possibly partially.
 
-## 4. Job Sequencing with Deadlines
+## 5. Job Sequencing with Deadlines
 
 **Problem**: Each job has a deadline and a profit, takes unit time, and can be scheduled at most one job per time unit. Maximise total profit.
 
@@ -119,7 +160,7 @@ int jobSequencing(vector<Job>& jobs) {
 
 **Real‑life analogy**: Freelancer accepting projects with deadlines and payments; you can only do one project per day, so you prioritise high‑paying jobs and schedule them as late as possible to leave room for other jobs.
 
-## 5. Huffman Coding
+## 6. Huffman Coding
 
 **Problem**: Given character frequencies, build a prefix‑free binary code that minimises the total encoded length.
 
@@ -166,7 +207,7 @@ HuffmanNode* buildHuffmanTree(vector<pair<char, int>>& freqTable) {
 
 **Real‑life analogy**: Assigning shorter codes to common letters in Morse code (e.g., 'E' is '.') to minimise overall message length.
 
-## 6. Coin Change (Greedy vs DP)
+## 7. Coin Change (Greedy vs DP)
 
 **Problem**: Find the minimum number of coins to make a given amount, given coin denominations.
 
@@ -192,7 +233,7 @@ int coinChangeDP(vector<int>& coins, int amount) {
 
 **Takeaway**: Use greedy only if the coin system is proven canonical; otherwise use DP for exact minimum.
 
-## 7. Minimum Number of Platforms (Interval Scheduling)
+## 8. Minimum Number of Platforms (Interval Scheduling)
 
 **Problem**: Given arrival and departure times of trains, find the minimum number of platforms needed so that no train waits.
 
@@ -223,7 +264,7 @@ int findPlatform(vector<int>& arr, vector<int>& dep) {
 
 **Real‑life analogy**: A railway station where you need to determine the peak number of simultaneous trains.
 
-## 8. When NOT to Use Greedy
+## 9. When NOT to Use Greedy
 
 | Problem | Why Greedy Fails | Better Approach |
 |---------|------------------|-----------------|
@@ -232,7 +273,7 @@ int findPlatform(vector<int>& arr, vector<int>& dep) {
 | Coin change (arbitrary denominations) | Greedy may pick large coin that prevents optimal combination | DP |
 | Minimum cost to reach end with variable jumps | Not every locally shortest jump leads to global optimum | DP or Dijkstra |
 
-## 9. Summary Table
+## 10. Summary Table
 
 | Problem | Greedy Choice | Time Complexity | Notes |
 |---------|---------------|-----------------|-------|
