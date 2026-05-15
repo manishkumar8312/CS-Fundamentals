@@ -1,6 +1,6 @@
 # Chapter 12: Greedy Algorithms
 
-Greedy algorithms build a solution step by step by always choosing the locally optimal choice (the one that looks best at the moment) without revisiting previous decisions. This chapter covers the greedy choice property, pattern recognition, classic problems (activity selection, fractional knapsack, job sequencing, Huffman coding, coin change, minimum platforms), and comparisons with dynamic programming.
+Greedy algorithms build a solution step by step by always choosing the locally optimal choice (the one that looks best at the moment) without revisiting previous decisions. This chapter covers the greedy choice property, pattern recognition, classic problems (activity selection, fractional knapsack, job sequencing, Huffman coding, coin change, minimum platforms, Prim’s and Kruskal’s MST algorithms), and comparisons with dynamic programming.
 
 ## 1. Greedy Choice Property
 
@@ -50,6 +50,8 @@ Recognising that a problem can be solved greedily is often the most challenging 
 | **Lowest frequency first** | Merge the two smallest frequencies. | Huffman coding. |
 | **Smallest start time + sweep line** | Sort all events, sweep from left to right, maintain active count. | Minimum number of platforms (train arrivals/departures). |
 | **Largest coin that fits** | Pick largest denomination not exceeding remaining amount. | Coin change (canonical systems only). |
+| **Smallest edge across cut** | Add the cheapest edge connecting tree to outside. | Prim’s algorithm. |
+| **Smallest edge without cycle** | Sort edges, add if no cycle. | Kruskal’s algorithm. |
 
 ### 2.4 When Greedy is Suspect (Use DP Instead)
 
@@ -264,7 +266,99 @@ int findPlatform(vector<int>& arr, vector<int>& dep) {
 
 **Real‑life analogy**: A railway station where you need to determine the peak number of simultaneous trains.
 
-## 9. When NOT to Use Greedy
+## 9. Prim’s Algorithm (Minimum Spanning Tree)
+
+**Problem**: Given a connected weighted undirected graph, find a spanning tree (connects all vertices) with minimum total edge weight.
+
+**Greedy choice**: Start from an arbitrary vertex, repeatedly add the smallest edge that connects a vertex in the current tree to a vertex outside the tree (cut property).
+
+**Approach**: Use a min‑heap to always pick the cheapest edge from the frontier.
+
+```cpp
+using pii = pair<int, int>; // (weight, vertex)
+
+int primMST(vector<vector<pii>>& adj) {
+    int V = adj.size();
+    vector<bool> inMST(V, false);
+    priority_queue<pii, vector<pii>, greater<pii>> pq;
+    pq.push({0, 0}); // start from vertex 0
+    int totalWeight = 0;
+    while (!pq.empty()) {
+        auto [w, u] = pq.top(); pq.pop();
+        if (inMST[u]) continue;
+        inMST[u] = true;
+        totalWeight += w;
+        for (auto& [v, weight] : adj[u]) {
+            if (!inMST[v])
+                pq.push({weight, v});
+        }
+    }
+    return totalWeight;
+}
+```
+
+**Time**: O((V+E) log V) with binary heap. **Space**: O(V).
+
+**Real‑life analogy**: Laying fibre optic cable to connect all towns with minimum total cable length – always extend the network to the nearest unconnected town.
+
+## 10. Kruskal’s Algorithm (Minimum Spanning Tree)
+
+**Problem**: Same as Prim’s – find MST of a weighted undirected graph.
+
+**Greedy choice**: Sort all edges by weight. Add the smallest edge that does not create a cycle (uses Union‑Find to detect cycles).
+
+```cpp
+struct DSU {
+    vector<int> parent, rank;
+    DSU(int n) {
+        parent.resize(n); rank.resize(n, 0);
+        for (int i = 0; i < n; ++i) parent[i] = i;
+    }
+    int find(int x) {
+        if (parent[x] != x) parent[x] = find(parent[x]);
+        return parent[x];
+    }
+    bool unite(int x, int y) {
+        int rx = find(x), ry = find(y);
+        if (rx == ry) return false;
+        if (rank[rx] < rank[ry]) parent[rx] = ry;
+        else if (rank[rx] > rank[ry]) parent[ry] = rx;
+        else { parent[ry] = rx; rank[rx]++; }
+        return true;
+    }
+};
+
+int kruskalMST(vector<tuple<int,int,int>>& edges, int V) {
+    // edges: (weight, u, v)
+    sort(edges.begin(), edges.end());
+    DSU dsu(V);
+    int totalWeight = 0, edgesUsed = 0;
+    for (auto& [w, u, v] : edges) {
+        if (dsu.unite(u, v)) {
+            totalWeight += w;
+            edgesUsed++;
+            if (edgesUsed == V-1) break;
+        }
+    }
+    return totalWeight;
+}
+```
+
+**Time**: O(E log E) due to sorting + O(E α(V)) for Union‑Find. **Space**: O(V).
+
+**Real‑life analogy**: Connecting towns by always choosing the cheapest road that does not create a loop – the towns gradually form a single connected network.
+
+### Prim vs Kruskal
+
+| Feature | Prim | Kruskal |
+|---------|------|---------|
+| Graph representation | Adjacency list | Edge list |
+| Data structure | Min‑heap | Sorting + DSU |
+| Best for | Dense graphs (E ≈ V²) | Sparse graphs (E ≈ V) |
+| Start vertex | Any vertex | Not needed |
+| Cycle detection | Via visited set | Via DSU |
+
+## 11. When NOT to Use Greedy
 
 | Problem | Why Greedy Fails | Better Approach |
 |---------|------------------|-----------------|
@@ -273,7 +367,7 @@ int findPlatform(vector<int>& arr, vector<int>& dep) {
 | Coin change (arbitrary denominations) | Greedy may pick large coin that prevents optimal combination | DP |
 | Minimum cost to reach end with variable jumps | Not every locally shortest jump leads to global optimum | DP or Dijkstra |
 
-## 10. Summary Table
+## 12. Summary Table
 
 | Problem | Greedy Choice | Time Complexity | Notes |
 |---------|---------------|-----------------|-------|
@@ -283,5 +377,7 @@ int findPlatform(vector<int>& arr, vector<int>& dep) {
 | Huffman Coding | Merge smallest frequencies | O(n log n) | Produces optimal prefix code |
 | Coin Change (canonical) | Largest coin ≤ remaining | O(n log n) if sorted | Fails for non‑canonical |
 | Minimum Platforms | Sweep line over sorted times | O(n log n) | Counts maximum overlaps |
+| Prim’s MST | Smallest edge from tree to outside | O((V+E) log V) | Dense graphs |
+| Kruskal’s MST | Smallest edge not forming cycle | O(E log E) | Sparse graphs + DSU |
 
 The next chapter will cover advanced topics: divide and conquer (master theorem, closest pair, Strassen’s matrix multiplication) and algorithmic paradigms.
