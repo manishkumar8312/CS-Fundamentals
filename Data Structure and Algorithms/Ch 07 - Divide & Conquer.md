@@ -29,6 +29,28 @@ The solution (Master Theorem) depends on the relationship between `a`, `b`, and 
 - If `a = bᵈ`, then `T(n) = O(nᵈ log n)`.
 - If `a > bᵈ`, then `T(n) = O(n^(log_b a))` (work dominated by the recursion tree).
 
+Visualising the three cases (work at each level as a geometric series):
+```mermaid
+graph LR
+    subgraph "Case 1: a < b^d"
+        direction LR
+        L1["Level 0: cn^d"] --> L2["Level 1: a*c*(n/b)^d"]
+        L2 --> L3["Level 2: a^2*c*(n/b^2)^d"]
+        L3 --> Lk["... decreasing geometric series → O(n^d)"]
+    end
+    subgraph "Case 2: a = b^d"
+        direction LR
+        M1["Level 0: cn^d"] --> M2["Level 1: cn^d"]
+        M2 --> M3["Level 2: cn^d"]
+        M3 --> Mk["... log n levels → O(n^d log n)"]
+    end
+    subgraph "Case 3: a > b^d"
+        direction LR
+        N1["Level 0: cn^d"] --> N2["Level 1: (a/b^d)cn^d"]
+        N2 --> N3["Level 2: (a/b^d)^2 cn^d"]
+        N3 --> Nk["... increasing geometric → O(n^(log_b a))"]
+    end
+```
 ### 1.3 Relation to Recursion
 
 Recursion is the *mechanism* (a function calling itself). Divide and Conquer is a *strategy* that uses recursion to implement the “conquer” step. Not all recursive algorithms are D&C (e.g., DFS on a graph is recursive but not divide‑and‑conquer because it does not divide the problem into independent subproblems).
