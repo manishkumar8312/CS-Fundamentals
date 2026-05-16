@@ -376,7 +376,7 @@
 
 ---
 
-## Chapter 13: Greedy Algorithms *(renumbered from Chapter 12)*
+## Chapter 13: Greedy Algorithms
 
 * Greedy choice property
 * Activity selection
@@ -388,7 +388,7 @@
 
 ---
 
-## Chapter 14: Important Interview Topics *(renumbered from Chapter 13)*
+## Chapter 14: Important Interview Topics 
 
 * Array vs Linked List
 * Stack vs Queue vs Heap
@@ -405,7 +405,7 @@
 
 ---
 
-## Chapter 15: Complexity Analysis & Numerical Problems *(renumbered from Chapter 14)*
+## Chapter 15: Complexity Analysis & Numerical Problems 
 
 * Recurrence relations and Master Theorem
 * Amortized analysis (dynamic arrays, increment counters)
@@ -422,7 +422,7 @@
 
 ---
 
-## Chapter 16: Advanced & Miscellaneous Topics *(renumbered from Chapter 15)*
+## Chapter 16: Advanced & Miscellaneous Topics
 
 * Monotonic stack (next greater element, largest rectangle)
 * Deque applications (sliding window maximum)
