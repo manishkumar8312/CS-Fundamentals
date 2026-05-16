@@ -1,6 +1,6 @@
 # Chapter 7: Divide and Conquer
 
-Divide and Conquer is a powerful algorithmic paradigm that solves a problem by breaking it into smaller subproblems, solving each subproblem recursively, and then combining the solutions. This chapter covers the fundamental three‑step pattern, recurrence analysis, classic algorithms (binary search, merge sort, quick sort, maximum subarray sum, counting inversions, Karatsuba multiplication, closest pair of points, fast exponentiation), and comparisons with dynamic programming and greedy algorithms.
+Divide and Conquer is a powerful algorithmic paradigm that solves a problem by breaking it into smaller subproblems, solving each subproblem recursively, and then combining the solutions. This chapter covers the fundamental three‑step pattern, recurrence analysis, classic algorithms, when to avoid D&C, important interview problems, and comparisons with dynamic programming and greedy algorithms.
 
 ## 1. The Divide and Conquer Paradigm
 
@@ -302,5 +302,168 @@ long long fastPow(long long a, long long b) {
 | Karatsuba | Split numbers into halves | Combine using 3 multiplications | T(n)=3T(n/2)+O(n) | O(n^1.585) |
 | Closest Pair | Split by x‑coordinate | Check strip of width 2δ | T(n)=2T(n/2)+O(n) | O(n log n) |
 | Fast Exponentiation | Reduce exponent by half | Square/multiply | T(n)=T(n/2)+O(1) | O(log n) |
+
+## 5. When NOT to Use Divide and Conquer
+
+Despite its elegance, D&C is not always the best choice. Recognising when to avoid it is as important as knowing when to apply it.
+
+### 5.1 Overlapping Subproblems → Use Dynamic Programming
+
+If subproblems are not independent but overlap significantly, D&C will recompute the same subproblems many times, leading to exponential time. DP avoids this by storing results.
+
+**Example**: Fibonacci numbers. D&C recursion `fib(n) = fib(n-1) + fib(n-2)` recomputes the same values exponentially (O(2ⁿ)). DP solves it in O(n).
+
+**Key question**: Does the same subproblem appear repeatedly? If yes, consider DP.
+
+### 5.2 Too Expensive Combine Step
+
+Even if the divide and conquer steps are efficient, a costly combine operation can dominate the runtime.
+
+**Example**: Simple recursive matrix multiplication (divide into 4 submatrices, 8 multiplications) has combine step O(n²) but still yields O(n³) – the same as naive. Strassen’s algorithm reduces multiplications to 7, making the combine step worthwhile only for large n. If the combine step cannot be made sub‑linear or linear, D&C may not improve over brute force.
+
+### 5.3 Problem Size Does Not Reduce Significantly
+
+If the problem cannot be divided into substantially smaller subproblems (e.g., each subproblem is only one or two elements smaller), the recursion depth becomes O(n) and the total complexity may degrade to O(n²) or worse.
+
+**Example**: Quick sort with poor pivot choice degrades to O(n²). In such cases, iterative algorithms or different paradigms (like heap sort) are better.
+
+### 5.4 Recursion Overhead Is Too High
+
+For very small input sizes, the overhead of function calls and stack management can outweigh the benefits of divide and conquer. In practice, many D&C algorithms switch to a simple iterative sort (e.g., insertion sort) for small subarrays – this is called **hybrid approach**.
+
+### 5.5 The Problem Is Already Solved More Simply
+
+Sometimes a greedy or direct mathematical formula exists.
+
+**Example**: Finding the maximum subarray sum – D&C gives O(n log n), but Kadane’s algorithm solves it in O(n) with O(1) space. Similarly, median of two sorted arrays can be solved with binary search (D&C) but can also be approached with two‑pointer merging (though less efficient).
+
+### Decision Flowchart
+
+```
+Is there overlapping subproblems? → YES → Use DP
+NO → Does the combine step take > O(n log n)? → YES → Consider alternative
+NO → Does the problem size reduce significantly? → YES → D&C may work
+```
+
+## 6. Important Interview Problems (Divide & Conquer Edition)
+
+The following problems frequently appear in coding interviews and have elegant D&C solutions.
+
+### 6.1 Majority Element (D&C Version)
+
+**Problem**: Find the element that appears more than ⌊n/2⌋ times in an array (assume such an element exists).
+
+**D&C approach**: Divide the array into two halves. Find the majority candidate in the left half and in the right half. If they are the same, that is the global majority. If different, count their frequencies in the whole array – the one with the higher count is the answer.
+
+**Recurrence**: `T(n) = 2T(n/2) + O(n)` → O(n log n) (Moore’s voting algorithm is O(n), but D&C version is instructive).
+
+```cpp
+int countFreq(vector<int>& nums, int target, int left, int right) {
+    int cnt = 0;
+    for (int i = left; i <= right; ++i)
+        if (nums[i] == target) cnt++;
+    return cnt;
+}
+
+int majorityElementDC(vector<int>& nums, int left, int right) {
+    if (left == right) return nums[left];
+    int mid = left + (right - left) / 2;
+    int leftMaj = majorityElementDC(nums, left, mid);
+    int rightMaj = majorityElementDC(nums, mid+1, right);
+    if (leftMaj == rightMaj) return leftMaj;
+    int leftCount = countFreq(nums, leftMaj, left, right);
+    int rightCount = countFreq(nums, rightMaj, left, right);
+    return leftCount > rightCount ? leftMaj : rightMaj;
+}
+```
+
+### 6.2 The Skyline Problem
+
+**Problem**: Given a list of buildings (left, right, height), return the skyline (list of key points where the height changes).
+
+**D&C approach**:
+- Divide the list of buildings into two halves.
+- Recursively compute the skyline for each half.
+- Merge the two skylines by sweeping from left to right, always keeping the taller height.
+
+**Time**: O(n log n). **Space**: O(n).
+
+*(Full implementation is lengthy; the key insight is that merging skylines is similar to merging two sequences of horizontal segments.)*
+
+### 6.3 Search in Rotated Sorted Array
+
+**Problem**: A sorted array is rotated at an unknown pivot. Search for a target in O(log n).
+
+**D&C / Binary Search approach**: Find which half is sorted and decide where to search.
+
+```cpp
+int searchRotated(vector<int>& nums, int target) {
+    int left = 0, right = nums.size() - 1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (nums[mid] == target) return mid;
+        if (nums[left] <= nums[mid]) { // left half sorted
+            if (target >= nums[left] && target < nums[mid])
+                right = mid - 1;
+            else
+                left = mid + 1;
+        } else { // right half sorted
+            if (target > nums[mid] && target <= nums[right])
+                left = mid + 1;
+            else
+                right = mid - 1;
+        }
+    }
+    return -1;
+}
+```
+
+**Time**: O(log n). This is essentially binary search with an extra condition – a pure D&C example.
+
+### 6.4 Median of Two Sorted Arrays
+
+**Problem**: Find the median of two sorted arrays of sizes m and n in O(log(m+n)) time.
+
+**D&C / Binary Search approach**: Partition both arrays such that the left part contains (m+n+1)/2 elements and the maximum of the left part is less than or equal to the minimum of the right part.
+
+```cpp
+double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+    if (nums1.size() > nums2.size())
+        return findMedianSortedArrays(nums2, nums1);
+    int m = nums1.size(), n = nums2.size();
+    int low = 0, high = m;
+    while (low <= high) {
+        int partition1 = (low + high) / 2;
+        int partition2 = (m + n + 1) / 2 - partition1;
+        int maxLeft1 = (partition1 == 0) ? INT_MIN : nums1[partition1 - 1];
+        int minRight1 = (partition1 == m) ? INT_MAX : nums1[partition1];
+        int maxLeft2 = (partition2 == 0) ? INT_MIN : nums2[partition2 - 1];
+        int minRight2 = (partition2 == n) ? INT_MAX : nums2[partition2];
+        if (maxLeft1 <= minRight2 && maxLeft2 <= minRight1) {
+            if ((m + n) % 2 == 0)
+                return (max(maxLeft1, maxLeft2) + min(minRight1, minRight2)) / 2.0;
+            else
+                return max(maxLeft1, maxLeft2);
+        } else if (maxLeft1 > minRight2) {
+            high = partition1 - 1;
+        } else {
+            low = partition1 + 1;
+        }
+    }
+    return 0.0;
+}
+```
+
+**Time**: O(log(min(m, n))). This is a classic divide‑and‑conquer (binary search) on the smaller array.
+
+## 7. When to Apply D&C – Quick Reference
+
+| Condition | Recommendation |
+|-----------|----------------|
+| Problem can be split into independent subproblems | ✅ Consider D&C |
+| Subproblems overlap significantly | ❌ Use DP |
+| Combine step is O(n) or O(n log n) and problem size halves | ✅ D&C likely works |
+| Combine step is O(n²) or higher | ❌ Look for alternative |
+| Problem is naturally recursive (trees, divide‑and‑conquer patterns) | ✅ D&C is natural |
 
 The next chapter will cover dynamic programming in depth (overlapping subproblems, tabulation vs memoization, and classic DP problems).
