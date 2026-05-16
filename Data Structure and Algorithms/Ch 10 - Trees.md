@@ -1,4 +1,4 @@
-# Chapter 9: Trees
+# Chapter 10: Trees
 
 Trees are hierarchical data structures where each node has zero or more children. This chapter covers binary trees, binary search trees, balanced BSTs, heaps, and advanced trees (Trie, Segment Tree, Fenwick Tree, Disjoint Set Union). Each section includes definitions, operations, complexity, C++ code, and real‑life analogies.
 

@@ -1,4 +1,4 @@
-# Chapter 12: Greedy Algorithms
+# Chapter 13: Greedy Algorithms
 
 Greedy algorithms build a solution step by step by always choosing the locally optimal choice (the one that looks best at the moment) without revisiting previous decisions. This chapter covers the greedy choice property, pattern recognition, classic problems (activity selection, fractional knapsack, job sequencing, Huffman coding, coin change, minimum platforms, Prim’s and Kruskal’s MST algorithms), and comparisons with dynamic programming.
 

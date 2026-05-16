@@ -1,4 +1,4 @@
-# Chapter 8: Hashing
+# Chapter 9: Hashing
 
 Hashing provides near‑constant‑time insertion, deletion, and lookup by mapping keys to array indices using a hash function. This chapter covers hash functions, collision resolution strategies, load factor, rehashing, implementations of hash maps and sets, and classic applications.
 

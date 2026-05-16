@@ -1,4 +1,4 @@
-# Chapter 7: Sorting and Searching
+# Chapter 8: Sorting and Searching
 
 This chapter covers essential sorting algorithms (comparison‑based and non‑comparison) and searching techniques, including binary search variations. Each algorithm includes asymptotic analysis, stability, in‑place property, and C++ implementation.
 

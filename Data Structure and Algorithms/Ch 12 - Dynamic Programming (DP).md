@@ -1,4 +1,4 @@
-# Chapter 11: Dynamic Programming (DP)
+# Chapter 12: Dynamic Programming (DP)
 
 Dynamic Programming is a method for solving complex problems by breaking them into smaller overlapping subproblems and storing the results of each subproblem to avoid redundant computation. This chapter covers DP fundamentals, common mistakes, pattern recognition, when NOT to use DP, classic DP problems, subsequence and substring problems, knapsack, DP on strings, trees, bitmask DP, and Kadane’s algorithm as a DP view.
 

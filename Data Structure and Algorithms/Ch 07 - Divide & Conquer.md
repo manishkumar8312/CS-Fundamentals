@@ -1,0 +1,306 @@
+# Chapter 7: Divide and Conquer
+
+Divide and Conquer is a powerful algorithmic paradigm that solves a problem by breaking it into smaller subproblems, solving each subproblem recursively, and then combining the solutions. This chapter covers the fundamental three‑step pattern, recurrence analysis, classic algorithms (binary search, merge sort, quick sort, maximum subarray sum, counting inversions, Karatsuba multiplication, closest pair of points, fast exponentiation), and comparisons with dynamic programming and greedy algorithms.
+
+## 1. The Divide and Conquer Paradigm
+
+### 1.1 Three Steps
+
+1. **Divide**: Split the problem into smaller subproblems of the same type.
+2. **Conquer**: Solve each subproblem recursively. If a subproblem is small enough, solve it directly (base case).
+3. **Combine**: Merge the solutions of the subproblems into a solution for the original problem.
+
+**Real‑life analogy**: Organising a large tournament.  
+- **Divide**: Split all players into two equal halves.  
+- **Conquer**: Recursively find the champion of each half.  
+- **Combine**: Have the two champions play the final match.
+
+### 1.2 Recurrence Relation
+
+For a D&C algorithm that divides the problem into `a` subproblems of size `n/b` and takes `O(nᵈ)` time for division and combination, the recurrence is:
+
+```
+T(n) = a * T(n/b) + O(nᵈ)
+```
+
+The solution (Master Theorem) depends on the relationship between `a`, `b`, and `d`:
+
+- If `a < bᵈ`, then `T(n) = O(nᵈ)` (work dominated by the combine step).
+- If `a = bᵈ`, then `T(n) = O(nᵈ log n)`.
+- If `a > bᵈ`, then `T(n) = O(n^(log_b a))` (work dominated by the recursion tree).
+
+### 1.3 Relation to Recursion
+
+Recursion is the *mechanism* (a function calling itself). Divide and Conquer is a *strategy* that uses recursion to implement the “conquer” step. Not all recursive algorithms are D&C (e.g., DFS on a graph is recursive but not divide‑and‑conquer because it does not divide the problem into independent subproblems).
+
+## 2. Classic Divide and Conquer Algorithms
+
+### 2.1 Binary Search
+
+**Problem**: Find a target value in a sorted array.
+
+**Divide**: Compare target with the middle element.  
+**Conquer**: Recursively search the left half (if target < mid) or the right half (if target > mid).  
+**Combine**: No explicit combine step – just return the result.
+
+**Recurrence**: `T(n) = T(n/2) + O(1)` → `T(n) = O(log n)`.
+
+```cpp
+int binarySearch(vector<int>& arr, int left, int right, int target) {
+    if (left > right) return -1;
+    int mid = left + (right - left) / 2;
+    if (arr[mid] == target) return mid;
+    if (arr[mid] < target) return binarySearch(arr, mid+1, right, target);
+    return binarySearch(arr, left, mid-1, target);
+}
+```
+
+**Real‑life analogy**: Looking up a name in a thick phone book – you open it in the middle, then decide whether to search the left or right half, repeating until you find the name.
+
+### 2.2 Merge Sort
+
+**Problem**: Sort an array.
+
+**Divide**: Split the array into two halves (roughly equal size).  
+**Conquer**: Recursively sort each half.  
+**Combine**: Merge the two sorted halves into a single sorted array.
+
+**Recurrence**: `T(n) = 2T(n/2) + O(n)` → `T(n) = O(n log n)`.
+
+```cpp
+void merge(vector<int>& arr, int left, int mid, int right) {
+    vector<int> temp(right - left + 1);
+    int i = left, j = mid+1, k = 0;
+    while (i <= mid && j <= right)
+        temp[k++] = (arr[i] <= arr[j]) ? arr[i++] : arr[j++];
+    while (i <= mid) temp[k++] = arr[i++];
+    while (j <= right) temp[k++] = arr[j++];
+    for (int p = 0; p < temp.size(); ++p) arr[left + p] = temp[p];
+}
+
+void mergeSort(vector<int>& arr, int left, int right) {
+    if (left >= right) return;
+    int mid = left + (right - left) / 2;
+    mergeSort(arr, left, mid);
+    mergeSort(arr, mid+1, right);
+    merge(arr, left, mid, right);
+}
+```
+
+**Real‑life analogy**: Sorting a large pile of exam papers by student ID – split the pile into two halves, sort each half recursively, then merge the sorted piles by repeatedly taking the smallest top paper.
+
+### 2.3 Quick Sort (Conceptual)
+
+**Problem**: Sort an array.
+
+**Divide**: Choose a pivot element, partition the array so that elements less than the pivot come before it and elements greater come after.  
+**Conquer**: Recursively sort the left partition and the right partition.  
+**Combine**: No explicit combine step – the array is sorted in place.
+
+**Recurrence** (average case): `T(n) = 2T(n/2) + O(n)` → `O(n log n)`.  
+**Worst case** (pivot always smallest/largest): `T(n) = T(n-1) + O(n)` → `O(n²)`.
+
+```cpp
+int partition(vector<int>& arr, int low, int high) {
+    int pivot = arr[high];
+    int i = low - 1;
+    for (int j = low; j < high; ++j)
+        if (arr[j] < pivot) swap(arr[++i], arr[j]);
+    swap(arr[i+1], arr[high]);
+    return i+1;
+}
+
+void quickSort(vector<int>& arr, int low, int high) {
+    if (low < high) {
+        int pi = partition(arr, low, high);
+        quickSort(arr, low, pi-1);
+        quickSort(arr, pi+1, high);
+    }
+}
+```
+
+**Real‑life analogy**: Sorting a dictionary by randomly picking a word (pivot) and arranging all words before/after it, then sorting the two groups independently.
+
+### 2.4 Maximum Subarray Sum (Divide & Conquer Version)
+
+**Problem**: Find the contiguous subarray with the largest sum.
+
+**Divide**: Split array into left and right halves.  
+**Conquer**: Recursively compute the maximum subarray sum in the left half and in the right half.  
+**Combine**: The maximum subarray may cross the middle – compute the maximum sum that starts in the left and ends in the right, then take `max(leftBest, rightBest, crossBest)`.
+
+**Recurrence**: `T(n) = 2T(n/2) + O(n)` → `O(n log n)` (Kadane’s algorithm is O(n), but this D&C version illustrates the paradigm).
+
+```cpp
+int crossSum(vector<int>& arr, int left, int mid, int right) {
+    int leftSum = INT_MIN, sum = 0;
+    for (int i = mid; i >= left; --i) {
+        sum += arr[i];
+        leftSum = max(leftSum, sum);
+    }
+    int rightSum = INT_MIN;
+    sum = 0;
+    for (int i = mid+1; i <= right; ++i) {
+        sum += arr[i];
+        rightSum = max(rightSum, sum);
+    }
+    return leftSum + rightSum;
+}
+
+int maxSubarrayDAC(vector<int>& arr, int left, int right) {
+    if (left == right) return arr[left];
+    int mid = left + (right - left) / 2;
+    int leftMax = maxSubarrayDAC(arr, left, mid);
+    int rightMax = maxSubarrayDAC(arr, mid+1, right);
+    int crossMax = crossSum(arr, left, mid, right);
+    return max({leftMax, rightMax, crossMax});
+}
+```
+
+### 2.5 Counting Inversions
+
+**Problem**: Count the number of pairs `(i, j)` with `i < j` and `arr[i] > arr[j]` (inversions measure how far an array is from sorted).
+
+**Approach**: Modify merge sort. When merging two sorted halves, if an element from the right half is smaller than an element from the left half, it forms inversions with all remaining elements in the left half.
+
+**Recurrence**: Same as merge sort: `T(n) = 2T(n/2) + O(n)` → `O(n log n)`.
+
+```cpp
+long long mergeAndCount(vector<int>& arr, int left, int mid, int right) {
+    vector<int> temp;
+    int i = left, j = mid+1;
+    long long invCount = 0;
+    while (i <= mid && j <= right) {
+        if (arr[i] <= arr[j]) temp.push_back(arr[i++]);
+        else {
+            temp.push_back(arr[j++]);
+            invCount += (mid - i + 1); // all remaining left elements > arr[j]
+        }
+    }
+    while (i <= mid) temp.push_back(arr[i++]);
+    while (j <= right) temp.push_back(arr[j++]);
+    for (int k = 0; k < temp.size(); ++k) arr[left + k] = temp[k];
+    return invCount;
+}
+
+long long countInversions(vector<int>& arr, int left, int right) {
+    if (left >= right) return 0;
+    int mid = left + (right - left) / 2;
+    long long inv = countInversions(arr, left, mid);
+    inv += countInversions(arr, mid+1, right);
+    inv += mergeAndCount(arr, left, mid, right);
+    return inv;
+}
+```
+
+**Real‑life analogy**: In a crowd of people arranged by height, counting how many pairs are out of order (taller person standing before a shorter person). The divide‑and‑conquer approach counts inversions in each half and across the halves during merge.
+
+### 2.6 Karatsuba Algorithm for Fast Multiplication
+
+**Problem**: Multiply two large integers (or polynomials) faster than the standard O(n²) algorithm.
+
+**Key insight**: For two n‑digit numbers `x` and `y`, write:
+```
+x = a * 10^(n/2) + b
+y = c * 10^(n/2) + d
+```
+Standard multiplication: `x*y = ac*10^n + (ad+bc)*10^(n/2) + bd` → 4 multiplications (ac, ad, bc, bd) → O(n²).
+
+Karatsuba observation: compute:
+```
+ac = multiply(a, c)
+bd = multiply(b, d)
+(ad+bc) = multiply(a+b, c+d) - ac - bd
+```
+This requires only 3 multiplications → recurrence `T(n) = 3T(n/2) + O(n)` → `O(n^(log₂3)) ≈ O(n^1.585)`.
+
+```cpp
+// Simplified for integers (base 10)
+long long karatsuba(long long x, long long y) {
+    if (x < 10 || y < 10) return x * y;
+    int n = max(to_string(x).size(), to_string(y).size());
+    int m = n / 2;
+    long long power = pow(10, m);
+    long long a = x / power, b = x % power;
+    long long c = y / power, d = y % power;
+    long long ac = karatsuba(a, c);
+    long long bd = karatsuba(b, d);
+    long long sum = karatsuba(a+b, c+d) - ac - bd;
+    return ac * pow(10, 2*m) + sum * pow(10, m) + bd;
+}
+```
+
+**Real‑life analogy**: Multiplying two large numbers by splitting them into halves – fewer large multiplications, more additions, which are cheaper.
+
+### 2.7 Closest Pair of Points (2D, Conceptual)
+
+**Problem**: Given n points in the plane, find the pair with the smallest Euclidean distance.
+
+**Divide**: Sort points by x‑coordinate. Split into left and right halves by the median x.  
+**Conquer**: Recursively find the minimum distance `δ` in the left half and in the right half.  
+**Combine**: The closest pair may cross the dividing line – consider only points within `δ` of the midline; sort these by y and check each against the next few (constant number) points.
+
+**Recurrence**: `T(n) = 2T(n/2) + O(n log n)` (for sorting by y) → can be optimised to `T(n) = 2T(n/2) + O(n)` → `O(n log n)`.
+
+**Real‑life analogy**: Finding the two closest friends in a large party by first separating into left and right halves, finding closest pairs in each half, then checking pairs near the dividing line.
+
+### 2.8 Fast Exponentiation (Power of a Number)
+
+**Problem**: Compute `a^b` efficiently.
+
+**Divide**: If `b` is even, `a^b = (a^(b/2))^2`. If odd, `a^b = a * a^(b-1)`.
+
+**Conquer**: Recursively compute `a^(b/2)`.
+
+**Combine**: Square the result (or multiply by `a` for odd case).
+
+**Recurrence**: `T(n) = T(n/2) + O(1)` → `O(log b)`.
+
+```cpp
+long long fastPow(long long a, long long b) {
+    if (b == 0) return 1;
+    long long half = fastPow(a, b / 2);
+    if (b % 2 == 0) return half * half;
+    return half * half * a;
+}
+```
+
+**Real‑life analogy**: Raising a number to a large power by repeatedly squaring – much faster than multiplying `a` by itself `b` times.
+
+## 3. Divide and Conquer vs Other Paradigms
+
+### 3.1 Divide and Conquer vs Dynamic Programming
+
+| Aspect | Divide and Conquer | Dynamic Programming |
+|--------|--------------------|---------------------|
+| Subproblem nature | Independent (no overlap) | Overlapping subproblems |
+| Solves | Many distinct subproblems (e.g., merge sort, quick sort) | Problems with repeated subproblems (e.g., Fibonacci, LCS) |
+| Storage | Typically no memoisation | Uses memoisation or tabulation |
+| Classic examples | Binary search, merge sort, closest pair | Knapsack, LCS, shortest paths |
+
+**Key distinction**: In D&C, subproblems are *disjoint* (they do not share smaller subproblems). In DP, subproblems *overlap* (same subproblem appears multiple times).
+
+### 3.2 Divide and Conquer vs Greedy
+
+| Aspect | Divide and Conquer | Greedy |
+|--------|--------------------|--------|
+| Decision making | Solves all subproblems, then combines | Makes one locally optimal choice per step, never revisits |
+| Correctness | Always correct if recursion works | Requires proof of greedy choice property |
+| Examples | Merge sort, Karatsuba | Activity selection, fractional knapsack |
+
+**Key distinction**: Greedy algorithms do not divide the problem into independent subproblems – they build a solution incrementally.
+
+## 4. Summary Table
+
+| Algorithm | Divide Step | Combine Step | Recurrence | Time Complexity |
+|-----------|-------------|--------------|------------|-----------------|
+| Binary Search | Compare with middle | None | T(n)=T(n/2)+O(1) | O(log n) |
+| Merge Sort | Split into halves | Merge two sorted halves | T(n)=2T(n/2)+O(n) | O(n log n) |
+| Quick Sort | Partition around pivot | None (in‑place) | Avg: 2T(n/2)+O(n) | Avg O(n log n), worst O(n²) |
+| Max Subarray D&C | Split into halves | Compute cross sum | T(n)=2T(n/2)+O(n) | O(n log n) |
+| Counting Inversions | Split into halves | Count cross inversions during merge | T(n)=2T(n/2)+O(n) | O(n log n) |
+| Karatsuba | Split numbers into halves | Combine using 3 multiplications | T(n)=3T(n/2)+O(n) | O(n^1.585) |
+| Closest Pair | Split by x‑coordinate | Check strip of width 2δ | T(n)=2T(n/2)+O(n) | O(n log n) |
+| Fast Exponentiation | Reduce exponent by half | Square/multiply | T(n)=T(n/2)+O(1) | O(log n) |
+
+The next chapter will cover dynamic programming in depth (overlapping subproblems, tabulation vs memoization, and classic DP problems).

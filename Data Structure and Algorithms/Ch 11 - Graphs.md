@@ -1,4 +1,4 @@
-# Chapter 10: Graphs
+# Chapter 11: Graphs
 
 Graphs model relationships between objects. This chapter covers graph representations, traversals (DFS, BFS), shortest path algorithms, minimum spanning trees, topological sorting, cycle detection, strongly connected components, network flow basics, and classic graph problems. Each section includes definitions, complexity, C++ implementations, and real‑life analogies.
 

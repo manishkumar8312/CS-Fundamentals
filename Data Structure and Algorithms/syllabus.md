@@ -154,7 +154,31 @@
 
 ---
 
-## Chapter 7: Sorting and Searching
+## Chapter 7: Divide and Conquer 
+
+* **Divide, Conquer, Combine** – three-step paradigm
+* Recurrence relation for D&C: T(n) = aT(n/b) + O(nᵈ)
+* Relation to recursion (recursion is the mechanism, D&C is a strategy)
+
+### Classic D&C Algorithms
+
+* Binary search (T(n) = T(n/2) + O(1))
+* Merge sort (T(n) = 2T(n/2) + O(n))
+* Quick sort (conceptual – pivot, partition, recurse)
+* Maximum subarray sum (divide & conquer version – alternative to Kadane)
+* Counting inversions (using modified merge sort)
+* Karatsuba algorithm for fast multiplication (O(n^1.585))
+* Closest pair of points (2D, O(n log n) – conceptual)
+* Power of a number (fast exponentiation as D&C)
+
+### D&C vs Other Paradigms
+
+* Divide and Conquer vs Dynamic Programming (overlapping subproblems vs non‑overlapping)
+* Divide and Conquer vs Greedy
+
+---
+
+## Chapter 8: Sorting and Searching *(renumbered from Chapter 7)*
 
 ### Sorting Algorithms
 
@@ -187,7 +211,7 @@
 
 ---
 
-## Chapter 8: Hashing
+## Chapter 9: Hashing 
 
 * Hash functions
 * Collision resolution:
@@ -207,7 +231,7 @@
 
 ---
 
-## Chapter 9: Trees
+## Chapter 10: Trees 
 
 ### Binary Trees
 
@@ -251,7 +275,7 @@
 
 ---
 
-## Chapter 10: Graphs
+## Chapter 11: Graphs
 
 ### Graph Representations
 
@@ -305,7 +329,7 @@
 
 ---
 
-## Chapter 11: Dynamic Programming (DP)
+## Chapter 12: Dynamic Programming (DP) 
 
 ### DP Fundamentals
 
@@ -352,7 +376,7 @@
 
 ---
 
-## Chapter 12: Greedy Algorithms
+## Chapter 13: Greedy Algorithms *(renumbered from Chapter 12)*
 
 * Greedy choice property
 * Activity selection
@@ -364,7 +388,7 @@
 
 ---
 
-## Chapter 13: Important Interview Topics
+## Chapter 14: Important Interview Topics *(renumbered from Chapter 13)*
 
 * Array vs Linked List
 * Stack vs Queue vs Heap
@@ -374,14 +398,14 @@
 * Comparison of sorting algorithms (stability, in-place, time/space)
 * Singly vs Doubly Linked List
 * Binary Search Tree vs Hash Table
-* When to use DP vs Greedy vs Backtracking
+* When to use DP vs Greedy vs Backtracking vs Divide and Conquer
 * Union-Find applications
 * Trie vs Hash Table for string search
 * Two-pointer vs Sliding Window
 
 ---
 
-## Chapter 14: Complexity Analysis & Numerical Problems
+## Chapter 15: Complexity Analysis & Numerical Problems *(renumbered from Chapter 14)*
 
 * Recurrence relations and Master Theorem
 * Amortized analysis (dynamic arrays, increment counters)
@@ -398,7 +422,7 @@
 
 ---
 
-## Chapter 15: Advanced & Miscellaneous Topics
+## Chapter 16: Advanced & Miscellaneous Topics *(renumbered from Chapter 15)*
 
 * Monotonic stack (next greater element, largest rectangle)
 * Deque applications (sliding window maximum)
