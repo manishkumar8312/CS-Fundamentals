@@ -29,7 +29,7 @@ The solution (Master Theorem) depends on the relationship between `a`, `b`, and 
 - If `a = bᵈ`, then `T(n) = O(nᵈ log n)`.
 - If `a > bᵈ`, then `T(n) = O(n^(log_b a))` (work dominated by the recursion tree).
 
-Visualising the three cases (work at each level as a geometric series):
+**Visualising the three cases** (work at each level as a geometric series):
 ```mermaid
 graph LR
     subgraph "Case 1: a < b^d"
@@ -110,7 +110,28 @@ void mergeSort(vector<int>& arr, int left, int right) {
 ```
 
 **Real‑life analogy**: Sorting a large pile of exam papers by student ID – split the pile into two halves, sort each half recursively, then merge the sorted piles by repeatedly taking the smallest top paper.
-
+```mermaid
+graph TD
+    subgraph "Divide (top-down)"
+        A["[3,1,4,1,5,9,2,6]"] --> B["[3,1,4,1]"]
+        A --> C["[5,9,2,6]"]
+        B --> D["[3,1]"] & E["[4,1]"]
+        C --> F["[5,9]"] & G["[2,6]"]
+        D --> H["[3]"] & I["[1]"]
+        E --> J["[4]"] & K["[1]"]
+        F --> L["[5]"] & M["[9]"]
+        G --> N["[2]"] & O["[6]"]
+    end
+    subgraph "Merge (bottom-up)"
+        H --> H2["[1,3]"]; I --> H2
+        J --> J2["[1,4]"]; K --> J2
+        H2 --> B2["[1,1,3,4]"]; J2 --> B2
+        L --> L2["[5,9]"]; M --> L2
+        N --> N2["[2,6]"]; O --> N2
+        L2 --> C2["[2,5,6,9]"]; N2 --> C2
+        B2 --> A2["[1,1,2,3,4,5,6,9]"]; C2 --> A2
+    end
+```
 ### 2.3 Quick Sort (Conceptual)
 
 **Problem**: Sort an array.
@@ -253,6 +274,20 @@ long long karatsuba(long long x, long long y) {
 ```
 
 **Real‑life analogy**: Multiplying two large numbers by splitting them into halves – fewer large multiplications, more additions, which are cheaper.
+
+```mermaid
+graph TD
+    A["n (1 multiplication)"] --> B["n/2 (ac)"]
+    A --> C["n/2 (bd)"]
+    A --> D["n/2 ((a+b)(c+d))"]
+    B --> E["n/4"] & F["n/4"] & G["n/4"]
+    C --> H["n/4"] & I["n/4"] & J["n/4"]
+    D --> K["n/4"] & L["n/4"] & M["n/4"]
+    style A fill:#9cf
+    style B fill:#9cf
+    style C fill:#9cf
+    style D fill:#9cf
+```
 
 ### 2.7 Closest Pair of Points (2D, Conceptual)
 
