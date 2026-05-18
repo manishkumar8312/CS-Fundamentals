@@ -439,4 +439,4 @@
 
 ## Support
 
-If this repository adds value to your learning, consider giving it a star to show your support. Contributions, corrections, and additional problem lists are welcome.
+If this repository adds value to your learning, consider giving it a star⭐ to show your support. Contributions, corrections, and additional problem lists are welcome.
