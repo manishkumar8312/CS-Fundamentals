@@ -194,7 +194,7 @@ Typical usage in a compiler project:
 ```mermaid
 flowchart TD
     subgraph Manual
-        M[Hand‑written Driver & Symbol Table]
+        M[Hand-written Driver and Symbol Table]
     end
 
     subgraph Generated
@@ -204,7 +204,7 @@ flowchart TD
 
     B -->|token stream| D
     D -->|AST| M
-    M -->|IR| Backend[Back‑end (LLVM / custom)]
+    M -->|IR| Backend[Back-end, LLVM or custom]
 ```
 
 - **Lex** generates a finite automaton that recognizes tokens and invokes user‑defined actions (e.g., returning a token type).
