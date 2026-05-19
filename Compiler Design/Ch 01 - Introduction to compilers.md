@@ -151,7 +151,7 @@ flowchart LR
         F3 --> F4[IR Generation]
     end
 
-    subgraph MiddleEnd [Middle-end (optional)]
+    subgraph MiddleEnd [Middle-end, optional]
         M1[Machine-independent Optimizations]
     end
 
