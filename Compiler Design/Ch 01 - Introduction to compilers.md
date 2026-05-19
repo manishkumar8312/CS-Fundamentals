@@ -35,6 +35,9 @@ flowchart TD
         B3 -->|machine code| C3[Object File]
         C3 -->|link & run| D3[Output]
     end
+
+    Compiler_Approach --> Interpreter_Approach
+    Interpreter_Approach --> Assembler_Approach
 ```
 
 ### 2. Need for Compilers
