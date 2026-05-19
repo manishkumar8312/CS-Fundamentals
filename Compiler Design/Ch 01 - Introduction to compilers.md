@@ -145,17 +145,17 @@ The compiler is logically split into a **front‑end** and a **back‑end**, sep
 
 ```mermaid
 flowchart LR
-    subgraph FrontEnd [Front‑end]
+    subgraph FrontEnd [Front-end]
         F1[Lexical Analysis] --> F2[Syntax Analysis]
         F2 --> F3[Semantic Analysis]
         F3 --> F4[IR Generation]
     end
 
-    subgraph MiddleEnd [Middle‑end (optional)]
-        M1[Machine‑independent Optimizations]
+    subgraph MiddleEnd [Middle-end (optional)]
+        M1[Machine-independent Optimizations]
     end
 
-    subgraph BackEnd [Back‑end]
+    subgraph BackEnd [Back-end]
         B1[Instruction Selection]
         B1 --> B2[Register Allocation]
         B2 --> B3[Instruction Scheduling]
@@ -163,9 +163,9 @@ flowchart LR
     end
 
     Source[Source Language] --> FrontEnd
-    FrontEnd --> IR
+    FrontEnd --> IR[Intermediate Representation]
     IR --> MiddleEnd
-    MiddleEnd --> IR2
+    MiddleEnd --> IR2[Optimized IR]
     IR2 --> BackEnd
     BackEnd --> Target[Target Machine Code]
 
