@@ -1,4 +1,4 @@
-## Chapter 2: Lexical Analysis – Professional Description with Mermaid Diagrams
+## Chapter 2: Lexical Analysis
 
 ### 1. Role of the Lexical Analyzer (Scanner)
 
