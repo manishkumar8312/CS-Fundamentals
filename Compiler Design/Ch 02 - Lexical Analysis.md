@@ -28,17 +28,17 @@ Two buffers of size *N* are used alternately. A sentinel (`EOF` or a special cha
 ```mermaid
 flowchart TD
     subgraph Buffer1
-        B1[ ... x > = y ... | SENTINEL ]
+        B1["... x > = y ... &#124; SENTINEL"]
     end
     subgraph Buffer2
-        B2[ ... next part ... | SENTINEL ]
+        B2["... next part ... &#124; SENTINEL"]
     end
-    P1[lexeme_begin] --> B1
-    P2[forward] --> B1
+    P1["lexeme_begin"] --> B1
+    P2["forward"] --> B1
     
     P2 -- "forward reaches sentinel" --> Decision{Refill?}
-    Decision -- "not end of file" --> Refill[Load next block into Buffer2]
-    Refill --> Reset[Reset lexeme_begin, forward]
+    Decision -- "not end of file" --> Refill["Load next block into Buffer2"]
+    Refill --> Reset["Reset lexeme_begin, forward"]
 ```
 
 **Sentinels** remove explicit bounds checks at each character access – the sentinel is tested only when reached.
