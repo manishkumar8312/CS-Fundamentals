@@ -6,10 +6,10 @@ The lexical analyzer is the first compiler phase. It reads the source character 
 
 ```mermaid
 flowchart LR
-    A[Source Code<br>character stream] --> B[Lexical Analyzer<br>Scanner]
-    B --> C[Token stream<br>e.g., <ID, "x">, <NUMBER,10>]
-    B --> D[Symbol Table<br>attributes]
-    C --> E[Parser]
+    A["Source Code<br>character stream"] --> B["Lexical Analyzer<br>Scanner"]
+    B --> C["Token stream<br>e.g., (ID, 'x'), (NUMBER,10)"]
+    B --> D["Symbol Table<br>attributes"]
+    C --> E["Parser"]
 ```
 
 **Example:**  
