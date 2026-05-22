@@ -188,9 +188,9 @@ flowchart LR
         direction TB
         R1[ r ] --> C1[ concatenation ]
         R2[ s ] --> C1
-        R1 --> Alt[ alternation r|s ]
+        R1 --> Alt["alternation r&#124;s"]
         R2 --> Alt
-        R1 --> Star[ Kleene star r* ]
+        R1 --> Star["Kleene star r*"]
     end
 ```
 
