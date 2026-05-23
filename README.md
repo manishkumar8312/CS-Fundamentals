@@ -58,20 +58,20 @@ It serves as a consolidated reference for essential CS subjects commonly expecte
 
 ---
 
-### [Computer Network](./Computer%20Network/README.md)
+### [Computer Network](./Computer%20Network/)
 
-* [Intro to Computer Networks](./Computer%20Network/README.md#intro-to-computer-networks)
-* [Network Models](./Computer%20Network/README.md#network-models)
-* [Physical Layer](./Computer%20Network/README.md#physical-layer)
-* [Data Link Layer](./Computer%20Network/README.md#data-link-layer)
-* [Network Layer](./Computer%20Network/README.md#network-layer)
-* [Transport Layer](./Computer%20Network/README.md#transport-layer)
-* [Application Layer](./Computer%20Network/README.md#application-layer)
-* [Network Security](./Computer%20Network/README.md#network-security)
-* [Congestion Control and QoS](./Computer%20Network/README.md#congestion-control-and-qos)
-* [Wireless and Mobile Network](./Computer%20Network/README.md#wireless-and-mobile-network)
-* [Numerical Topics](./Computer%20Network/README.md#numerical-topics)
-* [Interview Topics](./Computer%20Network/README.md#interview-topics)
+* [Intro to Computer Networks](./Computer%20Network/Ch%2001%20-%20Intro%20to%20Computer%20Networks.md)
+* [Network Models](./Computer%20Network/Ch%2002%20-%20Network%20Models.md)
+* [Physical Layer](./Computer%20Network/Ch%2003%20-%20Physical%20Layer.md)
+* [Data Link Layer](./Computer%20Network/Ch%2004%20-%20Data%20Link%20Layer.md)
+* [Network Layer](./Computer%20Network/Ch%2005%20-%20Network%20Layer.md)
+* [Transport Layer](./Computer%20Network/Ch%2006%20-%20Transport%20Layer.md)
+* [Application Layer](./Computer%20Network/Ch%2007%20-%20Application%20Layer.md)
+* [Network Security](./Computer%20Network/Ch%2008%20-%20Network%20Security.md)
+* [Congestion Control and QoS](./Computer%20Network/Ch%2009%20-%20Congestion%20Control%20and%20QoS.md)
+* [Wireless and Mobile Network](./Computer%20Network/Ch%2010%20-%20Wireless%20and%20Mobile%20Network.md)
+* [Numerical Topics](./Computer%20Network/Ch%2011%20-%20Numerical%20Topics.md)
+* [Interview Topics](./Computer%20Network/Ch%2012%20-%20Interview%20Topics.md)
 
 ---
 
