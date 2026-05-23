@@ -1,4 +1,4 @@
-## CS Fundamentals
+# CS Fundamentals
 
 <p align="center">
 	<img src="assets/github-banner.svg" alt="CS Fundamentals Banner" width="1200" height="320" />
@@ -19,93 +19,114 @@ It serves as a consolidated reference for essential CS subjects commonly expecte
 
 ## Topics Covered
 
-### Data Structures and Algorithms
+### Data Structure and Algorithms
 
-* Mathematics and Complexity Analysis
+* Introduction to DSA
+* Mathematics & Prerequisites
 * Arrays and Strings
-* Linked Lists
+* Linked List
 * Stacks and Queues
 * Recursion and Backtracking
-* Searching and Sorting Algorithms
+* Divide & Conquer
+* Sorting & Searching
 * Hashing
-* Trees and Binary Trees
-* Graph Algorithms (BFS, DFS, Shortest Paths, MST)
-* Problem Solving Techniques
+* Trees
+* Graphs
+* Dynamic Programming (DP)
+* Greedy Algorithms
+* Important Interview Topics
+* Complexity Analysis & Numerical Problems
+* Advanced & Miscellaneous Topics
 
 ---
 
-### Operating Systems
+### Operating System
 
-* Process and Thread Management
-* CPU Scheduling Algorithms
+* Introduction to OS
+* Process Management
+* CPU Scheduling
 * Process Synchronization
 * Deadlocks
 * Memory Management
-* Paging and Segmentation
 * Virtual Memory
-* File Systems
-* I/O Systems
-* Protection and Security
-* Distributed Systems and Virtualization
+* File System
+* IO Systems
+* Protection & Security
+* Virtualization and Cloud Computing
+* Distributed Operating Systems
+* Advanced Topics
 
 ---
 
-### Computer Networks
+### Computer Network
 
-* OSI and TCP/IP Models
-* Physical, Data Link, and Network Layers
-* Routing Algorithms
-* IP Addressing and Subnetting
-* TCP vs UDP
-* Flow and Congestion Control
-* DNS, HTTP, HTTPS
+* Intro to Computer Networks
+* Network Models
+* Physical Layer
+* Data Link Layer
+* Network Layer
+* Transport Layer
+* Application Layer
 * Network Security
-* Wireless and Mobile Networks
+* Congestion Control and QoS
+* Wireless and Mobile Network
+* Numerical Topics
+* Interview Topics
 
 ---
 
-### Database Management Systems
+### DBMS
 
 * Database Fundamentals
 * Relational Model
 * Relational Algebra
-* SQL Queries
+* SQL
 * ER Model
 * Functional Dependencies
 * Normalization
-* Transactions and ACID Properties
+* Transactions
 * Concurrency Control
-* Recovery Systems
-* Indexing and Hashing
-* File Organization and Storage Management
+* Recovery System
+* Indexing
+* File Organization & Hashing
+* Storage and Buffer Management
 
 ---
 
-### Object-Oriented Programming
+### Object Oriented Programing
 
+* Introduction to OOP and C++ Basics
 * Classes and Objects
-* Encapsulation and Abstraction
+* Encapsulation and Data Hiding
 * Inheritance
 * Polymorphism
 * Operator Overloading
 * Exception Handling
-* Templates and Generic Programming
-* STL (Standard Template Library)
-* Design Patterns
-* Modern C++ Features and Best Practices
+* Template (Generic Programming)
+* Standard Template Library(STL)
+* Advanced C++ Features
+* Design Pattern in C++
+* Best Practices and Idioms
+* Debugging, Testing and Tools
+* Hands-on Projects and Problem Sets
+* Comparison with other OOPs Language
 
 ---
 
-### Theory of Computation
+### Theory Of Computation
 
+* Introduction of TOC
 * Finite Automata
 * Regular Languages and Regular Expressions
-* Context-Free Grammars
+* Pumping Lemma for RL
+* Context-Free Grammars (CFG)
+* Simplification and Normal Forms of CFG
 * Pushdown Automata
-* Turing Machines
+* Pumping Lemma for Context-Free Languages
+* Turing Machine
 * Decidability and Undecidability
 * Chomsky Hierarchy
-* Computational Complexity
+* Introduction to Computational Complexity
 
 ---
 
@@ -115,10 +136,10 @@ It serves as a consolidated reference for essential CS subjects commonly expecte
 Computer Network/
 DBMS/
 Data Structure and Algorithms/
-Object Oriented Programming/
+Object Oriented Programing/
 Operating System/
 Theory Of Computation/
-````
+```
 
 Each subject is divided into chapter-wise notes with:
 
@@ -177,6 +198,3 @@ This repository emphasizes:
 ## ⭐ Support
 
 If this repository adds value to your learning, consider giving it a ⭐ to support the project.
-
-
-
