@@ -40,21 +40,21 @@ It serves as a consolidated reference for essential CS subjects commonly expecte
 
 ---
 
-### [Operating System](./Operating%20System/README.md)
+### [Operating System](./Operating%20System/)
 
-* [Introduction to OS](./Operating%20System/README.md#introduction-to-os)
-* [Process Management](./Operating%20System/README.md#process-management)
-* [CPU Scheduling](./Operating%20System/README.md#cpu-scheduling)
-* [Process Synchronization](./Operating%20System/README.md#process-synchronization)
-* [Deadlocks](./Operating%20System/README.md#deadlocks)
-* [Memory Management](./Operating%20System/README.md#memory-management)
-* [Virtual Memory](./Operating%20System/README.md#virtual-memory)
-* [File System](./Operating%20System/README.md#file-system)
-* [IO Systems](./Operating%20System/README.md#io-systems)
-* [Protection & Security](./Operating%20System/README.md#protection--security)
-* [Virtualization and Cloud Computing](./Operating%20System/README.md#virtualization-and-cloud-computing)
-* [Distributed Operating Systems](./Operating%20System/README.md#distributed-operating-systems)
-* [Advanced Topics](./Operating%20System/README.md#advanced-topics)
+* [Introduction to OS](./Operating%20System/Ch%2001%20-%20Introduction%20to%20OS.md)
+* [Process Management](./Operating%20System/Ch%2002%20-%20Process%20Management.md)
+* [CPU Scheduling](./Operating%20System/Ch%2003%20-%20CPU%20Scheduling.md)
+* [Process Synchronization](./Operating%20System/Ch%2004%20-%20Process%20Synchronization.md)
+* [Deadlocks](./Operating%20System/Ch%2005%20-%20Deadlocks.md)
+* [Memory Management](./Operating%20System/Ch%2006%20-%20Memory%20Management.md)
+* [Virtual Memory](./Operating%20System/Ch%2007%20-%20Virtual%20Memory.md)
+* [File System](./Operating%20System/Ch%2008%20-%20File%20System.md)
+* [IO Systems](./Operating%20System/Ch%2009%20-%20IO%20Systems.md)
+* [Protection & Security](./Operating%20System/Ch%2010%20-%20Protection%20%26%20Security.md)
+* [Virtualization and Cloud Computing](./Operating%20System/Ch%2011%20-%20Virtualization%20and%20Cloud%20Computing.md)
+* [Distributed Operating Systems](./Operating%20System/Ch%2012%20-%20Distributed%20Operating%20Systems.md)
+* [Advanced Topics](./Operating%20System/Ch%2013%20-%20Advanced%20Topics.md)
 
 ---
 
