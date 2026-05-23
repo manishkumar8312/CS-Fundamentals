@@ -19,24 +19,24 @@ It serves as a consolidated reference for essential CS subjects commonly expecte
 
 ## Topics Covered
 
-### [Data Structure and Algorithms](./Data%20Structure%20and%20Algorithms/README.md)
+### [Data Structure and Algorithms](./Data%20Structure%20and%20Algorithms/)
 
-* [Introduction to DSA](./Data%20Structure%20and%20Algorithms/README.md#introduction-to-dsa)
-* [Mathematics & Prerequisites](./Data%20Structure%20and%20Algorithms/README.md#mathematics--prerequisites)
-* [Arrays and Strings](./Data%20Structure%20and%20Algorithms/README.md#arrays-and-strings)
-* [Linked List](./Data%20Structure%20and%20Algorithms/README.md#linked-list)
-* [Stacks and Queues](./Data%20Structure%20and%20Algorithms/README.md#stacks-and-queues)
-* [Recursion and Backtracking](./Data%20Structure%20and%20Algorithms/README.md#recursion-and-backtracking)
-* [Divide & Conquer](./Data%20Structure%20and%20Algorithms/README.md#divide--conquer)
-* [Sorting & Searching](./Data%20Structure%20and%20Algorithms/README.md#sorting--searching)
-* [Hashing](./Data%20Structure%20and%20Algorithms/README.md#hashing)
-* [Trees](./Data%20Structure%20and%20Algorithms/README.md#trees)
-* [Graphs](./Data%20Structure%20and%20Algorithms/README.md#graphs)
-* [Dynamic Programming (DP)](./Data%20Structure%20and%20Algorithms/README.md#dynamic-programming-dp)
-* [Greedy Algorithms](./Data%20Structure%20and%20Algorithms/README.md#greedy-algorithms)
-* [Important Interview Topics](./Data%20Structure%20and%20Algorithms/README.md#important-interview-topics)
-* [Complexity Analysis & Numerical Problems](./Data%20Structure%20and%20Algorithms/README.md#complexity-analysis--numerical-problems)
-* [Advanced & Miscellaneous Topics](./Data%20Structure%20and%20Algorithms/README.md#advanced--miscellaneous-topics)
+* [Introduction to DSA](./Data%20Structure%20and%20Algorithms/Ch%2001%20-%20Introduction%20to%20DSA.md)
+* [Mathematics & Prerequisites](./Data%20Structure%20and%20Algorithms/Ch%2002%20-%20Mathematics%20%26%20Prerequisites.md)
+* [Arrays and Strings](./Data%20Structure%20and%20Algorithms/Ch%2003%20-%20Arrays%20and%20Strings.md)
+* [Linked List](./Data%20Structure%20and%20Algorithms/Ch%2004%20-%20Linked%20List.md)
+* [Stacks and Queues](./Data%20Structure%20and%20Algorithms/Ch%2005%20-%20Stacks%20and%20Queues.md)
+* [Recursion and Backtracking](./Data%20Structure%20and%20Algorithms/Ch%2006%20-%20Recursion%20and%20Backtracking.md)
+* [Divide & Conquer](./Data%20Structure%20and%20Algorithms/Ch%2007%20-%20Divide%20%26%20Conquer.md)
+* [Sorting & Searching](./Data%20Structure%20and%20Algorithms/Ch%2008%20-%20Sorting%20%26%20Searching.md)
+* [Hashing](./Data%20Structure%20and%20Algorithms/Ch%2009%20-%20Hashing.md)
+* [Trees](./Data%20Structure%20and%20Algorithms/Ch%2010%20-%20Trees.md)
+* [Graphs](./Data%20Structure%20and%20Algorithms/Ch%2011%20-%20Graphs.md)
+* [Dynamic Programming (DP)](./Data%20Structure%20and%20Algorithms/Ch%2012%20-%20Dynamic%20Programming%20(DP).md)
+* [Greedy Algorithms](./Data%20Structure%20and%20Algorithms/Ch%2013%20-%20Greedy%20Algorithms.md)
+* [Important Interview Topics](./Data%20Structure%20and%20Algorithms/Ch%2014%20-%20Important%20Interview%20Topics.md)
+* [Complexity Analysis & Numerical Problems](./Data%20Structure%20and%20Algorithms/Ch%2015%20-%20Complexity%20Analysis%20%26%20Numerical%20Problems.md)
+* [Advanced & Miscellaneous Topics](./Data%20Structure%20and%20Algorithms/Ch%2016%20-%20Advanced%20%26%20Miscellaneous%20Topics.md)
 
 ---
 
