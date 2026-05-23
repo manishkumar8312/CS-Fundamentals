@@ -75,22 +75,21 @@ It serves as a consolidated reference for essential CS subjects commonly expecte
 
 ---
 
-### [DBMS](./DBMS/README.md)
+### [DBMS](./DBMS/)
 
-* [Database Fundamentals](./DBMS/README.md#database-fundamentals)
-* [Relational Model](./DBMS/README.md#relational-model)
-* [Relational Algebra](./DBMS/README.md#relational-algebra)
-* [SQL](./DBMS/README.md#sql)
-* [ER Model](./DBMS/README.md#er-model)
-* [Functional Dependencies](./DBMS/README.md#functional-dependencies)
-* [Normalization](./DBMS/README.md#normalization)
-* [Transactions](./DBMS/README.md#transactions)
-* [Concurrency Control](./DBMS/README.md#concurrency-control)
-* [Recovery System](./DBMS/README.md#recovery-system)
-* [Indexing](./DBMS/README.md#indexing)
-* [File Organization & Hashing](./DBMS/README.md#file-organization--hashing)
-* [Storage and Buffer Management](./DBMS/README.md#storage-and-buffer-management)
-
+* [Database Fundamentals](./DBMS/Ch%2001%20-%20Database%20Fundamentals.md)
+* [Relational Model](./DBMS/Ch%2002%20-%20Relational%20Model.md)
+* [Relational Algebra](./DBMS/Ch%2003%20-%20Relational%20Algebra.md)
+* [SQL](./DBMS/Ch%2004%20-%20SQL.md)
+* [ER Model](./DBMS/Ch%2005%20-%20ER%20Model.md)
+* [Functional Dependencies](./DBMS/Ch%2006%20-%20Functional%20Dependencies.md)
+* [Normalization](./DBMS/Ch%2007%20-%20Normalization.md)
+* [Transactions](./DBMS/Ch%2008%20-%20Transactions.md)
+* [Concurrency Control](./DBMS/Ch%2009%20-%20Concurrency%20Control.md)
+* [Recovery System](./DBMS/Ch%2010%20-%20Recovery%20System.md)
+* [Indexing](./DBMS/Ch%2011%20-%20Indexing.md)
+* [File Organization & Hashing](./DBMS/Ch%2012%20-%20File%20Organization%20%26%20Hashing.md)
+* [Storage and Buffer Management](./DBMS/Ch%2013%20-%20Storage%20and%20Buffer%20Management.md)
 ---
 
 ### [Object Oriented Programming](./Object%20Oriented%20Programing/README.md)
