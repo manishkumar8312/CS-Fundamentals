@@ -112,21 +112,20 @@ It serves as a consolidated reference for essential CS subjects commonly expecte
 
 ---
 
-### [Theory Of Computation](./Theory%20Of%20Computation/README.md)
+### [Theory Of Computation](./Theory%20Of%20Computation/)
 
-* [Introduction of TOC](./Theory%20Of%20Computation/README.md#introduction-of-toc)
-* [Finite Automata](./Theory%20Of%20Computation/README.md#finite-automata)
-* [Regular Languages and Regular Expressions](./Theory%20Of%20Computation/README.md#regular-languages-and-regular-expressions)
-* [Pumping Lemma for RL](./Theory%20Of%20Computation/README.md#pumping-lemma-for-rl)
-* [Context-Free Grammars (CFG)](./Theory%20Of%20Computation/README.md#context-free-grammars-cfg)
-* [Simplification and Normal Forms of CFG](./Theory%20Of%20Computation/README.md#simplification-and-normal-forms-of-cfg)
-* [Pushdown Automata](./Theory%20Of%20Computation/README.md#pushdown-automata)
-* [Pumping Lemma for Context-Free Languages](./Theory%20Of%20Computation/README.md#pumping-lemma-for-context-free-languages)
-* [Turing Machine](./Theory%20Of%20Computation/README.md#turing-machine)
-* [Decidability and Undecidability](./Theory%20Of%20Computation/README.md#decidability-and-undecidability)
-* [Chomsky Hierarchy](./Theory%20Of%20Computation/README.md#chomsky-hierarchy)
-* [Introduction to Computational Complexity](./Theory%20Of%20Computation/README.md#introduction-to-computational-complexity)
-
+* [Introduction of TOC](./Theory%20Of%20Computation/Ch01%20-%20Introduction%20of%20TOC.md)
+* [Finite Automata](./Theory%20Of%20Computation/Ch02%20-%20Finite%20Automata.md)
+* [Regular Languages and Regular Expressions](./Theory%20Of%20Computation/Ch03%20-%20Regular%20Languages%20and%20Regular%20Expressions.md)
+* [Pumping Lemma for RL](./Theory%20Of%20Computation/Ch04%20-%20Pumping%20Lemma%20for%20RL.md)
+* [Context-Free Grammars (CFG)](./Theory%20Of%20Computation/Ch05%20-%20Context-Free%20Grammars%20(CFG).md)
+* [Simplification and Normal Forms of CFG](./Theory%20Of%20Computation/Ch06%20-%20Simplification%20and%20Normal%20Forms%20of%20CFG.md)
+* [Pushdown Automata](./Theory%20Of%20Computation/Ch07%20-%20Pushdown%20Automata.md)
+* [Pumping Lemma for Context-Free Languages](./Theory%20Of%20Computation/Ch08%20-%20Pumping%20Lemma%20for%20Context-Free%20Languages.md)
+* [Turing Machine](./Theory%20Of%20Computation/Ch09%20-%20Turing%20Machine.md)
+* [Decidability and Undecidability](./Theory%20Of%20Computation/Ch10%20-%20Decidability%20and%20Undecidability.md)
+* [Chomsky Hierarchy](./Theory%20Of%20Computation/Ch11%20-%20Chomsky%20Hierarchy.md)
+* [Introduction to Computational Complexity](./Theory%20Of%20Computation/Ch12%20-%20%20Introduction%20to%20Computational%20Complexity.md)
 ---
 
 ## Repository Structure
