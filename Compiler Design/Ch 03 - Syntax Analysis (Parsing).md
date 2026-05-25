@@ -1,19 +1,17 @@
-# Syntax Analysis (Parsing) - Complete Guide
+# Chapter 03 - Syntax Analysis (Parsing)
 
-This document provides a comprehensive, in-depth explanation of syntax analysis (parsing) in compiler design. The guide covers context-free grammars, top-down parsing (LL(1)), bottom-up parsing (LR family), and error recovery strategies.
-
----
+A comprehensive, in-depth reference on syntax analysis (parsing) in compiler design. This guide covers context-free grammars, top-down parsing (LL(1)), bottom-up parsing (LR family), and error recovery strategies. Designed for students, engineers, and compiler enthusiasts.
 
 ## 1. Context‑Free Grammars (CFG)
 
-A **Context-Free Grammar** is a 4‑tuple \( G = (N, T, P, S) \) where:
-- \( N \) : finite set of **non‑terminals**
-- \( T \) : finite set of **terminals** (tokens from the lexer)
-- \( P \) : finite set of **productions** of the form \( A \to \alpha \) ( \( A \in N, \alpha \in (N \cup T)^* \) )
-- \( S \in N \) : **start symbol**
+A **Context-Free Grammar** is a 4‑tuple $G = (N, T, P, S)$ where:
+- $N$ : finite set of **non‑terminals**
+- $T$ : finite set of **terminals** (tokens from the lexer)
+- $P$ : finite set of **productions** of the form $A \to \alpha$ ( $A \in N, \alpha \in (N \cup T)^*$ )
+- $S \in N$ : **start symbol**
 
 **Example grammar for arithmetic expressions:**
-```
+```text
 E → E + T | T
 T → T * F | F
 F → ( E ) | id
@@ -76,32 +74,32 @@ graph TD
 A grammar is **ambiguous** if there exists a string with two distinct parse trees (or leftmost derivations).
 
 **Classic example – dangling‑else:**
-```
+```text
 stmt → if expr then stmt | if expr then stmt else stmt | other
 ```
 For the string `if e1 then if e2 then s1 else s2`, two parse trees exist.
 
 **Removing ambiguity:** Rewrite the grammar to enforce a rule (e.g., `else` matches the closest unmatched `if`).
-```
+```text
 stmt → matched_stmt | unmatched_stmt
 matched_stmt → if expr then matched_stmt else matched_stmt | other
 unmatched_stmt → if expr then stmt | if expr then matched_stmt else unmatched_stmt
 ```
 
 ### 1.4 Eliminating Left Recursion
-Left recursion (\( A \to A\alpha | \beta \)) causes infinite loops in top‑down parsers.
+Left recursion ($A \to A\alpha \mid \beta$) causes infinite loops in top‑down parsers.
 
 **Algorithm** – Replace
-\[
-A \to A\alpha_1 | A\alpha_2 | \dots | A\alpha_m | \beta_1 | \beta_2 | \dots | \beta_n
-\]
+$$
+A \to A\alpha_1 \mid A\alpha_2 \mid \dots \mid A\alpha_m \mid \beta_1 \mid \beta_2 \mid \dots \mid \beta_n
+$$
 with
-\[
+$$
 \begin{aligned}
-A &\to \beta_1 A' | \beta_2 A' | \dots | \beta_n A' \\
-A' &\to \alpha_1 A' | \alpha_2 A' | \dots | \alpha_m A' | \varepsilon
+A &\to \beta_1 A' \mid \beta_2 A' \mid \dots \mid \beta_n A' \\
+A' &\to \alpha_1 A' \mid \alpha_2 A' \mid \dots \mid \alpha_m A' \mid \varepsilon
 \end{aligned}
-\]
+$$
 
 ```mermaid
 flowchart LR
@@ -115,7 +113,7 @@ flowchart LR
 ```
 
 **Example:**
-```
+```text
 E → E + T | T      becomes:   E → T E'
 T → T * F | F                E' → + T E' | ε
 F → (E) | id                 T → F T'
@@ -125,9 +123,9 @@ F → (E) | id                 T → F T'
 
 ### 1.5 Left Factoring
 When two productions of a non‑terminal share a common prefix, left factoring delays the decision:
-\[
-A \to \alpha\beta_1 | \alpha\beta_2 \quad\Rightarrow\quad A \to \alpha A',\ A' \to \beta_1 | \beta_2
-\]
+$$
+A \to \alpha\beta_1 \mid \alpha\beta_2 \quad\Rightarrow\quad A \to \alpha A',\; A' \to \beta_1 \mid \beta_2
+$$
 
 ```mermaid
 flowchart LR
@@ -170,14 +168,14 @@ Uses a **parsing table** and a stack, no backtracking. The grammar must be **LL(
 **FOLLOW(A)** – set of terminals that can appear immediately to the right of A in some derivation.
 
 **Construction rules (FIRST):**
-1. If \( a \in T \), then \( a \in FIRST(a) \).
-2. If \( A \to \varepsilon \), then \( \varepsilon \in FIRST(A) \).
-3. If \( A \to X_1 X_2 \dots X_k \), add \( FIRST(X_1) \) to \( FIRST(A) \). If \( X_1 \Rightarrow^* \varepsilon \), add \( FIRST(X_2) \), etc.
+1. If $a \in T$, then $a \in \text{FIRST}(a)$.
+2. If $A \to \varepsilon$, then $\varepsilon \in \text{FIRST}(A)$.
+3. If $A \to X_1 X_2 \dots X_k$, add $\text{FIRST}(X_1)$ to $\text{FIRST}(A)$. If $X_1 \Rightarrow^* \varepsilon$, add $\text{FIRST}(X_2)$, etc.
 
 **Construction rules (FOLLOW):**
-1. \( \$ \in FOLLOW(S) \) (end‑of‑input marker)
-2. If \( A \to \alpha B \beta \), then \( FIRST(\beta) \setminus \{\varepsilon\} \subseteq FOLLOW(B) \)
-3. If \( A \to \alpha B \) or \( A \to \alpha B \beta \) with \( \varepsilon \in FIRST(\beta) \), then \( FOLLOW(A) \subseteq FOLLOW(B) \)
+1. $\$ \in \text{FOLLOW}(S)$ (end‑of‑input marker)
+2. If $A \to \alpha B \beta$, then $\text{FIRST}(\beta) \setminus \{\varepsilon\} \subseteq \text{FOLLOW}(B)$
+3. If $A \to \alpha B$ or $A \to \alpha B \beta$ with $\varepsilon \in \text{FIRST}(\beta)$, then $\text{FOLLOW}(A) \subseteq \text{FOLLOW}(B)$
 
 ```mermaid
 flowchart TD
@@ -193,14 +191,14 @@ flowchart TD
 ```
 
 ### 2.4 LL(1) Grammars
-A grammar is **LL(1)** if for every pair of productions \( A \to \alpha | \beta \):
-- \( FIRST(\alpha) \cap FIRST(\beta) = \emptyset \)
-- If \( \varepsilon \in FIRST(\alpha) \), then \( FIRST(\beta) \cap FOLLOW(A) = \emptyset \) (and vice versa)
+A grammar is **LL(1)** if for every pair of productions $A \to \alpha \mid \beta$:
+- $\text{FIRST}(\alpha) \cap \text{FIRST}(\beta) = \emptyset$
+- If $\varepsilon \in \text{FIRST}(\alpha)$, then $\text{FIRST}(\beta) \cap \text{FOLLOW}(A) = \emptyset$ (and vice versa)
 
 **LL(1) Parsing Table Construction:**
-- For each production \( A \to \alpha \):
-  - For each \( t \in FIRST(\alpha) \), set \( M[A, t] = A \to \alpha \)
-  - If \( \varepsilon \in FIRST(\alpha) \), then for each \( b \in FOLLOW(A) \), set \( M[A, b] = A \to \alpha \)
+- For each production $A \to \alpha$:
+  - For each $t \in \text{FIRST}(\alpha)$, set $M[A, t] = A \to \alpha$
+  - If $\varepsilon \in \text{FIRST}(\alpha)$, then for each $b \in \text{FOLLOW}(A)$, set $M[A, b] = A \to \alpha$
 
 ### 2.5 LL(1) Parsing Algorithm (Stack‑Based)
 
@@ -266,7 +264,7 @@ An LR parser uses:
 - An **input buffer**
 
 **LR Items:** A production with a dot (•) indicating how much has been seen.  
-Example: \( A \to \alpha \cdot \beta \) means we have already parsed α, expect β.
+Example: $A \to \alpha \cdot \beta$ means we have already parsed $\alpha$, expect $\beta$.
 
 **Closure(I)** – adds items that become reachable when the dot is before a non‑terminal.  
 **Goto(I, X)** – moves the dot past symbol X in all items of I where X follows the dot.
@@ -290,8 +288,8 @@ Uses LR(0) items + FOLLOW sets to resolve conflicts.
 **Parsing table construction:**
 1. Build LR(0) automaton.
 2. ACTION[i, t] = **shift j** if GOTO(i, t) = j (t terminal)
-3. ACTION[i, $] = **accept** if i contains \( S' \to S \cdot \)
-4. For each item \( A \to \alpha \cdot \) in state i, for each \( b \in FOLLOW(A) \), set ACTION[i, b] = **reduce A → α**
+3. ACTION[i, $] = **accept** if i contains $S' \to S \cdot$
+4. For each item $A \to \alpha \cdot$ in state i, for each $b \in \text{FOLLOW}(A)$, set ACTION[i, b] = **reduce $A \to \alpha$**
 5. GOTO[i, A] = j if GOTO(i, A) = j (A non‑terminal)
 
 **Conflicts:**
@@ -310,7 +308,7 @@ flowchart TD
 ```
 
 ### 3.5 Canonical LR(1) Items
-LR(1) items include a **lookahead** symbol. Form: \([A \to \alpha \cdot \beta, a]\) where \(a\) is a terminal or $.  
+LR(1) items include a **lookahead** symbol. Form: $[A \to \alpha \cdot \beta, a]$ where $a$ is a terminal or \$.  
 Reduction only when the next token matches the lookahead. More powerful than SLR(1) but many more states.
 
 ### 3.6 LALR(1) Parsing (Lookahead LR)
@@ -322,8 +320,8 @@ Most practical parsers (YACC, Bison, ANTLR) generate LALR(1) tables.
 
 | Conflict type | Meaning | Example |
 |---------------|---------|---------|
-| Shift‑reduce | Parser can either shift or reduce | `E → E+E • , +` (shift vs reduce) |
-| Reduce‑reduce | Two different reductions possible | `A → α •` and `B → α •` on same lookahead |
+| Shift‑reduce | Parser can either shift or reduce | $E \to E+E \cdot , +$ (shift vs reduce) |
+| Reduce‑reduce | Two different reductions possible | $A \to \alpha \cdot$ and $B \to \alpha \cdot$ on same lookahead |
 
 **Resolution:**
 - Prefer shift (dangling‑else)
@@ -374,7 +372,7 @@ Attempts to repair the error locally by inserting, deleting, or replacing tokens
 
 ### 4.3 Error Productions
 Add productions specifically for erroneous constructs, e.g.:
-```
+```text
 stmt → error ;        # skip to semicolon
 stmt → if expr then stmt else error
 ```
