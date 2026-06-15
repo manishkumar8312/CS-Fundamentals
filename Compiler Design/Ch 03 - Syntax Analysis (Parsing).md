@@ -299,7 +299,7 @@ Uses LR(0) items + FOLLOW sets to resolve conflicts.
 ```mermaid
 flowchart TD
     Start[Grammar] --> Aug[Augmented grammar]
-    Aug --> LR0[LR(0) items & automaton]
+    Aug --> LR0["LR(0) items & automaton"]
     LR0 --> Follow[Compute FOLLOW sets]
     Follow --> BuildSLR[Build SLR table using FOLLOW]
     BuildSLR --> Check{Conflicts?}
