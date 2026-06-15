@@ -303,8 +303,8 @@ flowchart TD
     LR0 --> Follow[Compute FOLLOW sets]
     Follow --> BuildSLR[Build SLR table using FOLLOW]
     BuildSLR --> Check{Conflicts?}
-    Check -->|Yes| NotSLR[Grammar not SLR(1)]
-    Check -->|No| SLR1[SLR(1) grammar]
+    Check -->|Yes| NotSLR["Grammar not SLR(1)"]
+    Check -->|No| SLR1["SLR(1) grammar"]
 ```
 
 ### 3.5 Canonical LR(1) Items
