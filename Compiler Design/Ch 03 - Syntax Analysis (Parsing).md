@@ -235,13 +235,13 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    subgraph Panic mode recovery
-        P1[Error at stack top A] --> P2[Skip tokens until t in FOLLOW(A)]
-        P2 --> P3[Pop A, resume parsing]
+    subgraph "Panic mode recovery"
+        P1["Error at stack top A"] --> P2["Skip tokens until t in FOLLOW(A)"]
+        P2 --> P3["Pop A, resume parsing"]
     end
-    subgraph Phrase‑level
-        R1[Detect error] --> R2[Insert/delete minimal tokens]
-        R2 --> R3[Continue with modified input]
+    subgraph "Phrase-level"
+        R1["Detect error"] --> R2["Insert/delete minimal tokens"]
+        R2 --> R3["Continue with modified input"]
     end
 ```
 
