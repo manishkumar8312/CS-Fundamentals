@@ -211,7 +211,7 @@ flowchart TD
     check -->|yes| accept([Accept])
     check -->|no| read
     loop -->|X is terminal & X!=a| error([Error])
-    loop -->|X is non‑terminal| table[M[X,a] = production?]
+    loop -->|X is non-terminal| table{"M[X,a] = production?"}
     table -->|yes| replace[pop X, push production body in reverse order]
     replace --> read
     table -->|no| error
