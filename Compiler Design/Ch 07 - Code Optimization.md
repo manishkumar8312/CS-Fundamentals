@@ -274,19 +274,19 @@ Reorders instructions to hide latencies (e.g., pipeline stalls). Important for s
 
 ```mermaid
 flowchart LR
-    subgraph Unscheduled
-        A[load r1, [a]]
-        B[add r2, r1, #1]
-        C[load r3, [b]]
-        D[mul r4, r3, #2]
-        E[store [c], r2]
+    subgraph "Unscheduled"
+        A["load r1, [a]"]
+        B["add r2, r1, #1"]
+        C["load r3, [b]"]
+        D["mul r4, r3, #2"]
+        E["store [c], r2"]
     end
-    subgraph Scheduled
-        A1[load r1, [a]]
-        C1[load r3, [b]]
-        B1[add r2, r1, #1]
-        D1[mul r4, r3, #2]
-        E1[store [c], r2]
+    subgraph "Scheduled"
+        A1["load r1, [a]"]
+        C1["load r3, [b]"]
+        B1["add r2, r1, #1"]
+        D1["mul r4, r3, #2"]
+        E1["store [c], r2"]
     end
     Unscheduled -->|Reorder independent loads| Scheduled
 ```
