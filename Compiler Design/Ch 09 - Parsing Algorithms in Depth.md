@@ -436,16 +436,20 @@ The core of an LR(1) item `[A → α • β, a]` is `A → α • β` (drop the 
 **Mermaid: LALR Merging Process**
 ```mermaid
 graph TD
-    subgraph CLR[CLR(1) States]
-        A[State I1: <br> X→a.b , {c}] --> B[Goto d]
-        C[State I2: <br> X→a.b , {d}] --> D[Goto e]
+
+    subgraph CLR_States
+        A["State I1<br/>X → a.b , {c}"] --> B["Goto d"]
+        C["State I2<br/>X → a.b , {d}"] --> D["Goto e"]
     end
-    subgraph LALR[LALR(1) Merge]
-        E[State I_merge: <br> X→a.b , {c,d}] --> F[Goto d/e combined]
+
+    subgraph LALR_Merge
+        E["State I_merge<br/>X → a.b , {c,d}"] --> F["Combined Transition"]
     end
-    A -.->|Merge Core| E
-    C -.->|Merge Core| E
-    style E fill:#bbf,stroke:#333
+
+    A -. "Merge Core" .-> E
+    C -. "Merge Core" .-> E
+
+    style E fill:#bbf,stroke:#333,stroke-width:2px
 ```
 *Note: If the merged state has a reduction on `c` from one core and a reduction on `c` from another core, that's an RR conflict.*
 
