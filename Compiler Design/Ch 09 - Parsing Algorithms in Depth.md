@@ -1,4 +1,4 @@
-# Chapter 9: Parsing Algorithms in Depth – The Complete Masterclass
+# Chapter 9: Parsing Algorithms in Depth 
 
 Welcome to the most exhaustive guide on parsing algorithms. This chapter is the heart of compiler design. Whether you are a beginner trying to understand **why parsers exist**, a university student preparing for exams, or a software engineer facing an interview, this guide will take you from **intuition** to **exam-ready depth**.
 
